@@ -4,7 +4,7 @@
 Version 0.1<br>
 Prepared by Team Aquafina <br>
 Weijie Liang -    <br>
-Kexin Liu -    <br>
+Kexin Liu - 400138024   <br>
 Shanghong Shen -     <br>
 Liyang Wang -   <br>
 Fang Ye - 400273067     <br>
