@@ -1,7 +1,7 @@
 # COMPSCI 4ZP6: Capstone Project Meeting Minutes
 
 **Project Name:**       Ingenuity Incubator <br>
-**Time:**               16/10/2020 12pm-  <br>
+**Time:**               16/10/2020 12:30pm-1:25pm  <br>
 **Attendees :**         Dr. Benson Honig, team Aquafina   <br>
 **Meeting Objective:**  Requirement documents discussion  <br>
 
