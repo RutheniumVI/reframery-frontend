@@ -3,7 +3,7 @@
 **Project Name:**       Ingenuity Incubator <br>
 **Time:**               16/10/2020 12:30pm-1:25pm  <br>
 **Attendees :**         Dr. Benson Honig, team Aquafina   <br>
-**Meeting Objective:**  Requirement documents discussion  <br>
+**Meeting Objective:**  Requirement documentation discussion  <br>
 
 
 ## Discussion
