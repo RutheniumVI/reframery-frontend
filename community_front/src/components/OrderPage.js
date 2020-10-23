@@ -7,9 +7,6 @@ class OrderPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // product: data.products.find(x => x._id === 1),
-            // product: data.products.filter(x => x._id === 1),
-
             product:
             {
                 _id: '1',
@@ -21,8 +18,15 @@ class OrderPage extends Component {
                 rating: 5,
                 description: "Homebaked Cakes - ideal for Birthdays and Special Occasions. ",
                 city: "Hamilton",
-                address: "100 Main St. S. Toronto ON L3P5H8"
+                address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
             },
+            user:
+            {
+                name: 'TechTerms',
+                address: '100 Main Street South Hamilton, ON L3P 5H8 Canada',
+                email: 'techterms@gmail.com',
+                mobile: 'TechTerms '
+            }
 
         };
 
@@ -30,37 +34,45 @@ class OrderPage extends Component {
 
     render() {
         return (
-            <div>
-
-                <div>
-                    <div>My regramery {">"} Purchase recoreds {">"}  Order detail</div>
+            <div className="order-details">
+                <div className="order-path">
+                    <div>My Reframery {">"} Purchase Records {">"}  Order Details</div>
                 </div>
 
-                <div>
-                    <div>Order Number: P0000000000000000001</div>
-                    <div>Status: Pay Succes</div>
+                <div className="order-overview">
+                    <h4>
+                        Order Overview
+                        </h4>
+                    <ul>
+                        <li>Order # P-000000-0000001</li>
+                        <li>Order on October 20, 2020</li>
+                        <li>Status: Pay Success</li>
+                    </ul>
                 </div>
 
-                <div>
-                    <p>Order</p>
+                <div className="order-information">
                     <div className="seller-detail">
-                        <div>
-                            Seller details
-                        </div>
+                        <h4>
+                            Seller Information
+                        </h4>
                         <div>
                             <ul>
-                                <li> Contact Name:   </li>
-                                <li> Address:   </li>
-                                <li> Mobile:   </li>
+                                <li> Contact Name:  {this.state.user.name} </li>
+                                <li> Address:   {this.state.user.address}</li>
+                                <li> Email:   {this.state.user.email}</li>
+                                <li> Mobile:   {this.state.user.mobile}</li>
                             </ul>
                         </div>
                     </div>
 
 
                     <div className="order-table">
+                    <h4>
+                            Item Details
+                        </h4>
                         <table>
                             <tr>
-                                <td>Item Details</td>
+                                <td>Item</td>
                                 <td>Price Per Unit</td>
                                 <td>Quantity</td>
                                 <td>Total</td>
@@ -70,10 +82,10 @@ class OrderPage extends Component {
                                 <td>
                                     {/* <table className="order-inner-table"> */}
                                     <div className="order-inner-table">
-                                    <td > <img className="order-image" src={this.state.product.image} alt="product"></img></td>
-                                    <td ><span className="order-product-name">{this.state.product.name}</span></td>
+                                        <td > <img className="order-image" src={this.state.product.image} alt="product"></img></td>
+                                        <td ><span className="order-product-name">{this.state.product.name}</span></td>
                                     </div>
-                                {/* </table> */}
+                                    {/* </table> */}
 
                                 </td>
                                 <td>Price: ${this.state.product.price}</td>

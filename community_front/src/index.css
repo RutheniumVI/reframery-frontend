@@ -41,8 +41,8 @@ button {
 }
 
 
+/******************** header ***********************/
 
-/* header */
 header{
   border: #e53935;
 }
@@ -61,7 +61,8 @@ header{
   
 }
 
-/* main */
+
+/******************** main  ***********************/
 .main {
   display: flex;
   justify-content: first baseline;
@@ -72,7 +73,8 @@ header{
   /* border-right: 1px #bdbdbd solid; */
 }
 
-/* footer */
+
+/******************** footer ***********************/
 .footer {
   background-color: white;
   color: black;
@@ -83,7 +85,7 @@ header{
 
 
 
-/* Home page*/
+/******************** Home page ***********************/
 
 .home-category{
   font-size: 20px;
@@ -137,41 +139,54 @@ header{
 
 
 
-/*ProductPage*/
+/******************** ProductPage ***********************/
+
+/* layout: image, information, action */
 .details {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
-
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .details-image {
-  flex: 2 1 600px;
+  flex: 2 1 400px;
+
 }
 
 .details-image img {
-  max-width: 600px;
-  widows: 100%;
+  max-width: 400px;
 }
-
+/* information */
 .details-information {
-  flex: 1 1 300px;
+  flex: 2 1 300px;
+  margin-right: 30px;
+
+}
+.details-description{
+  font-weight: bold;
+}
+.details-description-content{
+  font-weight: normal;
 }
 
+/* action */
 .details-action {
-  flex: 1 1 300px;
+  flex: 1 1 250px;
 }
 
 .details-information ul,
 .details-action ul {
   list-style-type: none;
-  padding: 0;
 }
 
-.details-info li,
+.details-information li,
 .details-action li {
   margin-bottom: 10px;
+}
+
+.details-action .price{
+  color:#e53935;
 }
 
 .details-action {
@@ -179,23 +194,18 @@ header{
   border-radius: 5px;
   background-color: white;
   padding: 10px;
+  margin-bottom: 20px;
 }
-
-.details-action ul .button {
-  display: flex;
-  flex-direction: column;
-
-}
-
-
 
 .button-addToCart {
   outline-style: none;
-  padding: 10px;
-  /* border: 2px grey solid; */
+  margin-top: 20px;
+  padding: 5px;
+  border: 1px grey solid;
   border-radius: 5px;
   cursor: pointer;
   background-color: #ff9100;
+  width: 80%;
 }
 
 .button-addToCart:hover {
@@ -204,33 +214,60 @@ header{
 
 .button-buy {
   outline-style: none;
-  padding: 10px;
-  /* border: 2px grey solid; */
+  padding: 5px;
+  border: 1px grey solid;
   border-radius: 5px;
   cursor: pointer;
   background-color: #f44336;
+  width: 80%;
 }
 
 .button-buy:hover {
   background-color: #e53935;
 }
 
-/*OrderPage*/
-.order-image {
-  width: 50px;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
+
+/******************** OrderPage ***********************/
+
+.order-details{
+  margin-top: 30px;
 }
 
-/* .order-product-name { */
-  /* width: 50px;
-  height: 50px; */
-  /* justify-content: center; */
-  /* justify-items: center;
-  align-items: center; */
-/* } */
+.order-details li{
+  padding: 2px;
+  list-style: none;
+}
 
+.order-path{
+  padding-bottom: 5px;
+  /* border-bottom: 1px #bdbdbd solid; */
+
+}
+
+.order-overview{
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px #bdbdbd solid;
+}
+.order-overview h4{
+  border-bottom: 1px #bdbdbd solid;
+}
+
+.seller-detail{
+
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px #bdbdbd solid;
+}
+
+.seller-detail h4{
+  border-bottom: 1px #bdbdbd solid;
+}
+
+.order-table h4{
+  border-bottom: 1px #bdbdbd solid;
+}
 table {
   border-collapse: collapse;
 }
@@ -257,4 +294,11 @@ td {
   padding-left: 5px;
   padding-right: 5px;
   text-align: center;
+}
+
+.order-image {
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
 }

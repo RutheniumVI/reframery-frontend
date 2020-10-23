@@ -7,10 +7,10 @@ export default {
             image: '/images/product_cake.jpg',
             price: 20,
             quantity: 20,
-            rating: 5,
+            rating: 4,
             description: "Homebaked Cakes - ideal for Birthdays and Special Occasions. ",
             city: "Hamilton",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
         {
             _id: '2',
@@ -21,8 +21,8 @@ export default {
             quantity: 20,
             rating: 4.5,
             description: " ",
-            city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            city: "Hamilton",
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
         {
             _id: '3',
@@ -33,8 +33,8 @@ export default {
             quantity: 20,
             rating: 4.5,
             description: "",
-            city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            city: "Hamilton",
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
     ],
     services: [
@@ -47,8 +47,8 @@ export default {
             quantity: 20,
             rating: 5,
             description: "",
-            city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            city: "Hamilton",
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
         {
             _id: '2',
@@ -60,7 +60,7 @@ export default {
             rating: 5,
             description: "",
             city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
         {
             _id: '3',
@@ -72,7 +72,7 @@ export default {
             rating: 5,
             description: "",
             city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
     ],
     competences: [
@@ -86,7 +86,7 @@ export default {
             rating: 5,
             description: "",
             city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
         {
             _id: '2',
@@ -98,7 +98,7 @@ export default {
             rating: 4.5,
             description: "",
             city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
         {
             _id: '3',
@@ -110,7 +110,7 @@ export default {
             rating: 4.5, 
             description: "",
             city: "Toronto",
-            address: "100 Main St. S. Toronto ON L3P5H8"
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
     ]
 }
