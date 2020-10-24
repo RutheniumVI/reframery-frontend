@@ -1,68 +1,42 @@
-import React from 'react';
-import ProductPage from "./components/ProductPage"
-import { HashRouter as Router, Link, Route } from 'react-router-dom'
-// import data from './data'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import { DataProvider } from "./data/useData";
 
-import './App.css';
-import HomePage from './components/HomePage';
-import CartPage from './components/CartPage';
-import PaymentPage from './components/PaymentPage';
-import OrderPage from './components/OrderPage';
+import Header from "./components/Header";
+import Sidebar from "./components/SideBar";
+import Footer from "./components/Footer";
+import NotFound from './components/NotFound'
 
+import ProductPage from "./pages/ProductPage";
+import HomePage from "./pages/HomePage";
+// import CartPage from "./components/CartPage";
+// import PaymentPage from "./components/PaymentPage";
+import OrderPage from "./pages/OrderPage";
 
-function App() {
-
-
+export default function App() {
   return (
-    <Router>
-
+    <DataProvider>
       <div className="container">
-        {/* header */}
-        <header className="header">
-          <div className="webname">
-            <Link to="/"><span className="link">Reframery Community Currency</span></Link>
-          </div>
-          <div className="header-links">
-            <Link to="/signin" > <span className="link">Sign In</span></Link>
-            <Link to="/cart" > <span className="link">Cart</span></Link>
-          </div>
-        </header>
-
+        <Header />
         <main className="main">
-
-          {/* side bar */}
-          <div className="sidebar">
-            <ul>
-              <li>My Wallet</li>
-              <li>My Items</li>
-              <li>My Profile</li>
-              <li>My History</li>
-            </ul>
-          </div>
-
-          {/* content */}
+          <Sidebar />
           <div className="content">
-            <Route path="/" exact={true} component={HomePage} />
-            <Route path="/product/:id" component={ProductPage} />
-            <Route path="/cart" component={CartPage} />
-            <Route path="/payment" component={PaymentPage} />
-            <Route path="/myreframery/purchase-records/order-details" component={OrderPage} />
-
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/product/:id" component={ProductPage} />
+              {/* <Route path="/cart" component={CartPage} /> */}
+              {/* <Route path="/payment" component={PaymentPage} /> */}
+              <Route
+                path="/myreframery/purchase-records/order-details"
+                element={<OrderPage />}
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </div>
         </main>
-
-        {/* footer */}
-        <footer className="footer">  </footer>
-
-
+        <Footer />
       </div>
-
-
-
-    </Router>
-  )
-
-
+    </DataProvider>
+  );
 }
-
-export default App;
