@@ -112,5 +112,31 @@ export default {
             city: "Toronto",
             address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
         },
+    ],
+    users: [
+        {
+            _id: '1',
+            name: 'Mr Smith',
+            phone: "3658884030",
+            postcode: "L8S121",
+            password: "abxs",
+            image: "/images/competence_deliver.jpg",
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada",
+            email: "la@gmail.com"
+        },
+    ],
+    input_products: [
+        {
+            _id: '1',
+            category: 'Products',
+            name: 'Banana',
+            image: '/images/competence_deliver.jpg',
+            price: 19,
+            quantity: 20,
+            rating: 4.5, 
+            description: "taste good",
+            city: "Toronto",
+            address: "100 Main Street South Hamilton, ON L3P 5H8 Canada"
+        },
     ]
 }

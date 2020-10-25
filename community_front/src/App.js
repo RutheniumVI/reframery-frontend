@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { DataProvider } from "./data/useData";
 
@@ -13,10 +13,14 @@ import HomePage from "./pages/HomePage";
 // import CartPage from "./components/CartPage";
 // import PaymentPage from "./components/PaymentPage";
 import OrderPage from "./pages/OrderPage";
-import ProfilePage from "./pages/ProfilePage";
-import EditProfilePage from "./pages/EditProfilePage";
+import UserPage from "./pages/UserPage";
+import AddItemPage from "./pages/AddItemPage";
+import EditItemPage from "./pages/EditItemPage";
+import DeleteItemPage from "./pages/DeleteItemPage";
+import MyItemPage from "./pages/MyItemPage";
 import AddCategoryPage from "./pages/AddCategoryPage";
-import AddNewItemPage from "./pages/AddNewItemPage";
+import DeleteCategoryPage from "./pages/DeleteCategoryPage";
+import EditCategoryPage from "./pages/EditCategoryPage";
 
 export default function App() {
   return (
@@ -35,11 +39,17 @@ export default function App() {
                 path="/myreframery/purchase-records/order-details"
                 element={<OrderPage />}
               />
-              <Route path="/profile" element={<ProfilePage />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/user-profile" element={<UserPage />} />
+              <Route path="/add-new-item" element={<AddItemPage/>} />
+              <Route path="/edit-item" element={<EditItemPage/>} />
+              <Route path="/delete-item" element={<DeleteItemPage/>} />
+              <Route path="/my-item" element={<MyItemPage/>} />
+              <Route path="/add-category" element={<AddCategoryPage/>} />
+              <Route path="/delete-category" element={<DeleteCategoryPage/>} />
+              <Route path="/edit-category" element={<EditCategoryPage/>} />
             </Routes>
           </div>
-          <AddCategoryPage />
         </main>
         <Footer />
       </div>
