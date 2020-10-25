@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { HashRouter as Routes, Route } from "react-router-dom";
 import "./App.css";
 import { DataProvider } from "./data/useData";
 
@@ -13,6 +13,10 @@ import HomePage from "./pages/HomePage";
 // import CartPage from "./components/CartPage";
 // import PaymentPage from "./components/PaymentPage";
 import OrderPage from "./pages/OrderPage";
+import ProfilePage from "./pages/ProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
+import AddCategoryPage from "./pages/AddCategoryPage";
+import AddNewItemPage from "./pages/AddNewItemPage";
 
 export default function App() {
   return (
@@ -31,9 +35,11 @@ export default function App() {
                 path="/myreframery/purchase-records/order-details"
                 element={<OrderPage />}
               />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
+          <AddCategoryPage />
         </main>
         <Footer />
       </div>

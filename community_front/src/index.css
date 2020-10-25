@@ -302,3 +302,112 @@ td {
   justify-content: center;
   align-items: center;
 }
+
+/******************** Profile page ***********************/
+
+.profile-text {
+  font-size: 20px;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.block1{
+  margin:50px;
+  float:left;
+  width:30%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 20px true;
+}
+
+.block2{
+  padding: 10px;
+  float:left;
+}
+
+.f-container {
+  display: flex;
+  flex-direction: row;
+}
+
+/******************** Edit Profile page ***********************/
+
+.block3{
+  margin:50px;
+  float:left;
+  width:1000px;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 20px true;
+}
+
+/******************** Add category page ***********************/
+
+.header1{
+  width: 800px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: balck;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+
+.box1{
+  width: 500px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 250px;
+  height: 70px;
+  font-size: 30px;
+}
+
+.box2{
+  width: 100px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 450px;
+  height: 70px;
+  font-size: 30px;
+}
+
+.box3{
+  width: 100px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 100px;
+  height: 70px;
+  font-size: 30px;
+}
+
+.box4{
+  width: 100px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 350px;
+  height: 70px;
+  font-size: 30px;
+}
+
+.text1{
+  position: relative;
+  margin-top: 100px;
+  margin-left: 300px;
+  font-size: 20px;
+}
+
+.text2{
+  position: relative;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.box5{
+  margin-left: 10px;
+}

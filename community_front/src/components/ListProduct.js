@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { HashRouter as useNavigate, Link } from "react-router-dom";
 import { useData } from "../data/useData";
 
 export default function ListProduct({ mainCategory }) {
