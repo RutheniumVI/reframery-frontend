@@ -32,7 +32,7 @@ export default function App() {
           <div className="content">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/product/:id" component={ProductPage} />
+              <Route path="/product/:id" element={<ProductPage />} />
               {/* <Route path="/cart" component={CartPage} /> */}
               {/* <Route path="/payment" component={PaymentPage} /> */}
               <Route
