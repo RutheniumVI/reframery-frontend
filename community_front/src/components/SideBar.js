@@ -9,9 +9,11 @@ export default function SideBar() {
         <Link to="./my-item">
           <li>My Items</li>
         </Link>
-        <Link to="./user-profile">
           <li>My Profile</li>
-        </Link>
+          <ul>
+          <li > <Link to="./user-profile"> User</Link></li>
+          <li > <Link to="/myadmin/overview"> Admin</Link></li>
+        </ul>
         <li>My History</li>
       </ul>
     </div>
