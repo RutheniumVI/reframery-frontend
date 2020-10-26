@@ -6,7 +6,7 @@ import { DataProvider } from "./data/useData";
 import Header from "./components/Header";
 import Sidebar from "./components/SideBar";
 import Footer from "./components/Footer";
-import NotFound from './components/NotFound'
+import NotFound from "./components/NotFound";
 
 import ProductPage from "./pages/ProductPage";
 import HomePage from "./pages/HomePage";
