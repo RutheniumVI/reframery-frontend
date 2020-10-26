@@ -369,3 +369,66 @@ td {
   justify-content: center;
   align-items: center;
 }
+
+
+/******************** admin pages ***********************/
+
+.menu ul{
+  /* border: #304ffe 1px solid; */
+  margin:0px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+}
+
+.menu li{
+  padding-right: 30px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.menu .link{
+  color: #1976d2;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+.admin-table{
+  display: block;
+  /* border: #304ffe 1px solid; */
+  padding-left: 50px;
+  padding-top: 50px;
+}
+
+.admin-table table{
+  min-width: 60vw;
+}
+
+.admin-table td{
+  padding-right: 40px;
+
+}
+
+.admin-table table, .admin-table  tr, .admin-table td{
+  border: none;
+}
+
+
+.button-validate, .button-complaint{
+  outline-style: none;
+  padding: 5px;
+  border: 1px grey solid;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ff9100;
+  width: 100%;
+}
+
+.button-validate:hover, .button-complaint:hover {
+  background-color: #ff6d00;
+}

@@ -22,6 +22,12 @@ import AddCategoryPage from "./pages/AddCategoryPage";
 import DeleteCategoryPage from "./pages/DeleteCategoryPage";
 import EditCategoryPage from "./pages/EditCategoryPage";
 
+import SalePage from './pages/SalePage';
+import ComplaintPage from './pages/AdminComplaintPage';
+import OverviewPage from './pages/AdminOverviewPage';
+import AwaitingPage from './pages/AdminAwaitingPage';
+import ValidateUserPage from './pages/AdminValidateUserPage';
+
 export default function App() {
   return (
     <DataProvider>
@@ -48,6 +54,12 @@ export default function App() {
               <Route path="/delete-category" element={<DeleteCategoryPage />} />
               <Route path="/edit-category" element={<EditCategoryPage />} />
               <Route path="*" element={<NotFound />} />
+
+              <Route path="/myreframery/orders/sale/sale-details" element={<SalePage />} />
+              <Route path="/myadmin/overview" element={<OverviewPage />} />
+              <Route path="/myadmin/awaiting-validation" element={<AwaitingPage />} />
+              <Route path="/myadmin/validated-users" element={<ValidateUserPage />} />
+              <Route path="/myadmin/complaints" element={<ComplaintPage />} />
             </Routes>
           </div>
         </main>
