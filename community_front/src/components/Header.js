@@ -21,6 +21,9 @@ export default function Header() {
         <Link to="/signin">
           <span className="link">Sign In</span>
         </Link>
+        <Link to="/register">
+          <span className="link">Register</span>
+        </Link>
         <Link to="/cart">
           <span className="link">Cart</span>
         </Link>
