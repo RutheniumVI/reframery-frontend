@@ -13,6 +13,14 @@ import HomePage from "./pages/HomePage";
 // import CartPage from "./components/CartPage";
 // import PaymentPage from "./components/PaymentPage";
 import OrderPage from "./pages/OrderPage";
+import UserPage from "./pages/UserPage";
+import AddItemPage from "./pages/AddItemPage";
+import EditItemPage from "./pages/EditItemPage";
+import DeleteItemPage from "./pages/DeleteItemPage";
+import MyItemPage from "./pages/MyItemPage";
+import AddCategoryPage from "./pages/AddCategoryPage";
+import DeleteCategoryPage from "./pages/DeleteCategoryPage";
+import EditCategoryPage from "./pages/EditCategoryPage";
 
 export default function App() {
   return (
@@ -31,6 +39,14 @@ export default function App() {
                 path="/myreframery/purchase-records/order-details"
                 element={<OrderPage />}
               />
+              <Route path="/user-profile" element={<UserPage />} />
+              <Route path="/add-new-item" element={<AddItemPage />} />
+              <Route path="/edit-item" element={<EditItemPage />} />
+              <Route path="/delete-item" element={<DeleteItemPage />} />
+              <Route path="/my-item" element={<MyItemPage />} />
+              <Route path="/add-category" element={<AddCategoryPage />} />
+              <Route path="/delete-category" element={<DeleteCategoryPage />} />
+              <Route path="/edit-category" element={<EditCategoryPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
