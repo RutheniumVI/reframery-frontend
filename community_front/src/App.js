@@ -28,6 +28,9 @@ import OverviewPage from './pages/AdminOverviewPage';
 import AwaitingPage from './pages/AdminAwaitingPage';
 import ValidateUserPage from './pages/AdminValidateUserPage';
 
+import WalletPage from './pages/WalletPage'
+import TransHistPage from './pages/TransHistPage'
+
 export default function App() {
   return (
     <DataProvider>
@@ -60,6 +63,9 @@ export default function App() {
               <Route path="/myadmin/awaiting-validation" element={<AwaitingPage />} />
               <Route path="/myadmin/validated-users" element={<ValidateUserPage />} />
               <Route path="/myadmin/complaints" element={<ComplaintPage />} />
+              <Route path="/mywallet" element={<WalletPage />} />
+              <Route path="/myreframery/purchase-records" element={<TransHistPage />} />
+              
             </Routes>
           </div>
         </main>
