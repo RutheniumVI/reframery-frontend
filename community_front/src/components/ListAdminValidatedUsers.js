@@ -13,6 +13,7 @@ export default function ListValidateUser() {
                         <td> Email</td>
                         <td> Request Time </td>
                         <td> Validate Time</td>
+                        <td> Initial RCC($)</td>
                     </tr>
                     {
                         data["requests"].map(request =>
@@ -22,11 +23,20 @@ export default function ListValidateUser() {
                                 <td>{request.email}</td>
                                 <td>{request.request_time} </td>
                                 <td>{request.validate_time}</td>
+                                <td>25</td>
 
                             </tr>
 
                         )
                     }
+                    <tr>
+                        <td> <h3>Overall</h3> </td>
+                        <td> &nbsp;</td>
+                        <td> &nbsp;</td>
+                        <td> &nbsp; </td>
+                        <td> &nbsp;</td>
+                        <td> <h3>50</h3></td>
+                    </tr>
 
 
                 </table>
