@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 
 export default function SalePage() {
     const product = {
@@ -24,7 +24,7 @@ export default function SalePage() {
     return (
         <div className="order-details">
             <div className="order-path">
-                <div>My Reframery {">"} Sale Records {">"}  Sale Details</div>
+                <div><Link to="/">My Reframery</Link> {">"} <Link to="/myreframery/records">Records {">"} </Link> <Link to="/myreframery/records">Sale Records</Link> {">"}  Sale Details</div>
             </div>
 
             <div className="order-overview">

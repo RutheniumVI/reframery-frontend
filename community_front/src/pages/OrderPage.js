@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 export default function OrderPage() {
     const product = {
         _id: '1',
@@ -23,7 +23,7 @@ export default function OrderPage() {
     return (
         <div className="order-details">
             <div className="order-path">
-                <div>My Reframery {">"} Purchase Records {">"}  Order Details</div>
+                <div><Link to="/">My Reframery</Link> {">"} <Link to="/myreframery/records">Records {">"} </Link> <Link to="/myreframery/records"> Purchase Records </Link>{">"}  Purchase Details</div>
             </div>
 
             <div className="order-overview">
