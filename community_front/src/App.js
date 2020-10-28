@@ -31,6 +31,9 @@ import ValidateUserPage from './pages/AdminValidateUserPage';
 import Signin from './pages/Signin'
 import Register from './pages/Register'
 
+import WalletPage from './pages/WalletPage'
+import TransHistPage from './pages/TransHistPage'
+
 export default function App() {
   return (
     <DataProvider>
@@ -66,6 +69,8 @@ export default function App() {
 
               <Route path="/signin" element={<Signin />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/mywallet" element={<WalletPage />} />
+              <Route path="/myreframery/purchase-records" element={<TransHistPage />} />
             </Routes>
           </div>
         </main>
