@@ -432,3 +432,68 @@ td {
 .button-validate:hover, .button-complaint:hover {
   background-color: #ff6d00;
 }
+
+
+/***************** sign in  and register*******************/
+.form {
+  padding: 40px;
+  width: 400px;
+  margin: auto;
+  margin-top: 80px;
+  height: auto;
+  text-align: center;
+}
+
+.form h3{
+  color: black;
+}
+
+.form li{
+  list-style: none;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.form input{
+  width: 100%;
+  border: 0;
+  border: #9e9e9e 1px solid;
+  border-radius: 10px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+input[type='checkbox'] {
+  float: left;
+  width: 20px;
+}
+
+input[type='checkbox'] + label {
+  display: block;
+  width: 200px;
+}
+
+
+.form .submit{
+  background-color: #1976d2;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.form .submit:hover, .form .submit:active{
+  background-color: #304ffe;
+}
+
+.form .message{
+  /* margin: 15px 0 0; */
+  color: black;
+  font-size: 12px;
+}
+
+.form .message .linkto:hover{
+  color: blue;
+  font-size: 15px;    
+  text-decoration: blink;
+}
