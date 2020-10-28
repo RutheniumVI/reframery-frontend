@@ -31,7 +31,6 @@ import ValidateUserPage from './pages/AdminValidateUserPage';
 import Signin from './pages/Signin'
 import Register from './pages/Register'
 
-
 import WalletPage from './pages/WalletPage'
 import TransHistPage from './pages/TransHistPage'
 
