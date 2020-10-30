@@ -1,33 +1,48 @@
-import React, { Component } from "react";
+import React from "react";
+import { useData } from "../data/useData";
 
-//import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom'
 
 
 function Currency() {
-    return <span><h3>Your current balance: </h3><h1>RCC$ 40</h1></span>;
+    return (
+        <div>
+            <h3>Your current balance: </h3>
+            <div className="currency-box">
+                <h1>RCC$ 40</h1>
+            </div>
+        </div>
+    );
 }
 
 function TransactionHistory() {
+    const { data } = useData();
     return (
-        <div>
-            <h3>Past Transactions</h3>
-            <ul>
-                <li><span>2020.10.19 - Product Transaction<p>+RCC$ 20</p></span></li>
-                <li><span>2020.10.22 - Service Transaction<p>-RCC$ 10</p></span></li>
-            </ul>
-        </div>
-    );
-}
+        
+            <div>
+                <h3>Past Transactions</h3>
+                <table className="transaction">
+                    {data.products.map((product) => (
+                        <tr>
+                            <td className="trans-text">P-000000-000000{product._id} - RRC${product.price}</td>
+                        </tr>
+                    ))}
+
+                </table>
+                </div>
+          
+        
+            );
+        }
 
 function Main() {
-    return (
-        <div className="wallet-page">
-            My Reframery {">"} My Wallet
-            <Currency />
-            <TransactionHistory />
-        </div>
+        return (
+            <div className="wallet-page">
+                My Reframery {">"} My Wallet
+                <Currency />
+                <TransactionHistory />
+            </div>
 
-    );
-}
+        );
+    }
 
-export default Main;
+    export default Main;
