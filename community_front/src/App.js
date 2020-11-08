@@ -62,10 +62,10 @@ export default function App() {
               <Route path="*" element={<NotFound />} />
 
               <Route path="/myreframery/orders/sales/sale-details" element={<SalePage />} />
-              <Route path="/myadmin/overview" element={<OverviewPage />} />
-              <Route path="/myadmin/awaiting-validation" element={<AwaitingPage />} />
-              <Route path="/myadmin/validated-users" element={<ValidateUserPage />} />
-              <Route path="/myadmin/complaints" element={<ComplaintPage />} />
+              <Route path="/admin" element={<OverviewPage />} />
+              <Route path="/admin/awaiting-validation" element={<AwaitingPage />} />
+              <Route path="/admin/validated-users" element={<ValidateUserPage />} />
+              <Route path="/admin/complaints" element={<ComplaintPage />} />
 
               <Route path="/signin" element={<Signin />} />
               <Route path="/register" element={<Register />} />
