@@ -25,15 +25,26 @@ export default function SearchBar() {
   };
   return (
     <div>
-      <strong>Search </strong>
-      Item Name <input onChange={(e) => onChangeInput(e.target.value)} />
-      {filterDisplay.map((key, i) => {
-        return (
-          <div key={i}>
-            <li>{key}</li>
-          </div>
-        );
-      })}
+      <div>
+        <strong>Search </strong>
+      Item Name <input onChange={(e) => onChangeInput(e.target.value)} />                    
+      <select>
+          <option>All Category</option>
+          <option>Product</option>
+          <option>Service</option>
+          <option>Competence</option>
+        </select>
+        {filterDisplay.map((key, i) => {
+          return (
+            <div key={i}>
+              <li>{key}</li>
+            </div>
+          );
+        })}
+      </div>
+
+
     </div>
+
   );
 }
