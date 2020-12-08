@@ -23,16 +23,20 @@ import DeleteCategoryPage from "./pages/DeleteCategoryPage";
 import EditCategoryPage from "./pages/EditCategoryPage";
 
 import SalePage from './pages/SalePage';
-import ComplaintPage from './pages/AdminComplaintPage';
+import UpdateBalancePage from "./pages/AdminUpdateUserBalancePage";
 import OverviewPage from './pages/AdminOverviewPage';
 import AwaitingPage from './pages/AdminAwaitingPage';
 import ValidateUserPage from './pages/AdminValidateUserPage';
+import CreateAdminPage from './pages/AdminCreateAdminPage';
+import AdminProfilePage from "./pages/AdminProfilePage";
 
 import Signin from './pages/Signin'
 import Register from './pages/Register'
 
 import WalletPage from './pages/WalletPage'
 import TransHistPage from './pages/TransHistPage'
+
+
 
 export default function App() {
   return (
@@ -65,7 +69,11 @@ export default function App() {
               <Route path="/admin" element={<OverviewPage />} />
               <Route path="/admin/awaiting-validation" element={<AwaitingPage />} />
               <Route path="/admin/validated-users" element={<ValidateUserPage />} />
-              <Route path="/admin/complaints" element={<ComplaintPage />} />
+              <Route path="/admin/update-users-balance" element={<UpdateBalancePage />} />
+              <Route path="/admin/create-admin-account" element={<CreateAdminPage />} />
+              <Route path="/admin/my-profile" element={<AdminProfilePage />} />
+              
+
 
               <Route path="/signin" element={<Signin />} />
               <Route path="/register" element={<Register />} />
