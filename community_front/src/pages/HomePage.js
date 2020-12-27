@@ -1,5 +1,5 @@
 import React from "react";
-import ListProduct from "../components/ListProduct";
+import ListItem from "../components/ListItem";
 
 export default function Homepage() {
   return (
@@ -11,9 +11,9 @@ export default function Homepage() {
           <option>Brazil</option>
         </select>
       </div>
-      <ListProduct mainCategory="products" />
-      <ListProduct mainCategory="services" />
-      <ListProduct mainCategory="competences" />
+      <ListItem mainCategory="products" />
+      <ListItem mainCategory="services" />
+      <ListItem mainCategory="expertises" />
     </div>
   );
 }
