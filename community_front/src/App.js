@@ -8,7 +8,9 @@ import Sidebar from "./components/SideBar";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 
-import ProductPage from "./pages/ProductPage";
+import DetailsProductPage from "./pages/DetailsProductPage";
+import DetailsServicePage from "./pages/DetailsServicePage";
+import DetailsExpertisePage from "./pages/DetailsExpertisePage";
 import HomePage from "./pages/HomePage";
 // import CartPage from "./components/CartPage";
 // import PaymentPage from "./components/PaymentPage";
@@ -48,7 +50,9 @@ export default function App() {
           <div className="content">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/product/:id" element={<DetailsProductPage />} />
+              <Route path="/service/:id" element={<DetailsServicePage />} />
+              <Route path="/expertise/:id" element={<DetailsExpertisePage />} />
               {/* <Route path="/cart" component={CartPage} /> */}
               {/* <Route path="/payment" component={PaymentPage} /> */}
               <Route
