@@ -37,19 +37,24 @@ import Register from './pages/Register'
 
 import WalletPage from './pages/WalletPage'
 import TransHistPage from './pages/TransHistPage'
+import WellcomePage from "./pages/WellcomePage";
+import { useSelector } from "react-redux";
 
 
 
 export default function App() {
+  const userSignin = useSelector(state => state.userSignin);
+  const {userInfo} = userSignin;
   return (
     <DataProvider>
       <div className="container">
-        <Header />
+      {userInfo ? (<Header />) : null}
         <main className="main">
-          <Sidebar />
+        {userInfo ? (<Sidebar />) : null}
           <div className="content">
             <Routes>
-              <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<WellcomePage />} />
+              <Route path="/home" element={<HomePage />} />
               <Route path="/product/:id" element={<DetailsProductPage />} />
               <Route path="/service/:id" element={<DetailsServicePage />} />
               <Route path="/expertise/:id" element={<DetailsExpertisePage />} />
@@ -86,7 +91,7 @@ export default function App() {
             </Routes>
           </div>
         </main>
-        <Footer />
+        {/* {userInfo ?  null : (<Footer />)}         */}
       </div>
     </DataProvider>
   );

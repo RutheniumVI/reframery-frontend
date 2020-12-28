@@ -1,52 +1,63 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useData } from "../data/useData";
 import Rating from "./Rating";
 
 
 export default function ListItem({ mainCategory }) {
-  let navigate = useNavigate();
+  //get items from data.json
   const { data } = useData();
+
+  //get the current sign in user information
+  const userSignin = useSelector(state => state.userSignin);
+  const { userInfo } = userSignin;
+
   // the category of the item
   const loweredCate = mainCategory.toLowerCase();
   return (
-    <div>
-      <p className="home-category">
+    <div className="itemlist-container">
+      <div className="home-category">
         {loweredCate.charAt(0).toUpperCase() + loweredCate.slice(1)}
-      </p>
-      <ul className="items">
+      </div>
+      <div className="list-items">
         {data[loweredCate].map((item) => (
-          <li key={item._id}>
-            <div className="item">
-
-              <img
-                className="item-image"
-                src={item.image}
-                onClick={() => {(loweredCate==="products")? navigate(`/product/${item._id}`):
-                                 (loweredCate==="services")? navigate(`/service/${item._id}`):
-                                 navigate(`/expertise/${item._id}`)}}
-                alt={item.name}
-              ></img>
-
+          <div className="item">
+            <div className="image">
+              {userInfo ? (<Link to={(loweredCate === "products") ? "/product/" + item._id :
+                (loweredCate === "services") ? "/service/" + item._id :
+                  "/expertise/" + item._id}>
+                <img
+                  className="item-image"
+                  src={item.image}
+                  alt={item.name}
+                ></img>
+              </Link>) : (<Link to="/signin">
+                <img
+                  className="item-image"
+                  src={item.image}
+                  alt={item.name}
+                ></img>
+              </Link>)}
+            </div>
+            <div className="item-info">
               <div className="item-name">
-                
-                <Link to={(loweredCate==="products")? "/product/"+ item._id:
-                                 (loweredCate==="services")? "/service/"+ item._id:
-                                 "/expertise/"+ item._id}>
+                {userInfo ? (<Link to={(loweredCate === "products") ? "/product/" + item._id :
+                  (loweredCate === "services") ? "/service/" + item._id :
+                    "/expertise/" + item._id}>
                   <span className="link">{item.name}</span>
-                </Link>
-
-                {/* <Link to={"/product/" + item._id}>
+                </Link>) : (<Link to="/signin">
                   <span className="link">{item.name}</span>
-                </Link> */}
+                </Link>)}
               </div>
               <div className="item-price">${item.price}</div>
-              <div className="item-rating"><Rating rating={item.rating} numOfReviews= {item.numOfReviews}></Rating></div>
-              <div className="item-city">{item.city}, {item.community} </div>
+              <div className="item-rating"><Rating rating={item.rating} numOfReviews={0}></Rating></div>
+              <div className="item-city">{item.city} </div>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+
     </div>
   );
 }
