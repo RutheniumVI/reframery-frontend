@@ -13,6 +13,7 @@ export default function ItemDetails({ category }) {
     const feedbacks = data["feedbacks"].filter(x => x.itemID === id);
     const numOfFeedbacks = feedbacks.length;
     const aveRating = numOfFeedbacks === 0 ? 0 : feedbacks.map(feedback => feedback.rating).reduce((sum, feedback) => sum + feedback) / numOfFeedbacks;
+   
     //get user form the key userID of the item and then get addresses from the key addressID of user 
     const user = data["users"].find(x => x._id === item.userID);
     const address = data["addresses"].find(x => x._id === user.addressID);

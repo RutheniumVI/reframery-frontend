@@ -21,6 +21,9 @@ export default function Register() {
 
     return (
         <div className="register-container">
+            <div>
+                <Link to="/home"><span>back to home</span></Link>
+            </div>
             <div className="form">
                 <form className="Register" onSubmit={submitHandler}>
                     <div>

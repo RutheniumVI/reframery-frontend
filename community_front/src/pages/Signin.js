@@ -1,19 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import { signin } from "../actions/userActions";
 
 
 export default function Signin(props) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const redirect = '/home';
 
+  const userSignin = useSelector(state => state.userSignin);
+  const { userInfo, loading, error } = userSignin;
+
+
+  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(signin(email, password));
     // TODO
   };
 
+  useEffect(() => {
+    // if the user sign in sucessfully, go to the redirect link
+    if (userInfo) {
+      // props.history.push(redirect);
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]);
+
   return (
     <div className="form" >
+      <div>
+        <Link to="/home"><span>back to home</span></Link>
+      </div>
       <form className="signin" onSubmit={submitHandler}>
           <div> 
             <h3 className="signin-text">Sign In</h3>
