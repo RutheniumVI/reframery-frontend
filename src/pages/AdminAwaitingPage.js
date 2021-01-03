@@ -1,11 +1,11 @@
 import React from 'react';
-import AdminMenu from '../components/AdminMenu';
-import ListAwaitingValidation from '../components/ListAdminAwaitingValidation';
+import AdminMenu from '../components/AdminSidebar';
+import ListAwaitingValidation from '../components/AdminListAwaitingValidation';
 
 
 export default function AwaitingPage() {
     return (
-        <div>
+        <div  className="admin-container">
             <AdminMenu />
             <ListAwaitingValidation />
         </div>

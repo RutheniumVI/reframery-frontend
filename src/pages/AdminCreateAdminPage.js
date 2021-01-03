@@ -1,11 +1,11 @@
 import React from 'react';
-import AdminMenu from '../components/AdminMenu'
-import CreateNewAminAccount from '../components/CreateNewAdminAccount'
+import AdminMenu from '../components/AdminSidebar'
+import CreateNewAminAccount from '../components/AdminCreateNewAdmin'
 
 export default function CreateAdminPage() {
 
     return (
-        <div>
+        <div  className="admin-container" >
             <AdminMenu />
             <CreateNewAminAccount />
             

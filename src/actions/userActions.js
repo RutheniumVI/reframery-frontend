@@ -1,5 +1,5 @@
 //get the user data from data.json
-import Axios from 'axios'
+// import Axios from 'axios'
 
 import {
     USER_SIGNIN_FAIL,
@@ -11,7 +11,13 @@ import {
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
     try {
-        const { data } = await Axios.post('/api/users/signin', { email, password });
+        const data  = {
+            "username": "user01", 
+            "email": "user01@gmail.com",
+            "admin": false,
+            "superAdmin": false,
+            "community": "Canada",
+        };
         console.log(data)
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         localStorage.setItem('userInfo', JSON.stringify(data));

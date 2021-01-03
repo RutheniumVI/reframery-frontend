@@ -1,14 +1,16 @@
 import React from 'react';
-import AdminMenu from '../components/AdminMenu'
-import UserPage from '../pages/UserPage'
+import AdminMenu from '../components/AdminSidebar'
+import ProfilePage from './ProfilePage'
 
 export default function AdminProfilePage() {
 
     return (
-        <div>
+        <div className="admin-container">
             <AdminMenu />
-            <UserPage />
-            
+            <div className="admin-table">
+                <ProfilePage />
+            </div>
+
         </div>
     );
 }

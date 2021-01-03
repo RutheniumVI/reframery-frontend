@@ -51,8 +51,8 @@ export default function ListItem({ mainCategory }) {
                 </Link>)}
               </div>
               <div className="item-price">${item.price}</div>
-              <div className="item-rating"><Rating rating={item.rating} numOfReviews={0}></Rating></div>
-              <div className="item-city">{item.city} </div>
+              <div className="item-rating"><Rating rating={5} numOfReviews={1}></Rating></div>
+              <div className="item-city">Hamilton, ON</div>
             </div>
           </div>
         ))}

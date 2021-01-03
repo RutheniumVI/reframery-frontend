@@ -5,26 +5,19 @@ html {
 
 body {
   font: 16px Helvetica;
-  /* height: 100vh; */
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-/* #root {
-  height: 100%;
-} */
-
+/* Button */
 button {
   border: none;
 }
 
 /* Link */
-
 .link:hover {
   color: #304ffe;
-  text-decoration: underline;
 }
 
 :link {
@@ -35,67 +28,162 @@ button {
   text-decoration: none;
 }
 
-/******************** header ***********************/
+/***************** Alert *******************/
+.success {
+  color: green
+}
 
-.header {
+.danger {
+  color: red
+}
+
+.alert {
+  padding: 10px;
+  border: 1px solid transparent;
+  border: 5px
+}
+
+.alert-info {
+  color: blue;
   background-color: white;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  padding-left: 30px;
-  padding-right: 100px;
-  border-bottom: 1px solid #9e9e9e;
-
 }
 
-.header-links .link {
-  padding: 20px;
+.alert-danger {
+  color: red;
+  background-color: white;
 }
 
-/******************** main  ***********************/
-.main {
-  display: flex;
-  flex-wrap: wrap;
-}
 
+/******************** App ***********************/
 .container {
   margin: auto;
   max-width: 80%;
 }
 
+.main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* width of height of the content */
 .content {
-  /* min-height: 80vh; */
   min-width: 85%;
   margin: auto;
-  /* background-color: #ff6d00; */
 }
 
-/******************** sidebar ***********************/
+/**** Searchbar *********/
+.searchbar {
+  position: absolute;
+  right: 40%;
+  top: 15px;
+}
+
+/******************** Header ***********************/
+.header-container {
+  border-bottom: 1px solid #9e9e9e;
+  height: 50px;
+}
+
+.header-links {
+  position: absolute;
+  top: 15px;
+  right: 15%;
+}
+
+/**   dropdown */
+.dropdown {
+  display: inline-block;
+  position: relative;
+
+}
+
+.dropdown-content {
+  position: absolute;
+  display: none;
+  min-width: 120px;
+  margin: 0;
+  padding: 10px;
+}
+
+.dropdown .link {
+  color: #1976d2;
+  font-size: 20px;
+}
+
+.dropdown .link:hover {
+  color: #01579b;
+  font-size: 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/******************** Sidebar ***********************/
+.sidebar-container {
+  /* background-color: rgb(231, 228, 228); */
+  padding-top: 30px;
+
+}
+
 .sidebar {
-  align-items: center;
-  padding-left: 0;
-  /* background-color: #b8817d; */
-  min-width: 15%;
-  margin-top: 40px;
+  width: 180px;
+  margin-left: 0px;
+  margin-right: 0px;
+  /* width: 200px; */
 }
 
-.sidebar div{
+.sidebar .head {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10%;
+}
+
+.marketplace{
+  font-size: 24px;
+  color: #7a023c;
+font-weight: bold;
+margin-top: 5px;
+}
+
+.sidebar .middle {
+  /* margin: auto; */
+  padding-top: 40px;
+  padding-left: 5%;
+  padding-right: 5%;
+  /* background-color: #e53935; */
+}
+
+.sidebar .row {
   margin-bottom: 20px;
 }
 
-.sidebar .link{
-  list-style-type: none;
-  font-size: 24px;
-  color: black;
-  font-weight: bold;
+
+.sidebar .cart {
+  margin: auto;
+  width: fit-content;
+  margin-top: 50px;
 }
 
-.sidebar .link:hover{
+.sidebar .cart img {
+  width: 88px;
+  height: 88px;
+  padding-bottom: 20px;
+}
+
+.sidebar .menu .link {
+  font-size: 20px;
+  color: #545871;
+  font-weight: bold;
+  /* background-color: #304ffe; */
+}
+
+.sidebar .link:hover {
   color: #304ffe;
 }
 
-/******************** footer ***********************/
+
+/******************** Footer ***********************/
 
 .footer .text {
   display: flex;
@@ -113,13 +201,7 @@ button {
   text-align: center;
 }
 
-/******************** WellcomePage***********************/
-.wellcome-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-}
-
+/******************** WellcomeComponent ***********************/
 .wellcome-container .left {
   background-color: rgb(231, 228, 228);
   padding-top: 30px;
@@ -131,6 +213,15 @@ button {
   margin-left: auto;
   margin-right: auto;
   height: 100px;
+  padding-left: 5%;
+}
+
+.wellcome-container .head .link {
+  color: #7a023c;
+}
+
+.wellcome-container .head .link:hover {
+  color: blue;
 }
 
 .wellcome-container .head .text {
@@ -147,6 +238,8 @@ button {
 .wellcome-container .description {
   margin: auto;
   padding-top: 40px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .wellcome-container .description h2 {
@@ -166,6 +259,16 @@ button {
   max-width: 100%;
   height: auto;
 }
+
+/******************** WellcomePage***********************/
+
+.wellcome-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+
 
 .wellcome-container .right {
   padding-top: 30px;
@@ -226,20 +329,154 @@ button {
   text-decoration: underline;
 }
 
+/***************** SigninPage RegisterPage*******************/
 
-/******************** HomePage***********************/
-/*header*/
-.home-container .header {
+.wellcome-container .form {
+  width: 400px;
+  margin: auto;
+  height: auto;
+  /* text-align: center; */
+  /* background-color: #b8817d; */
+}
+
+
+.wellcome-container .form h3 {
+  color: black;
+  text-align: center;
+  padding: 20px;
+}
+
+.wellcome-container .form div {
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /* background-color: #304ffe; */
+}
+
+.wellcome-container .form label {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+.wellcome-container .form input {
+  width: 100%;
+  border: 0;
+  border: #9e9e9e 1px solid;
+  border-radius: 10px;
+  margin: 0 0 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.wellcome-container .form .select-box {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+}
+
+/* checkbox */
+.wellcome-container .form .checkbox {
+  margin-top: 30px;
+}
+
+.wellcome-container .form .box {
+  width: 10%;
+}
+
+input[type='checkbox'] {
+  float: left;
+  width: 10px;
+}
+
+input[type='checkbox']+label {
+  display: block;
+  width: auto;
+}
+
+.wellcome-container .form .terms {
+  margin-top: 20px;
+  color: black;
+  font-size: 14px;
+}
+
+.wellcome-container .form .button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 150px;
+}
+
+.wellcome-container .form .submit {
+  background-color: #1976d2;
+  font-weight: bold;
+}
+
+.form .submit:hover,
+.form .submit:active {
+  background-color: #304ffe;
+}
+
+.wellcome-container .form .message {
+  color: black;
+  font-size: 14px;
+  text-align: center;
+}
+
+.wellcome-container .form .message .linkto:hover {
+  color: blue;
+  font-size: 15px;
+  text-decoration: blink;
+}
+
+
+/** sign in with other account*/
+.wellcome-container .form .message2 {
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+.account {
   display: flex;
   flex-wrap: wrap;
+  padding-top: 20px;
+
 }
 
-.home-container .header .left {
+.wellcome-container .account .image {
+  width: 40px;
+  padding-right: 20px;
+}
+
+.wellcome-container .account img {
+  width: 100%;
+}
+
+/******************** HomePage***********************/
+
+.home-container .upper {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 100%;
+  height: 100%; */
+  /* padding-top: 100px; */
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 50px;
+  background-position: center;
+  background-size: cover;
+}
+
+.home-container .upper .left {
+  /* background-color: #e53935; */
   margin-left: 0;
+  padding-left: 3%;
 }
 
-.home-container .header .right {
-  margin-right: 0%;
+.home-container .upper .right {
+  padding-top: 40px;
+  margin-left: auto;
 }
 
 .home-container .right .menu {
@@ -263,6 +500,7 @@ button {
 
 .home-container .right .signin-button {
   margin-top: 30px;
+  padding-left: 20%;
 }
 
 .home-container .signin-button span {
@@ -281,6 +519,25 @@ button {
   color: #304ffe;
 }
 
+.home-container .list-products {
+  background-color: #e8f8f4;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+
+.home-container .list-services {
+  background-color: #ebd0ce;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.home-container .list-expertises {
+  background-color: #cff4eb;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
 
 /******************** ListItem ***********************/
 
@@ -289,7 +546,6 @@ button {
   font-weight: bold;
   color: #545871;
   text-align: center;
-  padding-top: 100px;
   padding-bottom: 50px;
 
 }
@@ -308,15 +564,16 @@ button {
   margin-top: 50px;
   margin-right: 2%;
   margin-left: 2%;
-
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  padding-right: 40px;
 }
 
 .itemlist-container .item-info {
   width: 150px;
   margin-left: 10px;
 }
-
-
 
 .itemlist-container .item-image {
   width: 150px;
@@ -338,6 +595,7 @@ button {
   height: 15%;
   margin-top: 10px;
 }
+
 .itemlist-container .link {
   color: black;
   font-size: 20px;
@@ -346,7 +604,7 @@ button {
 }
 
 .itemlist-container .link:hover {
-  color:blue;
+  color: blue;
   text-decoration: underline;
 }
 
@@ -355,7 +613,7 @@ button {
   font-weight: bold;
 }
 
-/** Rating **/
+/******************** Rating ***********************/
 .rating {
   color: #ff9800;
   margin: 1px;
@@ -366,6 +624,274 @@ button {
 }
 
 
+/******************** ProfilePage ***********************/
+
+/* .profile-container {
+  margin-top: 80px;
+  background-color: #b8817d;
+} */
+
+.profile-container .form-profile{
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+}
+
+.form-profile  div {
+  padding-top: 30px;
+
+}
+
+.form-profile .profile-row div {
+  border-bottom: #9e9e9e 1px solid;
+}
+
+.profile-row label {
+  width: 120px;
+  display: inline-block;
+
+}
+
+.profile-row input {
+  width: 200px;
+  min-height: 20px;
+  margin-right: 10px;
+  border: 0;
+}
+
+.profile-row button {
+  color: blue;
+
+}
+
+/**************************** admin pages *******************************/
+
+/******************************* admin pages **********************************/
+
+
+
+/******************** AdminSidebar ***********************/
+.admin-sidebar-container {
+  /* background-color: rgb(231, 228, 228); */
+  padding-top: 30px;
+  width: 200px;
+
+}
+
+.admin-sidebar {
+  width: auto;
+  margin-left: 0px;
+  margin-right: 0px;
+
+}
+
+.admin-sidebar .top {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 3%;
+}
+
+.admin-sidebar .top .marketplace {
+  font-size: 26px;
+  color: #7a023c;
+  font-weight: bold;
+  margin-top: 5px;
+
+}
+
+.admin-sidebar .middle {
+  /* margin: auto; */
+  padding-top: 40px;
+  padding-left: 3%;
+  padding-right: 3%;
+  /* background-color: #e53935; */
+}
+
+.admin-sidebar .menu div {
+  margin-bottom: 20px;
+}
+
+
+.admin-sidebar .menu .link {
+  font-size: 20px;
+  color: #545871;
+  font-weight: bold;
+  /* background-color: #304ffe; */
+}
+
+.admin-sidebar .link:hover {
+  color: #304ffe;
+}
+
+/********************AdminOVerviewPage*********************/
+.admin-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: #f44336; */
+}
+
+.admin-table .table .column1 {
+  width: 200px;
+  text-align: center;
+}
+
+
+.admin-table .table .column2 {
+  width: 250px;
+  text-align: center;
+}
+
+.admin-table .table .column3 {
+  width: 200px;
+  text-align: center;
+}
+
+/********************AdminListAwaitingValidation*********************/
+.admin-table {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  font-size: 20px;
+}
+
+.admin-table .title {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.admin-table .row {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.admin-table .table .userid {
+  width: 300px;
+  text-align: center;
+}
+
+.admin-table .table .username {
+  width: 150px;
+  text-align: center;
+}
+
+.admin-table .table .email {
+  width: 250px;
+  text-align: center;
+}
+
+.admin-table .table .request {
+  width: 150px;
+  text-align: center;
+}
+
+.admin-table .table .status {
+  width: 100px;
+  text-align: center;
+}
+
+.admin-table .table button {
+  font-size: 16px;
+  border: #9e9e9e 1px solid;
+  background-color: #ff6d00;
+  border-radius: 5px;
+  margin-left: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.admin-table .table button:hover {
+  background-color: #f44336;
+}
+
+/********************AdminListValidatedUsers*********************/
+
+.admin-table .table .validate {
+  width: 150px;
+  text-align: center;
+}
+
+.admin-table .table .initalcredit {
+  width: 100px;
+  text-align: center;
+}
+
+
+/********************AdminManagePage*********************/
+
+.admin-table .create {
+  padding-right: 1%;
+  color: blue;
+  text-align: right;
+  /* background-color: #304ffe; */
+  padding-bottom: 30px;
+
+}
+
+/********************AdminCreateNewAdmin*********************/
+.admin-table .form {
+  width: 400px;
+  margin: auto;
+  height: auto;
+  /* text-align: center; */
+  /* background-color: #b8817d; */
+}
+
+
+.admin-table .form h3 {
+  color: black;
+  text-align: center;
+  padding: 20px;
+}
+
+.admin-table .form div {
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /* background-color: #304ffe; */
+}
+
+.admin-table .form label {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+.admin-table .form input {
+  width: 100%;
+  border: 0;
+  border: #9e9e9e 1px solid;
+  border-radius: 10px;
+  margin: 0 0 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+
+.admin-table .form .button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 150px;
+}
+
+.admin-table .form .submit {
+  background-color: #1976d2;
+  font-weight: bold;
+}
+
+.form .submit:hover,
+.form .submit:active {
+  background-color: #304ffe;
+}
+
+
+
+
+/**********************************************************************************/
 
 /******************** ItemDetails ***********************/
 
@@ -546,200 +1072,9 @@ td {
   align-items: center;
 }
 
-/******************** UserPage ***********************/
-
-.profile-container {
-  margin-top: 80px;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 200px;
-  padding-right: 200px;
-}
-
-.form-profile div {
-  padding-bottom: 20px;
-}
-
-.profile-row label {
-  width: 120px;
-  display: inline-block;
-
-}
-
-.profile-row input {
-  width: 200px;
-  min-height: 20px;
-  margin-right: 10px;
-}
-
-.profile-row button {
-  color: blue;
-
-}
-
-/******************** admin pages ***********************/
-
-.menu ul {
-  /* border: #304ffe 1px solid; */
-  margin: 0px;
-  padding-top: 20px;
-  padding-bottom: 10px;
-
-  display: flex;
-  justify-content: flex-start;
-  list-style: none;
-}
-
-.menu li {
-  padding-right: 30px;
-  color: black;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.menu .link {
-  color: #1976d2;
-  font-weight: bold;
-  font-size: 18px;
-}
 
 
-.admin-table {
-  display: block;
-  /* border: #304ffe 1px solid; */
-  padding-left: 50px;
-  padding-top: 50px;
-}
-
-.admin-table table {
-  min-width: 60vw;
-}
-
-.admin-table td {
-  padding-right: 40px;
-
-}
-
-.admin-table table,
-.admin-table tr,
-.admin-table td {
-  border: none;
-}
-
-
-.button-validate,
-.button-complaint {
-  outline-style: none;
-  padding: 5px;
-  border: 1px grey solid;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #ff9100;
-  width: 100%;
-}
-
-.button-validate:hover,
-.button-complaint:hover {
-  background-color: #ff6d00;
-}
-
-
-/***************** sign in  and register*******************/
-.register-container {
-  margin-top: 80px;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 200px;
-  padding-right: 200px;
-
-}
-
-.form {
-  padding: 40px;
-  width: 400px;
-  margin: auto;
-  height: auto;
-  text-align: center;
-}
-
-.register-description {
-  width: 200px;
-  height: fit-content;
-  margin-top: 200px;
-  font-size: 20px;
-  line-height: 150%;
-  padding-left: 20px;
-  padding-right: 20px;
-  border: #9e9e9e 1px solid;
-}
-
-.form h3 {
-  color: black;
-}
-
-.form li {
-  list-style: none;
-  text-align: left;
-  margin-top: 10px;
-}
-
-.form input {
-  width: 100%;
-  border: 0;
-  border: #9e9e9e 1px solid;
-  border-radius: 10px;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 15px;
-}
-
-.form .checkbox {
-  margin-top: 20px;
-
-}
-
-.form .select-box {
-  width: 100%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-input[type='checkbox'] {
-  float: left;
-  width: 20px;
-}
-
-input[type='checkbox']+label {
-  display: block;
-  width: 200px;
-}
-
-
-.form .submit {
-  background-color: #1976d2;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.form .submit:hover,
-.form .submit:active {
-  background-color: #304ffe;
-}
-
-.form .message {
-  /* margin: 15px 0 0; */
-  color: black;
-  font-size: 12px;
-}
-
-.form .message .linkto:hover {
-  color: blue;
-  font-size: 15px;
-  text-decoration: blink;
-}
-
-/*********WalletPage********/
+/***************** WalletPage *******************/
 .currency-box {
   width: 200px;
   border: outset;
@@ -763,48 +1098,4 @@ td.trans-text {
   text-align: left;
   border: outset;
   width: 500px;
-}
-
-/******** Alert ********/
-
-.success {
-  color: green
-}
-
-.danger {
-  color: red
-}
-
-.alet {
-  padding: 10px;
-  border: 1px solid transparent;
-  border: 5px
-}
-
-.alert-info {
-  color: blue;
-  background-color: white;
-}
-
-.alert-danger {
-  color: red;
-  background-color: white;
-}
-
-/**   dropdown */
-.dropdown {
-  display: inline-block;
-  position: relative;
-}
-
-.dropdown-content {
-  position: absolute;
-  display: none;
-  min-width: 80px;
-  margin: 0;
-  padding: 10px;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 }

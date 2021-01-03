@@ -25,10 +25,10 @@ export default function SearchBar() {
   };
   return (
     <div>
-      <div>
+      <div className="searchbar">
         <strong>Search </strong>
-      Item Name <input onChange={(e) => onChangeInput(e.target.value)} />                    
-      <select>
+         Item Name <input onChange={(e) => onChangeInput(e.target.value)} />
+        <select>
           <option>All Category</option>
           <option>Product</option>
           <option>Service</option>
