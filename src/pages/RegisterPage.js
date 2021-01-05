@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import WellcomeComponent from "../components/WellcomeComponent";
 
 export default function Register() {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [communityID, setCommunityID] = useState('5fe76baab69d0843c44af87e');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const redirect = '/'; 
+    const redirect = '/';
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -20,10 +21,8 @@ export default function Register() {
     };
 
     return (
-        <div className="register-container">
-            <div>
-                <Link to="/home"><span>back to home</span></Link>
-            </div>
+        <div className="wellcome-container">
+            <WellcomeComponent />
             <div className="form">
                 <form className="Register" onSubmit={submitHandler}>
                     <div>
@@ -53,22 +52,22 @@ export default function Register() {
                             <option key="Brazil" value="5fe76baab69d0843c44af880">Brazil</option>
                         </select>
                     </div>
+
+                    {/* <div className="checkbox">
+                        <input className="box" type="checkbox" />Register as an administrator
+                    </div> */}
+                    <div className="terms">By continuing, you agree to Reframery's <Link to="/term-and-condition">Term and Condition</Link> and <Link to="/privacy-policy">Privacy Policy</Link>.</div>
+
+                    <div className="button">
+                        <input type="submit" className="submit"></input>
+                    </div>
                     <div className="message">Already have account?
                     <Link to="/signin" className="linkto">&nbsp;Login</Link>
                     </div>
-                    <div>
-                        <input type="submit" className="submit"></input>
-                    </div>
 
-                    <div>By continuing, you agree to Reframery's <Link to="/term_of_service">Term of Service</Link> and <Link to="/privacy_policy">Privacy Policy</Link>.</div>
+
                 </form>
-
-            </div>
-            <div className="register-description">
-                <p>Your request for registration will be submittd to an admin. Once approved, you will receive an inital RCC $ 25 </p>
             </div>
         </div>
-
-
     );
 }

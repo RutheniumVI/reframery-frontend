@@ -1,11 +1,11 @@
 import React from 'react';
-import AdminMenu from '../components/AdminMenu'
-import ListValidateUser from '../components/ListAdminValidatedUsers'
+import AdminMenu from '../components/AdminSidebar'
+import ListValidateUser from '../components/AdminListValidatedUsers'
 
 export default function ValidateUserPage() {
 
     return (
-        <div>
+        <div  className="admin-container">
             <AdminMenu />
             <ListValidateUser />
             

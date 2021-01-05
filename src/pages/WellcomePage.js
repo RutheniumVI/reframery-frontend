@@ -1,44 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import WellcomeComponent from '../components/WellcomeComponent'
 
 export default function WellcomePage() {
     return (
         <div>
             <div className="wellcome-container">
-                <div className="left">
-                    <div className="head">
-                        <img
-                            className="logo"
-                            src="/images/logo.png"
-                            alt="logo"
-                            width="100"
-                        ></img >
-                        <div className="text">
-                            <div>Reframery</div>
-                            <div>Marketplace</div>
-                        </div>
-                    </div>
-                    <div className="description">
-                        <h2>
-                            Why Reframery？
-                        </h2>
-                        <div>
-                            <ul>
-                                <li>You do not need real money to start your business</li>
-                                <li>Provide a real-world business experience</li>
-                                <li>Resources available for entrepreneuship</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="image">
-                        <img
-                            src="/images/signup.png"
-                            alt="logo"
-                        ></img>
-                    </div>
-                </div>
-
+                <WellcomeComponent/>
                 <div className="right">
                     <div className="text">
                         First, let's make sure we serve your area.

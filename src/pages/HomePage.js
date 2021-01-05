@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 import { useSelector } from "react-redux";
 
 export default function Homepage() {
-  
+
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
   return (
@@ -14,7 +14,7 @@ export default function Homepage() {
       <div className="home-container">
         {userInfo ? null :
           (
-            <div className="header" style={{ backgroundImage: `url(${homeImage})` }}>
+            <div className="upper" style={{ backgroundImage: `url(${homeImage})` }}>
               <div className="left">
                 <img className="logo" src="/images/logo.png" alt="logo" width="100"></img >
               </div>
@@ -44,10 +44,15 @@ export default function Homepage() {
             </div>
           )
         }
-
-        <ListItem mainCategory="products" />
-        <ListItem mainCategory="services" />
-        <ListItem mainCategory="expertises" />
+        <div className="list-products" >
+          <ListItem mainCategory="products" />
+        </div>
+        <div className="list-services" >
+          <ListItem mainCategory="services" />
+        </div>
+        <div className="list-expertises">
+          <ListItem mainCategory="expertises" />
+        </div>
       </div>
       {userInfo ? null : <Footer />}
     </div>

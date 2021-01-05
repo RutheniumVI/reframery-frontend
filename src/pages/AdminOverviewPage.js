@@ -1,38 +1,32 @@
 import React from 'react';
-import AdminMenu from '../components/AdminMenu';
+import { useData } from "../data/useData";
+import AdminMenu from '../components/AdminSidebar';
 
 export default function OverviewPage() {
-    const counter = {
-        awaiting_validation: 2,
-        validate_users: 5,
-        complaints: 1,
-        lockedusers: 0,
-    }
-
+    const { data } = useData();
+    const users = data["users"].filter(x => x.admin === false && x.superAdmin === false)
+    const validatedUsers = data["users"].filter(x => x.validateStatus === true)
     return (
-        <div>
+        <div className="admin-container">
             <AdminMenu />
             <div className="admin-table">
-                <table align="center">
-                    <tr>
+                <div className="table">
+                    <div className="title">
+                        <div className="column1"> All Users</div>
+                        <div className="column2"> Awaiting Validation</div>
+                        <div className="column"> Validated Users</div>
+                    </div>
 
-                        <td> {counter.awaiting_validation + counter.validate_users}</td>
-                        <td>{counter.awaiting_validation}</td>
-                        <td>{counter.validate_users}</td>
-                        <td>{counter.complaints}</td>
-                        <td>{counter.lockedusers}</td>
-                    </tr>
-                    <tr>
-                        <td> All Users </td>
-                        <td>Awaiting Validation</td>
-                        <td>Validated Users</td>
-                        <td>Complaints </td>
-                        <td>Locked Users</td>
-                    </tr>
+                    <div className="row">
+                        <div className="column1"> {users.length} </div>
+                        <div className="column2"> {users.length - validatedUsers.length} </div>
+                        <div className="column3">{validatedUsers.length}</div>
+                    </div>
 
-                </table>
+                </div>
             </div>
         </div>
+
     );
 
 }

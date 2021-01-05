@@ -5,7 +5,7 @@ import { DataProvider } from "./data/useData";
 
 import Header from "./components/Header";
 import Sidebar from "./components/SideBar";
-import Footer from "./components/Footer";
+
 import NotFound from "./components/NotFound";
 
 import DetailsProductPage from "./pages/DetailsProductPage";
@@ -15,7 +15,7 @@ import HomePage from "./pages/HomePage";
 // import CartPage from "./components/CartPage";
 // import PaymentPage from "./components/PaymentPage";
 import OrderPage from "./pages/OrderPage";
-import UserPage from "./pages/UserPage";
+import UserPage from "./pages/ProfilePage";
 import AddItemPage from "./pages/AddItemPage";
 import EditItemPage from "./pages/EditItemPage";
 import DeleteItemPage from "./pages/DeleteItemPage";
@@ -31,9 +31,10 @@ import AwaitingPage from './pages/AdminAwaitingPage';
 import ValidateUserPage from './pages/AdminValidateUserPage';
 import CreateAdminPage from './pages/AdminCreateAdminPage';
 import AdminProfilePage from "./pages/AdminProfilePage";
+import AdminManagePage from "./pages/AdminManagePage";
 
-import Signin from './pages/Signin'
-import Register from './pages/Register'
+import Signin from './pages/SigninPage'
+import Register from './pages/RegisterPage'
 
 import WalletPage from './pages/WalletPage'
 import TransHistPage from './pages/TransHistPage'
@@ -50,7 +51,7 @@ export default function App() {
       <div className="container">
       {userInfo ? (<Header />) : null}
         <main className="main">
-        {userInfo ? (<Sidebar />) : null}
+        {userInfo ? (userInfo.admin ? null : userInfo.superAdmin ? null : <Sidebar />) : null}
           <div className="content">
             <Routes>
             <Route path="/" element={<WellcomePage />} />
@@ -81,6 +82,7 @@ export default function App() {
               <Route path="/admin/update-users-balance" element={<UpdateBalancePage />} />
               <Route path="/admin/create-admin-account" element={<CreateAdminPage />} />
               <Route path="/admin/my-profile" element={<AdminProfilePage />} />
+              <Route path="/admin/administrator-management" element={<AdminManagePage />} />
               
 
 

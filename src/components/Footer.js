@@ -4,7 +4,7 @@ export default function SideBar() {
     <footer className="footer">
       <div className="text">
         <div>Terms and Conditions</div>
-        <div>Privacy policy</div>
+        <div>Privacy Policy</div>
         <div>Development Team</div>
       </div>
     </footer>
