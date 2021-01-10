@@ -4,20 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import Rating from '../components/Rating';
 
 
-export default function ItemDetails({ category }) {
-    const navigate = useNavigate();
+export default function ItemDetails() {
+
     const { data } = useData();
-    const { id } = useParams();
+    const { category, id } = useParams();
     const item = data[category].find(x => x._id === id);
-    // get feedbacks for the item with a given item id
-    const feedbacks = data["feedbacks"].filter(x => x.itemID === id);
-    const numOfFeedbacks = feedbacks.length;
-    const aveRating = numOfFeedbacks === 0 ? 0 : feedbacks.map(feedback => feedback.rating).reduce((sum, feedback) => sum + feedback) / numOfFeedbacks;
+
    
     //get user form the key userID of the item and then get addresses from the key addressID of user 
-    const user = data["users"].find(x => x._id === item.userID);
-    const address = data["addresses"].find(x => x._id === user.addressID);
-    console.log(address)
+    const user = data["users"].find(x => x.email === item.userID);
+    console.log(user.email)
 
     const [quantity, setQuantity] = useState(1);
 
@@ -38,9 +34,9 @@ export default function ItemDetails({ category }) {
                     <div>
                         <ul>
                             <li> <h4>{item.name}</h4> </li>
-                            <li > <Rating rating={aveRating} numOfReviews={numOfFeedbacks}></Rating></li>
+                            <li > <Rating rating={5} numOfReviews={1}></Rating></li>
                             <li> Price: ${item.price}</li>
-                            <li> Address: <span>{address.address},{address.city},{address.province},{address.postcode} {address.country}</span></li>
+                            <li> Address: <span>{user.address? (user.address,user.city,user.province,user.postcode, user.country): ""}</span></li>
                             <li className="details-description">Description: <p className="details-description-content">{item.description}</p></li>
                         </ul>
                     </div>

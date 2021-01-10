@@ -6,42 +6,34 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../actions/userActions'
 
 export default function Header() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
-  // console.log(userInfo);
   const dispatch = useDispatch();
 
   const signoutHandler = () => {
-    dispatch(signout());
-    window.location.reload();
+    const r = window.confirm("Do you want to Sign Out?");
+    if(r){
+      dispatch(signout());
+      navigate('/home');
+      window.location.reload();
+    }    
   }
   return (
-
-
     <header >
       <div className="header-container">
-        {/* <div>
-        <img
-          className="logo"
-          src="/logo_small.png"
-          onClick={() => navigate(`/home`)}
-          alt="logo"
-          width="50"
-        ></img>
-      </div> */}
         <SearchBar />
         <div className="header-links">
           {/* if the user sign in, then show the user name, else show the link of sign in */}
           {
-            userInfo ? (
+            userInfo.user ? (
               <div className="dropdown">
                 {
-                  (userInfo.admin || userInfo.superAdmin) ?
+                  userInfo.user.admin?
                     (
-                      <Link to="/admin">{userInfo.username} <i className="fa fa-caret-down"></i></Link>
+                      <Link to="/admin">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>
                     ) : (
-                      <Link to="/home">{userInfo.username} <i className="fa fa-caret-down"></i></Link>)
+                      <Link to="/home">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>)
                 }
                 <ul className="dropdown-content">
                   <Link className="link" to="/home" onClick={signoutHandler}>Sign out</Link>
@@ -49,7 +41,7 @@ export default function Header() {
               </div>
             ) : (
                 <Link to="/signin">
-                  <span className="link">Sign In</span>
+                  <span className="link" onClick={signoutHandler}>Sign In</span>
                 </Link>
               )}
         </div>

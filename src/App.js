@@ -8,9 +8,6 @@ import Sidebar from "./components/SideBar";
 
 import NotFound from "./components/NotFound";
 
-import DetailsProductPage from "./pages/DetailsProductPage";
-import DetailsServicePage from "./pages/DetailsServicePage";
-import DetailsExpertisePage from "./pages/DetailsExpertisePage";
 import HomePage from "./pages/HomePage";
 // import CartPage from "./components/CartPage";
 // import PaymentPage from "./components/PaymentPage";
@@ -28,7 +25,6 @@ import SalePage from './pages/SalePage';
 import UpdateBalancePage from "./pages/AdminUpdateUserBalancePage";
 import OverviewPage from './pages/AdminOverviewPage';
 import AwaitingPage from './pages/AdminAwaitingPage';
-import ValidateUserPage from './pages/AdminValidateUserPage';
 import CreateAdminPage from './pages/AdminCreateAdminPage';
 import AdminProfilePage from "./pages/AdminProfilePage";
 import AdminManagePage from "./pages/AdminManagePage";
@@ -40,6 +36,7 @@ import WalletPage from './pages/WalletPage'
 import TransHistPage from './pages/TransHistPage'
 import WellcomePage from "./pages/WellcomePage";
 import { useSelector } from "react-redux";
+import ItemDetails from "./components/ItemDetails";
 
 
 
@@ -51,14 +48,12 @@ export default function App() {
       <div className="container">
       {userInfo ? (<Header />) : null}
         <main className="main">
-        {userInfo ? (userInfo.admin ? null : userInfo.superAdmin ? null : <Sidebar />) : null}
+        {userInfo ? (userInfo.user.admin ? null : userInfo.user.manager ? null : <Sidebar />) : null}
           <div className="content">
             <Routes>
-            <Route path="/" element={<WellcomePage />} />
+            {userInfo? null: <Route path="/" element={<WellcomePage />} />}
               <Route path="/home" element={<HomePage />} />
-              <Route path="/product/:id" element={<DetailsProductPage />} />
-              <Route path="/service/:id" element={<DetailsServicePage />} />
-              <Route path="/expertise/:id" element={<DetailsExpertisePage />} />
+              <Route path="/:category/:id" element={<ItemDetails />} />
               {/* <Route path="/cart" component={CartPage} /> */}
               {/* <Route path="/payment" component={PaymentPage} /> */}
               <Route
@@ -78,7 +73,6 @@ export default function App() {
               <Route path="/myreframery/orders/sales/sale-details" element={<SalePage />} />
               <Route path="/admin" element={<OverviewPage />} />
               <Route path="/admin/awaiting-validation" element={<AwaitingPage />} />
-              <Route path="/admin/validated-users" element={<ValidateUserPage />} />
               <Route path="/admin/update-users-balance" element={<UpdateBalancePage />} />
               <Route path="/admin/create-admin-account" element={<CreateAdminPage />} />
               <Route path="/admin/my-profile" element={<AdminProfilePage />} />

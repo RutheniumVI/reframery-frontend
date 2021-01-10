@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import { createUser } from "../actions/userActions";
 import WellcomeComponent from "../components/WellcomeComponent";
 
 export default function Register() {
@@ -7,16 +9,23 @@ export default function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [communityID, setCommunityID] = useState('5fe76baab69d0843c44af87e');
+    const [communityName, setCommunityName] = useState('Canada');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const redirect = '/';
+    const redirect = '/signin';
 
+    const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
             alert('Password and confirm password are different')
         } else {
-            // TODO
+            const confirm = window.confirm("Are you sure to create the account?");
+            if(confirm){
+                dispatch(createUser(username, email, password, communityName));
+                navigate(redirect);
+            }else{
+                window.location.reload();
+            }            
         }
     };
 
@@ -46,23 +55,21 @@ export default function Register() {
                     </div>
                     <div>
                         <label >Community  </label>
-                        <select value={communityID} className="select-box" onChange={e => setCommunityID(e.target.value)}>
-                            <option key="Canada" value="5fe76baab69d0843c44af87e">Canada</option>
-                            <option key="USA" value="5fe76baab69d0843c44af87f">USA</option>
-                            <option key="Brazil" value="5fe76baab69d0843c44af880">Brazil</option>
+                        <select value={communityName} className="select-box" onChange={e => setCommunityName(e.target.value)}>
+                            <option key="Canada" value="Canada">Canada</option>
+                            <option key="USA" value="USA">USA</option>
+                            <option key="Brazil" value="Brazil">Brazil</option>
                         </select>
                     </div>
 
-                    {/* <div className="checkbox">
-                        <input className="box" type="checkbox" />Register as an administrator
-                    </div> */}
+
                     <div className="terms">By continuing, you agree to Reframery's <Link to="/term-and-condition">Term and Condition</Link> and <Link to="/privacy-policy">Privacy Policy</Link>.</div>
 
                     <div className="button">
                         <input type="submit" className="submit"></input>
                     </div>
                     <div className="message">Already have account?
-                    <Link to="/signin" className="linkto">&nbsp;Login</Link>
+                    <Link to="/signin" className="linkto">&nbsp;Sign in</Link>
                     </div>
 
 

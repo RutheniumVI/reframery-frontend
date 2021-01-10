@@ -1,20 +1,30 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createUser } from "../actions/userActions";
 export default function CreateNewAminAccount() {
+    const dispatch = useDispatch();
 
+    //input from user
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [communityID, setCommunityID] = useState('5fe76baab69d0843c44af87e');
+    const [communityName, setCommunityName] = useState('Canada');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    //default attribute for the new created admin 
+    const username = "";
+    const admin = true;
+    
+    //button handler for create a admin
     const submitHandler = (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
             alert('Password and confirm password are different')
         } else {
-            // TODO
+            dispatch(createUser(username, email, password, communityName, admin));            
+            window.location.reload();
+            alert('A new admin has been created successfully!')
         }
     };
+    
     return (
         <div className="admin-table">
             <div className="form">
@@ -36,10 +46,10 @@ export default function CreateNewAminAccount() {
                     </div>
                     <div>
                         <label >Community  </label>
-                        <select value={communityID} className="select-box" onChange={e => setCommunityID(e.target.value)}>
-                            <option key="Canada" value="5fe76baab69d0843c44af87e">Canada</option>
-                            <option key="USA" value="5fe76baab69d0843c44af87f">USA</option>
-                            <option key="Brazil" value="5fe76baab69d0843c44af880">Brazil</option>
+                        <select value={communityName} className="select-box" onChange={e => setCommunityName(e.target.value)}>
+                            <option key="Canada" value="Canada">Canada</option>
+                            <option key="USA" value="USA">USA</option>
+                            <option key="Brazil" value="Brazil">Brazil</option>
                         </select>
                     </div>
                     <div className="button">
