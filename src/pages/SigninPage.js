@@ -27,7 +27,7 @@ export default function Signin(props) {
     // if the user sign in sucessfully, go to the redirect link
     if (userInfo) {
       // props.history.push(redirect);
-      if(userInfo.admin || userInfo.superAdmin){
+      if(userInfo.user.admin || userInfo.user.manager){
         navigate('/admin');
       }else{
         navigate('/home');

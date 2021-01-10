@@ -16,7 +16,7 @@ export default function Homepage() {
           (
             <div className="upper" style={{ backgroundImage: `url(${homeImage})` }}>
               <div className="left">
-                <img className="logo" src="/images/logo.png" alt="logo" width="100"></img >
+              <Link to="/"><img className="logo" src="/images/logo.png" alt="logo" width="100"></img ></Link>
               </div>
               <div className="right">
                 <div className="menu">
@@ -46,12 +46,15 @@ export default function Homepage() {
         }
         <div className="list-products" >
           <ListItem mainCategory="products" />
+          <div className="more"><Link to="/products" className="link">More Products</Link></div>
         </div>
         <div className="list-services" >
           <ListItem mainCategory="services" />
+          <div className="more"><Link to="/services" className="link">More Services</Link></div>
         </div>
         <div className="list-expertises">
           <ListItem mainCategory="expertises" />
+          <div className="more"><Link to="/expertises" className="link">More Expertises</Link></div>
         </div>
       </div>
       {userInfo ? null : <Footer />}
