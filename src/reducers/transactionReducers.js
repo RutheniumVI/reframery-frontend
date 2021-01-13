@@ -5,8 +5,56 @@ import {
     BALANCE_DEDUCT_FAIL,
     BALANCE_DEDUCT_REQUEST,
     BALANCE_DEDUCT_SUCCESS,
+    BALANCE_GET_FAIL,
+    BALANCE_GET_REQUEST,
+    BALANCE_GET_SUCCESS,
+    TRANSACTION_GET_FAIL,
+    TRANSACTION_GET_REQUEST,
+    TRANSACTION_GET_SUCCESS,
+    TRANSACTION_OF_USER_GET_FAIL,
+    TRANSACTION_OF_USER_GET_REQUEST,
+    TRANSACTION_OF_USER_GET_SUCCESS,
 
 } from "../constants/transactionConstants";
+
+export const transactionGetReducer = (state = {}, action) => {
+    switch (action.type) {
+        case TRANSACTION_GET_REQUEST:
+            return { loading: true };
+        case TRANSACTION_GET_SUCCESS:
+            return { loading: false, transaction: action.payload };
+        case TRANSACTION_GET_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const transactionsOfUserGetReducer = (state = {}, action) => {
+    switch (action.type) {
+        case TRANSACTION_OF_USER_GET_REQUEST:
+            return { loading: true };
+        case TRANSACTION_OF_USER_GET_SUCCESS:
+            return { loading: false, transactions: action.payload };
+        case TRANSACTION_OF_USER_GET_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const balanceGetReducer = (state = {}, action) => {
+    switch (action.type) {
+        case BALANCE_GET_REQUEST:
+            return { loading: true };
+        case BALANCE_GET_SUCCESS:
+            return { loading: false, balance: action.payload };
+        case BALANCE_GET_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
 
 export const balanceAddReducer = (state = {}, action) => {
     switch (action.type) {

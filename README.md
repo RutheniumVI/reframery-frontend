@@ -5,11 +5,8 @@
 ### 1. Run Backend
 
 ```
-$ git clone https://github.com/MacAquafina/reframery-api.git
-# open new terminal
-$ cd reframery-api
-$ npm install
-$ npm start
+$ git clone https://github.com/MacAquafina/reframery-api.git and run the backend
+
 ```
 
 ### 2. Run Frontend

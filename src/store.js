@@ -13,23 +13,25 @@ import {
     itemsOfSubcategoryGetReducer,
 } from './reducers/itemReducers.js';
 
-import { balanceAddReducer, balanceDeductReducer } from './reducers/transactionReducers.js';
+import { balanceAddReducer, balanceDeductReducer, balanceGetReducer, transactionGetReducer, transactionsOfUserGetReducer } from './reducers/transactionReducers.js';
 
-import { adminUsersReducer, 
-    unvalidatedUsersCountReducer, 
-    unvalidatedUsersReducer, 
+import {
+    adminUsersReducer,
+    unvalidatedUsersCountReducer,
+    unvalidatedUsersReducer,
     userDeleteReducer,
-     userGetReducer, 
-     userRegisterReducer, 
-     userSigninReducer, 
-     userUpdateReducer, 
-     userImageUpdateReducer,
-     userValidateReducer, 
-     validatedUsersCountReducer } from './reducers/userReducer.js';
+    userGetReducer,
+    userRegisterReducer,
+    userSigninReducer,
+    userUpdateReducer,
+    userImageUpdateReducer,
+    userValidateReducer,
+    validatedUsersCountReducer
+} from './reducers/userReducer.js';
 
 const initialState = {
     userSignin: {
-        userInfo: localStorage.getItem('userInfo')? JSON.parse(localStorage.getItem('userInfo')): null
+        userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
     },
 };
 
@@ -39,7 +41,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     userGet: userGetReducer,
     userUpdate: userUpdateReducer,
-    userImageUpdate:userImageUpdateReducer,
+    userImageUpdate: userImageUpdateReducer,
     userValidate: userValidateReducer,
     userDelete: userDeleteReducer,
     adminUsers: adminUsersReducer,
@@ -47,20 +49,26 @@ const reducer = combineReducers({
     validatedUsersCount: validatedUsersCountReducer,
     unvalidatedUsersCount: unvalidatedUsersCountReducer,
 
-     // reducers for transactions
-     balanceAdd: balanceAddReducer,
-     balanceDeduct: balanceDeductReducer,
+    // reducers for transactions
+    transactionGet: transactionGetReducer,
+    transactionsOfUserGet: transactionsOfUserGetReducer,
+    balanceGet: balanceGetReducer,
+    balanceAdd: balanceAddReducer,
+    balanceDeduct: balanceDeductReducer,
 
-     //reducers for items
-     itemCreate: itemCreateReducer,
-     itemUpdate: itemUpdateReducer,
-     itemImageUpdate: itemImageUpdateReducer,
-     itemDelete:itemDeleteReducer,
-     itemGet: itemGetReducer,
-     newestItemsGet: newestItemsGetReducer, 
-     itemsOfCategoryGet: itemsOfCategoryGetReducer,
-     itemsOfUserGet: itemsOfUserGetReducer,
-     itemOfSubcategoryGet: itemsOfSubcategoryGetReducer   
+    //reducers for items
+    itemCreate: itemCreateReducer,
+    itemUpdate: itemUpdateReducer,
+    itemImageUpdate: itemImageUpdateReducer,
+    itemDelete: itemDeleteReducer,
+    itemGet: itemGetReducer,
+    newestItemsGet: newestItemsGetReducer,
+    itemsOfCategoryGet: itemsOfCategoryGetReducer,
+    itemsOfUserGet: itemsOfUserGetReducer,
+    itemOfSubcategoryGet: itemsOfSubcategoryGetReducer
+
+    //reducers for search
+
 
 });
 
