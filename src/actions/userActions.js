@@ -31,11 +31,12 @@ import {
     USER_IMAGE_UPDATE_FAIL,
 } from '../constants/userConstants';
 
+//get the signin user info if the user sign in sucessfully and save it in local storage
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
     try {
-        const { data } = await Axios.post(`/users/signin/${email}`, { email, password});
-         console.log(data);
+        const { data } = await Axios.post(`/users/signin/${email}`, { email, password });
+        console.log(data);
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {
@@ -48,11 +49,13 @@ export const signin = (email, password) => async (dispatch) => {
     }
 };
 
+//sign out and remove the userInfo in local storage
 export const signout = () => (dispatch) => {
     localStorage.removeItem('userInfo');
     dispatch({ type: USER_SIGNOUT });
 };
 
+//create a user object when a user register in the frontend
 export const createUser = (username, email, password, communityName) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, communityName } });
     try {
@@ -69,11 +72,11 @@ export const createUser = (username, email, password, communityName) => async (d
     }
 };
 
-
+//get the user details for the given email address
 export const getUser = (email) => async (dispatch, getState) => {
     dispatch({ type: USER_DETAILS_REQUEST, payload: email });
     try {
-        const { data } = await Axios.get(`/users/user/${email}`);        
+        const { data } = await Axios.get(`/users/user/${email}`);
         console.log("testing");
         console.log(data);
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
@@ -87,6 +90,7 @@ export const getUser = (email) => async (dispatch, getState) => {
     }
 };
 
+//update the attribute values of the given user
 export const updateUser = (email, username, password, phoneNumber,
     firstName, lastName, birthday, address, city, province, country, postcode,
     admin, manager, communityName
@@ -110,6 +114,8 @@ export const updateUser = (email, username, password, phoneNumber,
     }
 };
 
+
+//update the image of the given user
 export const updateUserImage = (email, imageBinary
 ) => async (dispatch) => {
     dispatch({ type: USER_IMAGE_UPDATE_REQUEST, payload: email });
@@ -130,6 +136,8 @@ export const updateUserImage = (email, imageBinary
     }
 };
 
+
+//delete a user
 export const deleteUser = (email) => async (dispatch) => {
     dispatch({ type: USER_DELETE_REQUEST, payload: email });
     try {
@@ -145,6 +153,8 @@ export const deleteUser = (email) => async (dispatch) => {
     }
 };
 
+
+//update the validate status of the user 
 export const validateUser = (email) => async (dispatch) => {
     dispatch({ type: USER_VALIDATE_REQUEST, payload: email });
     try {
@@ -160,6 +170,7 @@ export const validateUser = (email) => async (dispatch) => {
     }
 };
 
+//get the list of all admin users from backend
 export const searchAdminUsers = () => async (dispatch) => {
     dispatch({ type: ADMIN_LIST_REQUEST });
     try {
@@ -175,6 +186,7 @@ export const searchAdminUsers = () => async (dispatch) => {
     }
 };
 
+//get the list of all unvalidated users from backend
 export const searchUnvalidatedUsers = () => async (dispatch) => {
     dispatch({ type: UNVALIDATEUSER_LIST_REQUEST });
     try {
