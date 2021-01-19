@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 function Currency() {
     return (
         <div >
-            <h3>Your current balance</h3>
+            <h2>Your current balance</h2>
             <div className="currency-box">
                 <h1>RCC$ 25</h1>
             </div>
@@ -21,19 +21,25 @@ function TransactionHistory() {
     return (
         
             <div >
-                <h3>Past Transactions</h3>
+                <h2>Transaction History</h2>
                 <table className="transaction">
-                    {data.products.map((product) => (
+                    {data.transactions.map((transaction) => (
                         <tr>
-                            <td className="trans-text">P-000000-000000{product._id} - RRC${product.price}</td>
+                            <td className="trans-text">
+                                <ul>
+                                    <li>ID: {transaction._id}</li>
+                                    <li>From: {transaction.senderID}</li>
+                                    <li>To: {transaction.receiverID}</li>
+                                    <li>Date: {transaction.createdAt}</li>
+                                </ul>
+                            </td>
+                            <td className="trans-price">RRC${transaction.creditUnit}</td>
                         </tr>
                     ))}
 
                 </table>
-                <div className = "button-more">
-                    <button className="view-more">
-                        <Link to = "/myreframery/records"><h4>View more transactions</h4></Link>
-                    </button>
+                <div className = "view-more">
+                    <Link to = "/myreframery/records"><h4>View more transactions >></h4></Link>
                 </div>
             </div>
           
@@ -44,22 +50,18 @@ function TransactionHistory() {
 function Main() {
         return (
             <div>
-                <div className = "back-to-reframery">
-                    <Link to = "/">My Reframery</Link> {">>>"} My Wallet
-                </div>
                 <div className = "wallet">
-                    <div>
-                        <SideBar />
-                    </div>
                     <div className="wallet-page">
-                        <Currency />
-                        <TransactionHistory />
+                        <div className = "wallet-c1">
+                            <Currency />
+                        </div>
+                        <div className = "wallet-c2">
+                            <TransactionHistory />
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <Footer />
                 </div>
             </div>
+            
         );
     }
 
