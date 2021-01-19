@@ -912,25 +912,49 @@ input[type='checkbox']+label {
   align-items: flex-start;
   justify-content: center;
   margin-top: 30px;
+  margin-right: 100px;
+  margin-left: 100px;
 }
-
-.details-image {
-  flex: 2 1 400px;
-
+.back-to-mar{
+  text-decoration: underline;
+}
+.details-c1 {
+  flex: 1 1 100px;
+  text-align: center;
+}
+.details-buttons{
+  padding: 1rem;
+}
+.details-button{
+  height: 150px;
+  width: 250px;
+  padding: 3rem; 
+  border: 0.1rem #f5f5f5 solid;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: large;
+  margin: 10px;
+}
+.details-button:hover {
+  border: 0.1rem #404040 solid;
+  background-color: aqua;
 }
 
 .details-image img {
-  max-width: 400px;
+  max-width: 200px;
 }
 
 /* information */
 .details-information {
   flex: 1 1 300px;
   margin-right: 30px;
-
-
+  margin-left: 100px;
 }
 
+.details-title{
+  text-align: center;
+}
 .details-description {
   font-weight: bold;
 }
@@ -1087,28 +1111,23 @@ td {
 
 /***************** WalletPage *******************/
 .view-more{
-  
-  border: 0.1rem #f5f5f5 solid;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  text-align: center;
+  text-decoration: underline;
+  text-align: right;
   font-size: large;
 }
-.view-more:hover {
-  border: 0.1rem #404040 solid;
-  background-color: aqua;
-}
+
 .button-more{
-  padding: 1 rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 }
 .currency-box {
+  margin-top: 50px;
   width: 200px;
-  border: outset;
+  border-style: dotted;
   border-radius: 25px;
-  background-color: #1976d2;
-  padding: 1 rem;
+  background-color:lightcoral;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -1129,6 +1148,14 @@ td.trans-text {
   border: outset;
   width: 500px;
 }
+td.trans-text li{
+  list-style-type: none;
+}
+td.trans-price {
+  text-align: center;
+  border: outset;
+  width: 200px;
+}
 .back-to-reframery {
   padding: 1 rem;
 }
@@ -1138,4 +1165,12 @@ td.trans-text {
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 1 rem;
+  margin-left: 100px;
+}
+.wallet-c1{
+  float: left;
+}
+.wallet-c2{
+  margin-left: 100px;
+  float: right;
 }
