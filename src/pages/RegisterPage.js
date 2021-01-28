@@ -39,19 +39,19 @@ export default function Register() {
                     </div>
                     <div>
                         <label >User Name </label>
-                        <input type="text" id="name" required onChange={(e) => setUsername(e.target.value)}></input>
+                        <input type="text" id="username" value={username} required onChange={(e) => setUsername(e.target.value)}></input>
                     </div>
                     <div>
                         <label >Email Address </label>
-                        <input type="email" id="email" required onChange={e => setEmail(e.target.value)}></input>
+                        <input type="email" id="email" value={email} required onChange={e => setEmail(e.target.value)}></input>
                     </div>
                     <div>
                         <label >Password </label>
-                        <input type="password" id="password" required onChange={e => setPassword(e.target.value)}></input>
+                        <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)}></input>
                     </div>
                     <div>
                         <label >Comfirm Password </label>
-                        <input type="password" id="confirmPassword" required onChange={(e) => setConfirmPassword(e.target.value)}></input>
+                        <input type="password" id="confirmPassword" value={confirmPassword} required onChange={(e) => setConfirmPassword(e.target.value)}></input>
                     </div>
                     <div>
                         <label >Community  </label>
@@ -59,6 +59,7 @@ export default function Register() {
                             <option key="Canada" value="Canada">Canada</option>
                             <option key="USA" value="USA">USA</option>
                             <option key="Brazil" value="Brazil">Brazil</option>
+                            <option key="Mexico" value="Mexico">Mexico</option>
                         </select>
                     </div>
 
