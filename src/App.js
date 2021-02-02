@@ -9,8 +9,6 @@ import Sidebar from "./components/SideBar";
 import NotFound from "./components/NotFound";
 
 import HomePage from "./pages/HomePage";
-// import CartPage from "./components/CartPage";
-// import PaymentPage from "./components/PaymentPage";
 import OrderPage from "./pages/OrderPage";
 import UserPage from "./pages/ProfilePage";
 import AddItemPage from "./pages/AddItemPage";
@@ -38,6 +36,10 @@ import WellcomePage from "./pages/WellcomePage";
 import { useSelector } from "react-redux";
 import ItemDetails from "./components/ItemDetails";
 
+import Cart from "pages/Cart";
+import AddressForm from "pages/AddressForm";
+import Confirm from "pages/Confirm";
+import Payment from "pages/Payment";
 
 
 export default function App() {
@@ -54,8 +56,12 @@ export default function App() {
             {userInfo? null: <Route path="/" element={<WellcomePage />} />}
               <Route path="/home" element={<HomePage />} />
               <Route path="/:category/:id" element={<ItemDetails />} />
-              {/* <Route path="/cart" component={CartPage} /> */}
-              {/* <Route path="/payment" component={PaymentPage} /> */}
+                            
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/address-form" element={<AddressForm/>} />
+              <Route path="/confirm" element={<Confirm />}　/>
+              <Route path="/payment" element={<Payment />} />
+
               <Route
                 path="/myreframery/orders/purchases/purchase-details"
                 element={<OrderPage />}
@@ -77,8 +83,6 @@ export default function App() {
               <Route path="/admin/create-admin-account" element={<CreateAdminPage />} />
               <Route path="/admin/my-profile" element={<AdminProfilePage />} />
               <Route path="/admin/administrator-management" element={<AdminManagePage />} />
-              
-
 
               <Route path="/signin" element={<Signin />} />
               <Route path="/register" element={<Register />} />
