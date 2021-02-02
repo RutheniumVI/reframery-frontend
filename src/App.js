@@ -41,6 +41,8 @@ import AddressForm from "pages/AddressForm";
 import Confirm from "pages/Confirm";
 import Payment from "pages/Payment";
 
+import CreateItemPage from "pages/CreateItemPage";
+
 
 export default function App() {
   const userSignin = useSelector(state => state.userSignin);
@@ -61,6 +63,8 @@ export default function App() {
               <Route path="/address-form" element={<AddressForm/>} />
               <Route path="/confirm" element={<Confirm />}　/>
               <Route path="/payment" element={<Payment />} />
+
+              <Route path="/create-item" element={<CreateItemPage />} />
 
               <Route
                 path="/myreframery/orders/purchases/purchase-details"
