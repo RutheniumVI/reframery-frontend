@@ -30,7 +30,7 @@ export default function Signin(props) {
       if(userInfo.user.admin || userInfo.user.manager){
         navigate('/admin');
       }else{
-        navigate('/home');
+        navigate(`/${userInfo.user.email}`);
       }
     }
   }, [navigate, userInfo]);
@@ -51,35 +51,15 @@ export default function Signin(props) {
             <label >Password </label>
             <input type="password" id="password" required onChange={e => setPassword(e.target.value)} />
           </div>
-          <div className="checkbox">
+          <div className="admin-checkbox">
             <input className="box" type="checkbox" />Sign in as an administrator
           </div>
-          <div className="button">
+          <div className="submit-button">
             <input type="submit" className="submit"></input>
           </div>
           <div className="message">
             Don't have account? <Link to="/register" className="linkto">&nbsp;Register</Link>
           </div>
-
-          <div className="message2">
-            Sign in with Google
-          </div>
-
-          <div className="account">
-            <div className="image">
-              <img
-                src="/images/logo_google.png"
-                alt="logo"
-              ></img>
-            </div>
-            {/* <div className="image">
-              <img
-                src="/images/logo_google.png"
-                alt="logo"
-              ></img>
-            </div> */}
-          </div>
-
 
         </form>
       </div>

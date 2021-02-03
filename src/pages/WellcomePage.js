@@ -14,50 +14,53 @@ export default function WellcomePage() {
                 </div>
                     <div className="comunities">
                         <div className="community">
-                            <Link className="logo-canada" to="/home">
+                            <Link className="logo-canada" to="/canada">
                                 <img
                                     src="/images/logo_canada.png"
                                     alt="logo"
                                 ></img>
                             </Link>
-                            <Link className="canada" to="/home">
+                            <Link className="canada" to="/canada">
                                 <div className="country" >Canada</div>
                             </Link>
                         </div>
                         <div className="community">
-
+                        <Link className="logo-usa" to="/usa">
                             <img
                                 src="/images/logo_usa.png"
                                 alt="logo"
                             ></img>
-
-
+                            </Link>
+                            <Link className="usa" to="/usa">
                             <div className="country">U.S.A</div>
-
+                            </Link>
                         </div>
                         <div className="community">
+                        <Link className="logo-brazil" to="/brazil">
                             <img
                                 src="/images/logo_brazil.png"
                                 alt="logo"
                             ></img>
+                            </Link>
+                            <Link className="brazil" to="/brazil">
                             <div className="country">Brazil</div>
+                            </Link>
                         </div>
                         <div className="community">
+                        <Link className="logo-mexico" to="/mexico">
                             <img
                                 src="/images/logo_mexico.png"
                                 alt="logo"
                             ></img>
+                            </Link>
+                            <Link className="mexico" to="/mexico">
                             <div className="country">Mexico</div>
+                            </Link>
                         </div>
 
                     </div>
-                    {/* <div>
-                        <button>Next</button>
-                    </div> */}
-
                 </div>
             </div >
-            <Footer />
         </div>
 
     )

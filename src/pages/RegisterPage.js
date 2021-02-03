@@ -20,12 +20,12 @@ export default function Register() {
             alert('Password and confirm password are different')
         } else {
             const confirm = window.confirm("Are you sure to create the account?");
-            if(confirm){
+            if (confirm) {
                 dispatch(createUser(username, email, password, communityName));
                 navigate(redirect);
-            }else{
+            } else {
                 window.location.reload();
-            }            
+            }
         }
     };
 
@@ -66,7 +66,7 @@ export default function Register() {
 
                     <div className="terms">By continuing, you agree to Reframery's <Link to="/term-and-condition">Term and Condition</Link> and <Link to="/privacy-policy">Privacy Policy</Link>.</div>
 
-                    <div className="button">
+                    <div className="submit-button">
                         <input type="submit" className="submit"></input>
                     </div>
                     <div className="message">Already have account?
