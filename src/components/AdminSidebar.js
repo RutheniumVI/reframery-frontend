@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
-export default function AdminMenu() {
+export default function AdminSidebar() {
     const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
     return (

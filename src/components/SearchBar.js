@@ -1,50 +1,35 @@
 import React, { useState } from "react";
-import { useData } from "../data/useData";
+import { useDispatch } from "react-redux";
+import { searchItems } from "../actions/searchActions";
 
 export default function SearchBar() {
-  const { data } = useData();
-  const [input, setInput] = useState("");
-  const categories = ["products", "expertises", "services"];
-  const sellingItems = categories
-    .map((name) => data[name])
-    .flat()
-    .map((item) => item.name.toLowerCase());
+  const [category, setCategory] = useState('All');
+  const [searchKey, setSearchKey] = useState('');
 
-  const [filterDisplay, setFilterDisplay] = useState([]);
-  const onChangeInput = (e) => {
-    if (e !== "") {
-      let newList = [];
-      setInput(e);
-      newList = sellingItems.filter((name) =>
-        name.includes(input.toLowerCase())
-      );
-      setFilterDisplay(newList);
-    } else {
-      setFilterDisplay([]);
-    }
+  const dispatch = useDispatch();
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+    dispatch(searchItems({ category, searchKey }, 20, 0, true));
   };
+
   return (
-    <div>
-      <div className="searchbar">
-        <strong>Search </strong>
-         Item Name <input onChange={(e) => onChangeInput(e.target.value)} />
-        <select>
-          <option>All Category</option>
-          <option>Product</option>
-          <option>Service</option>
-          <option>Competence</option>
-        </select>
-        {filterDisplay.map((key, i) => {
-          return (
-            <div key={i}>
-              <li>{key}</li>
-            </div>
-          );
-        })}
+    <div className="searchbar">
+      <div className="search-component">
+        <div className="select-category">
+          <select value={category} onChange={e => setCategory(e.target.value)}>
+            <option key="All" value="All">All</option>
+            <option key="Product" value="Product">Product</option>
+            <option key="Service" value="Service">Service</option>
+            <option key="Expertise" value="Expertise">Expertise</option>
+          </select>
+        </div>
+        <input type="text" className="search-key"
+          placeholder="Search items" value={searchKey}
+          onChange={e => setSearchKey(e.target.value)}>
+        </input>
+        <button className="icon-search" onClick={searchHandler}><i class="fa fa-search" ></i></button>
       </div>
-
-
     </div>
-
   );
 }

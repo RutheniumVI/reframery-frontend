@@ -1,0 +1,48 @@
+{
+    "user1": [
+        {
+            "phoneNumber": "",
+            "admin": false,
+            "firstName": "",
+            "lastName": "",
+            "birthday": "",
+            "userImage": "",
+            "validateStatus": false,
+            "validateTime": "",
+            "manager": false,
+            "address": "",
+            "city": "",
+            "province": "",
+            "country": "",
+            "postcode": "",
+            "registerTime": "2021-2-1 20:37:41",
+            "communityName": "Canada",
+            "email": "user02@gmail.com",
+            "password": "1234",
+            "username": "user02"
+        },
+        {
+            "phoneNumber": "",
+            "admin": false,
+            "firstName": "",
+            "lastName": "",
+            "birthday": "",
+            "userImage": "",
+            "validateStatus": false,
+            "validateTime": "",
+            "manager": false,
+            "address": "",
+            "city": "",
+            "province": "",
+            "country": "",
+            "postcode": "",
+            "registerTime": "2021-2-1 20:37:41",
+            "communityName": "Canada",
+            "email": "user02@gmail.com",
+            "password": "1234",
+            "username": "user03"
+        }
+
+    ]
+
+}

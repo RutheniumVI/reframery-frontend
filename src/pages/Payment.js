@@ -7,12 +7,10 @@ class Payment extends React.Component {
     render (){
         return (
             <div>
-                <Navbar />
 
                 <div className="container payment-container">
                     <div className="columns">
                         <div className="column is-one-quarter">
-                            <Sidebar />
                         </div>
 
                         <div className="column is-half">
@@ -209,8 +207,6 @@ class Payment extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <Footer />
             </div>
         )
     }

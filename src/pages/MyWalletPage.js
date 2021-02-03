@@ -1,9 +1,6 @@
 import React from "react";
 import { useData } from "../data/useData";
-import SideBar from "../components/SideBar";
 import { Link } from "react-router-dom";
-import Footer from '../components/Footer';
-
 
 function Currency() {
     return (
@@ -20,7 +17,7 @@ function TransactionHistory() {
     const { data } = useData();
     return (
         
-            <div >
+            <div className="wallet-container">
                 <h2>Transaction History</h2>
                 <table className="transaction">
                     {data.transactions.map((transaction) => (
@@ -39,7 +36,7 @@ function TransactionHistory() {
 
                 </table>
                 <div className = "view-more">
-                    <Link to = "/myreframery/records"><h4>View more transactions >></h4></Link>
+                    <Link to = "/myreframery/records"><h4>View more transactions &gt;&gt; </h4></Link>
                 </div>
             </div>
           
@@ -49,7 +46,7 @@ function TransactionHistory() {
 
 function Main() {
         return (
-            <div>
+            <div className="wallet-container">
                 <div className = "wallet">
                     <div className="wallet-page">
                         <div className = "wallet-c1">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from "react-router";
-import { deleteUser, detailsUser, getUser, signout, updateUser } from "../actions/userActions";
+import { deleteUser, detailsUser, getUser, signout, updateUser, updateUserImage } from "../actions/userActions";
 
 // import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input/input'
@@ -33,6 +33,34 @@ export default function UserPage() {
   const [country, setCountry] = useState('');
   const [postcode, setPostcode] = useState('');
   const [addressEdited, setAddressEdited] = useState(false);
+  const [binaryImage, setBinaryImage] = useState('');
+
+  // function for uploading the image of the user
+  const uploadimageHandler = (e) => {
+    e.preventDefault();
+    var fileName = e.target.value;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile === "jpg" || extFile === "png") {
+      // console.log("file to upload:", e.target.files[0]);
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsBinaryString(file);
+        reader.onloadend = () => {
+          setBinaryImage(reader.result);
+          console.log(reader.result);
+        }
+      }
+    } else {
+      alert("Only jpg and png files are allowed!");
+    }
+    const confirm = window.confirm("Are you sure to update your image?");
+    if (confirm) {
+      dispatch(updateUserImage(userInfo.email, binaryImage));
+    }
+    window.location.reload();
+  };
 
   // function for updating user information
   const updateHandler = (e) => {
@@ -54,10 +82,9 @@ export default function UserPage() {
         country === "" ? user.country : country,
         postcode === "" ? user.postcode : postcode,
         user.admin, user.manager, user.communityName
-      ));      
+      ));
     }
     window.location.reload();
-
   };
 
   // function for remove the user from the system
@@ -78,8 +105,25 @@ export default function UserPage() {
   return (
     <div className="profile-container">
       <form className="form-profile" >
-        <div>
-          <h1>User Profile</h1>
+        <div className="title-image">
+          <div className="upload-image">
+            <img
+              src="/images/blank.png"
+              alt="user"
+              width="150"
+            ></img >
+            <div class="upload-button">
+              <div class="fileinputs">
+                <input type="file" className="file" id="file" accept=".jpg,.png"
+                  onChange={uploadimageHandler} onClick={e => (e.target.value = null)} />
+                <div class="fakefile">
+                  <input placeholder="Upload Image" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <h1>My Profile</h1>
+
         </div>
         {loading ? (
           <LoadingBox></LoadingBox>

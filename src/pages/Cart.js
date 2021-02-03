@@ -9,12 +9,10 @@ class Cart extends React.Component {
     render (){
         return (
             <div>
-                <Navbar />
                 <div className="container cart">
                     <div className="columns">
 
                         <div className="column is-one-quarter">
-                            <Sidebar />
                         </div>
 
                         <div className="column　is-half cart-body">
@@ -64,7 +62,6 @@ class Cart extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </div>
         )
     }

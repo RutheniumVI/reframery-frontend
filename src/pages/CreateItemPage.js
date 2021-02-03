@@ -7,12 +7,10 @@ class CreateItemPage extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
                 <div className="container create-item-form-container">
                     <div className="columns mt-5">
                         
                         <div className="column is-one-quarter">
-                            <SideBar />
                         </div>
 
                         <div className="column is-three-quarters">
@@ -124,8 +122,6 @@ class CreateItemPage extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <Footer />
             </div>
         );
     }

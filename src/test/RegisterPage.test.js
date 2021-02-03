@@ -1,15 +1,10 @@
-import React, { useState as useStateMock } from "react";
+import React from "react";
 import { Provider } from 'react-redux'
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import RegisterPage from '../pages/RegisterPage';
 import WellcomeComponent from '../components/WellcomeComponent.js';
-
-import { act } from 'react-dom/test-utils';
-
 import { BrowserRouter as Router } from "react-router-dom";
 import store from "../store";
-
-
 
 const simulateChangeOnInput = (wrapper, inputSelector, newValue) => {
     let input = wrapper.find(inputSelector);
@@ -19,14 +14,49 @@ const simulateChangeOnInput = (wrapper, inputSelector, newValue) => {
     return wrapper.find(inputSelector);
 }
 
-// beforeEach(() => {
-  
-//     jest.resetAllMocoks();
-// });
+describe('WellcomePage UI component testing', () => {
+    describe('field tests in register page', () => {
+        var registerPageWrapper;
 
-describe('WellcomePage UI tests', () => {
+        beforeEach(() => {
+            registerPageWrapper = mount(<Provider store={store}>
+                <Router>
+                    <RegisterPage />
+                </Router>
+            </Provider>);
+        });
 
-     describe('input change value', () => {       
+        it('should have a Wellcome Component', () => {
+            const wellcomeComponent = registerPageWrapper.find(WellcomeComponent);
+            expect(wellcomeComponent.length).toBe(1);
+        });
+
+        it('should have an username field', () => {
+            expect(registerPageWrapper.find('input[type="text"]').getElement().props.id.includes('username')).toBe(true);
+        });
+
+        it('should have an email field', () => {
+            expect(registerPageWrapper.find('input[type="email"]').length).toBe(1);
+        });
+
+        it('should have a password field and a confirmed password field', () => {
+            expect(registerPageWrapper.find('input[type="password"]').length).toBe(2);
+        });
+
+        it('should have a checkbox to chooose a community in the range of Canada, USA, Brazil, mexico', () => {
+            expect(registerPageWrapper.find('select').length).toBe(1);
+            expect(registerPageWrapper.find('select').text().includes('Canada')).toBe(true);
+            expect(registerPageWrapper.find('select').text().includes('USA')).toBe(true);
+            expect(registerPageWrapper.find('select').text().includes('Brazil')).toBe(true);
+            expect(registerPageWrapper.find('select').text().includes('Mexico')).toBe(true);
+        });
+
+        it('should have a submit button', () => {
+            expect(registerPageWrapper.find('input[type="submit"]').length).toBe(1);
+        });
+    });
+
+    describe('WellcomePage function testing', () => {
 
         let registerPageWrapper;
 
@@ -110,12 +140,20 @@ describe('WellcomePage UI tests', () => {
             expect(confirmPasswordInput.instance().value).toEqual('1234');
             expect(communityInput.instance().value).toEqual('Canada');
         });
-        
+
+            it('submit the form', async () => {
+                simulateChangeOnInput(registerPageWrapper, '#username', 'user02')
+                simulateChangeOnInput(registerPageWrapper, '#email', 'user02@gmail.com')
+                 simulateChangeOnInput(registerPageWrapper, '#password', '1234')
+                simulateChangeOnInput(registerPageWrapper, '#confirmPassword', '1234')
+                simulateChangeOnInput(registerPageWrapper, 'select', 'Canada')
+                const submit = registerPageWrapper.find('input[type="submit"]');                               
+                submit.simulate('click');                
+                expect(true).toEqual(true);                
+            });        
 
     });
 
+    
 
-});
-
-
-
+})
