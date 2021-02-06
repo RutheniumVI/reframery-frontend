@@ -32,7 +32,7 @@ import {
 } from '../constants/itemConstants';
 
 // create an new item and send it to backend
-export const crateItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
+export const createItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
   dispatch({ type: ITEM_CREATE_REQUEST, payload: { category, name, price, userEmail, image, stock, description, discount, subCategoryID } });
   try {
     const { data } = await Axios.post('/items/item', { category, name, price, userEmail, image, stock, description, discount, subCategoryID });
@@ -107,7 +107,7 @@ export const deleteItem = (itemID) => async (dispatch) => {
 };
 
 // fetch item details from backend
-export const geItem = (itemID) => async (dispatch) => {
+export const getItem = (itemID) => async (dispatch) => {
   dispatch({ type: ITEM_GET_REQUEST, payload: itemID });
   try {
     const { data } = await Axios.get(`/items/item/${itemID}`);
@@ -121,7 +121,7 @@ export const geItem = (itemID) => async (dispatch) => {
 export const getNewestItems = (limit, starting) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_REQUEST });
   try {
-    const { data } = await Axios.get(`/getNewestItems/:startingFrom-:limit`, { limit, starting });
+    const { data } = await Axios.get(`/items/getNewestItems/${starting}-${limit}`);
     dispatch({ type: ITEM_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_FAIL, payload: error.message });
@@ -132,7 +132,7 @@ export const getNewestItems = (limit, starting) => async (dispatch) => {
 export const getItemsOfCategory = (category, limit, startingFrom, reversed) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_CATEGORY_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfCategory/${category}-/${limit}-/${startingFrom}-/${reversed}`, { category, limit, startingFrom, reversed });
+    const { data } = await Axios.get(`/items/getItemsOfCategory/${category}-${limit}-${startingFrom}-${reversed}`);
     dispatch({ type: ITEM_LIST_CATEGORY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_CATEGORY_FAIL, payload: error.message });
@@ -143,7 +143,7 @@ export const getItemsOfCategory = (category, limit, startingFrom, reversed) => a
 export const getItemsOfUser = (userEmail, limit, startingFrom, reversed) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_USER_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfUser/${userEmail}-${limit}-/${startingFrom}-/${reversed}`, { userEmail, limit, startingFrom, reversed });
+    const { data } = await Axios.get(`/items/getItemsOfUser/${userEmail}-${limit}-${startingFrom}-${reversed}`);
     dispatch({ type: ITEM_LIST_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_USER_FAIL, payload: error.message });
@@ -154,7 +154,7 @@ export const getItemsOfUser = (userEmail, limit, startingFrom, reversed) => asyn
 export const getItemsOfSubCategory = (subcategoryID, limit, startingFrom, reversed) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_SUBCATEGORY_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfSubCategory/${subcategoryID}-/${limit}-/${startingFrom}-/${reversed}-`, { subcategoryID, limit, startingFrom, reversed });
+    const { data } = await Axios.get(`/items/getItemsOfSubCategory/${subcategoryID}-${limit}-${startingFrom}-${reversed}`);
     dispatch({ type: ITEM_LIST_SUBCATEGORY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_SUBCATEGORY_FAIL, payload: error.message });

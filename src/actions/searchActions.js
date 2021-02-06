@@ -10,7 +10,7 @@ import {
 export const searchItems = (filter, limit, startingFrom, reversed) => async (dispatch) => {
     dispatch({ type: ITEM_SEARCH_REQUEST });
     try {
-        const { data } = await Axios.get(`/items/searchItems/${filter}-${limit}-/${startingFrom}-/${reversed}`, { filter, limit, startingFrom, reversed });
+        const { data } = await Axios.post(`/search/searchItems/${limit}-${startingFrom}-${reversed}`, {filter});
         dispatch({ type: ITEM_SEARCH_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: ITEM_SEARCH_FAIL, payload: error.message });
