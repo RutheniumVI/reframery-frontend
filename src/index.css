@@ -192,7 +192,7 @@ button {
 .sidebar-container {
   padding-top: 30px;
   width: 200px;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .sidebar {
@@ -1236,4 +1236,80 @@ td.trans-price {
 .wallet-c2 {
   margin-left: 100px;
   float: right;
+}
+
+
+/***************** MyItemPage *******************/
+
+.item-main {
+  margin: 30px;
+
+  border: outset;
+}
+
+.item-sidebar li {
+  list-style-type: none;
+}
+
+
+/***************** CreatedItem *******************/
+
+.product {
+    display: block;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.product img {
+    width: 20rem;
+    height: 20rem;
+}
+  
+.product h1 {
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    margin: 0;
+}
+  
+.product h2 {
+    font-size: 20px;
+    margin: 2rem;
+    text-align: center;
+}
+
+.product form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.product button {
+  font-size: 20px;
+}
+
+
+/***************** CreatedItemList *******************/
+
+.myitems-header {
+  font-size: 30px;
+  font-weight: bold;
+  color: #545871;
+  text-align: left;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  
+}
+.products li {
+  flex: 0 1 20rem;
+  height: 40rem;
+  padding: 1rem;
 }
