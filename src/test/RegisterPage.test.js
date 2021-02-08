@@ -6,6 +6,8 @@ import WellcomeComponent from '../components/WellcomeComponent.js';
 import { BrowserRouter as Router } from "react-router-dom";
 import store from "../store";
 
+
+
 const simulateChangeOnInput = (wrapper, inputSelector, newValue) => {
     let input = wrapper.find(inputSelector);
     input.simulate('change', {
@@ -14,7 +16,7 @@ const simulateChangeOnInput = (wrapper, inputSelector, newValue) => {
     return wrapper.find(inputSelector);
 }
 
-describe('WellcomePage UI component testing', () => {
+describe('RegisterPage UI and functions testing', () => {
     describe('field tests in register page', () => {
         var registerPageWrapper;
 
@@ -27,6 +29,8 @@ describe('WellcomePage UI component testing', () => {
         });
 
         it('should have a Wellcome Component', () => {
+            // console.log(registerPageWrapper.find('input[type="text"]').getElement());
+            // console.log(registerPageWrapper.find('#username').getElement());
             const wellcomeComponent = registerPageWrapper.find(WellcomeComponent);
             expect(wellcomeComponent.length).toBe(1);
         });
@@ -56,7 +60,7 @@ describe('WellcomePage UI component testing', () => {
         });
     });
 
-    describe('WellcomePage function testing', () => {
+    describe('RegisterPage function testing', () => {
 
         let registerPageWrapper;
 
@@ -71,7 +75,7 @@ describe('WellcomePage UI component testing', () => {
             jest.clearAllMocks()
         });
 
-        it('username input changes', () => {
+        it('should set username value on change evnet', () => {
             const updateUserNameInput = simulateChangeOnInput(
                 registerPageWrapper,
                 '#username',
@@ -80,7 +84,7 @@ describe('WellcomePage UI component testing', () => {
             expect(updateUserNameInput.instance().value).toBe('user01');
         });
 
-        it('email input changes', () => {
+        it('should set email value on change evnet', () => {
             const updateEmailInput = simulateChangeOnInput(
                 registerPageWrapper,
                 '#email',
@@ -89,7 +93,7 @@ describe('WellcomePage UI component testing', () => {
             expect(updateEmailInput.instance().value).toBe('user01@gmail.com');
         });
 
-        it('password input changes', () => {
+        it('should set password value on change evnet', () => {
             const updatePasswordInput = simulateChangeOnInput(
                 registerPageWrapper,
                 '#password',
@@ -98,7 +102,7 @@ describe('WellcomePage UI component testing', () => {
             expect(updatePasswordInput.instance().value).toBe('1234');
         });
 
-        it('confirmPassword input changes', () => {
+        it('should set confirmPassword value on change event', () => {
             const updateConfirmedPasswordInput = simulateChangeOnInput(
                 registerPageWrapper,
                 '#confirmPassword',
@@ -107,7 +111,7 @@ describe('WellcomePage UI component testing', () => {
             expect(updateConfirmedPasswordInput.instance().value).toBe('1234');
         });
 
-        it('select community correctly', () => {
+        it('should set community value on changes', () => {
             let updateCommunityInput = simulateChangeOnInput(
                 registerPageWrapper,
                 'select',
@@ -128,7 +132,7 @@ describe('WellcomePage UI component testing', () => {
             expect(updateCommunityInput.instance().value).toBe('Mexico');
         });
 
-        it('fill out the form with inputs', () => {
+        it('shuold set all values on changes', () => {
             const usernameInput = simulateChangeOnInput(registerPageWrapper, '#username', 'user02')
             const emailInput = simulateChangeOnInput(registerPageWrapper, '#email', 'user02@gmail.com')
             const passwordInput = simulateChangeOnInput(registerPageWrapper, '#password', '1234')
@@ -141,19 +145,17 @@ describe('WellcomePage UI component testing', () => {
             expect(communityInput.instance().value).toEqual('Canada');
         });
 
-            it('submit the form', async () => {
+            it('should submit the form and have state changed', async () => {
                 simulateChangeOnInput(registerPageWrapper, '#username', 'user02')
                 simulateChangeOnInput(registerPageWrapper, '#email', 'user02@gmail.com')
                  simulateChangeOnInput(registerPageWrapper, '#password', '1234')
                 simulateChangeOnInput(registerPageWrapper, '#confirmPassword', '1234')
                 simulateChangeOnInput(registerPageWrapper, 'select', 'Canada')
-                const submit = registerPageWrapper.find('input[type="submit"]');                               
-                submit.simulate('click');                
-                expect(true).toEqual(true);                
-            });        
-
-    });
-
-    
+                const submit = registerPageWrapper.find('input[type="submit"]'); 
+                registerPageWrapper.update();           
+                submit.simulate('click');           
+                // expect(registerPageWrapper.props().store.getState().userRegister).not.toStrictEqual({});               
+            });
+    });    
 
 })

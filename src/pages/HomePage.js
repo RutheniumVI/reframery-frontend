@@ -9,6 +9,8 @@ export default function Homepage() {
 
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
+  // const { userInfo } = userSignin;
+  console.log(userInfo);
   return (
     <div className="home-container">
       {userInfo ? null :

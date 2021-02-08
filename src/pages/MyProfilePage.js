@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
-export default function UserPage() {
+export default function MyProfilePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // get sign in user token
@@ -104,41 +104,42 @@ export default function UserPage() {
 
   return (
     <div className="profile-container">
-      <form className="form-profile" >
-        <div className="title-image">
-          <div className="upload-image">
-            <img
-              src="/images/blank.png"
-              alt="user"
-              width="150"
-            ></img >
-            <div class="upload-button">
-              <div class="fileinputs">
-                <input type="file" className="file" id="file" accept=".jpg,.png"
-                  onChange={uploadimageHandler} onClick={e => (e.target.value = null)} />
-                <div class="fakefile">
-                  <input placeholder="Upload Image" />
+      {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+            <form className="form-profile" >
+              <div className="title-image">
+                <div className="upload-image">
+                  <img
+                    src="/images/blank.png"
+                    alt="user"
+                    width="150"
+                  ></img >
+                  <div class="upload-button">
+                    <div class="fileinputs">
+                      <input type="file" className="file" id="file" accept=".jpg,.png"
+                        onChange={uploadimageHandler} onClick={e => (e.target.value = null)} />
+                      <div class="fakefile">
+                        <input placeholder="Upload Image" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <h1>My Profile</h1>
+                <h1>My Profile</h1>
 
-        </div>
-        {loading ? (
-          <LoadingBox></LoadingBox>
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
+              </div>
+
               <div className="profile-row">
                 <div>
                   <label>User Name</label>
-                  <input id="name" type="text" placeholder={user.username} onChange={(e) => setUsername(e.target.value)}></input>
+                  <input id="username" type="text" placeholder={user.username} onChange={(e) => setUsername(e.target.value)}></input>
                   <button onClick={updateHandler}> Update</button>
                 </div>
                 <div>
                   <label >Email</label>
-                  <input id="email" type="text" placeholder={user.email} readOnly></input>
+                  <input id="email" type="email" placeholder={user.email} readOnly></input>
                   <> </>
                 </div>
                 <div>
@@ -217,8 +218,9 @@ export default function UserPage() {
                   <button onClick={deleteHandler} >Unsubscribe</button>
                 </div>
               </div>
-            )}
-      </form>
+
+            </form>
+          )}
     </div>
   );
 }
