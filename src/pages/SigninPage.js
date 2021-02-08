@@ -9,7 +9,8 @@ export default function Signin(props) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [signinAsAdmin, setSigninAsAdmin] = useState('false');
+  
   // const redirect = '/home';
 
   const userSignin = useSelector(state => state.userSignin);
@@ -45,14 +46,14 @@ export default function Signin(props) {
           </div>
           <div>
             <label >Email </label>
-            <input type="email" id="email" required onChange={e => setEmail(e.target.value)} />
+            <input type="email" id="email" value={email} required onChange={e => setEmail(e.target.value)} />
           </div>
           <div>
             <label >Password </label>
-            <input type="password" id="password" required onChange={e => setPassword(e.target.value)} />
+            <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)} />
           </div>
           <div className="admin-checkbox">
-            <input className="box" type="checkbox" />Sign in as an administrator
+            <input className="box" type="checkbox" value={signinAsAdmin} onChange={e => setSigninAsAdmin(e.target.checked)}/>Sign in as an administrator
           </div>
           <div className="submit-button">
             <input type="submit" className="submit"></input>

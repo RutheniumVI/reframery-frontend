@@ -46,7 +46,7 @@ describe('User actions testing', () => {
     describe('createUser action', () => {
 
         it('create a user successfully with all the required information', async () => {
-            mock.onPost("/users/user").reply(200, data.user[0]);
+            mock.onPost("/users/user").replyOnce(200, data.user[0]);
             await store.dispatch(createUser('user02', 'user02@gmail.com', '1234', 'Canada'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -56,7 +56,7 @@ describe('User actions testing', () => {
         });
 
         it('should not create user with the same email and return the error message', async () => {
-            mock.onPost("/users/user").reply(400, { message: 'The email has been used' });
+            mock.onPost("/users/user").replyOnce(400, { message: 'The email has been used' });
             await store.dispatch(createUser('user02', 'user02@gmail.com', '1234', 'Canada'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -66,7 +66,7 @@ describe('User actions testing', () => {
         });
 
         it('should not create user with the same email and return the default error message', async () => {
-            mock.onPost("/users/user").reply(400, { message: '' });
+            mock.onPost("/users/user").replyOnce(400, { message: '' });
             await store.dispatch(createUser('user02', 'user02@gmail.com', '1234', 'Canada'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -79,7 +79,7 @@ describe('User actions testing', () => {
     describe('signin action', () => {
 
         it('sign in sucessfully with the correct email and password', async () => {
-            mock.onPost("/users/signin/user02@gmail.com").reply(200, { token: "ThisIsAToken" });
+            mock.onPost("/users/signin/user02@gmail.com").replyOnce(200, { token: "ThisIsAToken" });
             await store.dispatch(signin('user02@gmail.com', '1234'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -91,7 +91,7 @@ describe('User actions testing', () => {
         });
 
         it('should fail to sign in with the wrong password and return the error message', async () => {
-            mock.onPost("/users/signin/user02@gmail.com").reply(400, { message: 'Invalid email or password' });
+            mock.onPost("/users/signin/user02@gmail.com").replyOnce(400, { message: 'Invalid email or password' });
             await store.dispatch(signin('user02@gmail.com', '12345'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -101,7 +101,7 @@ describe('User actions testing', () => {
         });
 
         it('should fail to sign in with the wrong password and return the default error message', async () => {
-            mock.onPost("/users/signin/user02@gmail.com").reply(400, { message: '' });
+            mock.onPost("/users/signin/user02@gmail.com").replyOnce(400, { message: '' });
             await store.dispatch(signin('user02@gmail.com', '12345'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -126,7 +126,7 @@ describe('User actions testing', () => {
     describe('getUser action', () => {
 
         it('get the user sucessfully when the user exists', async () => {
-            mock.onGet("/users/user/user02@gmail.com").reply(200, data.user[0]);
+            mock.onGet("/users/user/user02@gmail.com").replyOnce(200, data.user[0]);
             await store.dispatch(getUser('user02@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -136,7 +136,7 @@ describe('User actions testing', () => {
         });
 
         it('fail to get the user when the user does not exit', async () => {
-            mock.onGet("/users/user/user01@gmail.com").reply(404, { message: 'User Not Found' });
+            mock.onGet("/users/user/user01@gmail.com").replyOnce(404, { message: 'User Not Found' });
             await store.dispatch(getUser('user01@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -146,7 +146,7 @@ describe('User actions testing', () => {
         });
 
         it('fail to get the user when the user does not exit and return the default error message', async () => {
-            mock.onGet("/users/user/user01@gmail.com").reply(404, { message: '' });
+            mock.onGet("/users/user/user01@gmail.com").replyOnce(404, { message: '' });
             await store.dispatch(getUser('user01@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -160,7 +160,7 @@ describe('User actions testing', () => {
     describe('updateUser action', () => {
 
         it('update the user sucessfully when the user exists', async () => {
-            mock.onPut("/users/user/user02@gmail.com").reply(200, data.user[1]);
+            mock.onPut("/users/user/user02@gmail.com").replyOnce(200, data.user[1]);
             await store.dispatch(updateUser('user02@gmail.com', 'user03'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -170,7 +170,7 @@ describe('User actions testing', () => {
         });
 
         it('shoul fail to update when the user with empty input for the field of request and return error message', async () => {
-            mock.onPut("/users/user/user02@gmail.com").reply(400, { message: 'Fail to update the user information with no changes' });
+            mock.onPut("/users/user/user02@gmail.com").replyOnce(400, { message: 'Fail to update the user information with no changes' });
             await store.dispatch(updateUser('user02@gmail.com', ''));
             const actions = store.getActions()
             const expectedPayload = {
@@ -180,7 +180,7 @@ describe('User actions testing', () => {
         });
 
         it('shoul fail to update when the user with empty input for the field of request and return the default error message', async () => {
-            mock.onPut("/users/user/user02@gmail.com").reply(400, { message: '' });
+            mock.onPut("/users/user/user02@gmail.com").replyOnce(400, { message: '' });
             await store.dispatch(updateUser('user02@gmail.com', ''));
             const actions = store.getActions()
             const expectedPayload = {
@@ -193,7 +193,7 @@ describe('User actions testing', () => {
     describe('updateUserImage action', () => {
 
         it('update the user image sucessfully with a new value for the required field', async () => {
-            mock.onPut("/users/uploadUserImage/user02@gmail.com").reply(200, data.user[2]);
+            mock.onPut("/users/uploadUserImage/user02@gmail.com").replyOnce(200, data.user[2]);
             await store.dispatch(updateUserImage('user02@gmail.com', '/image.jpg'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -203,7 +203,7 @@ describe('User actions testing', () => {
         });
 
         it('should fail to update the user image with empty string for the required field and return error message', async () => {
-            mock.onPut("/users/uploadUserImage/user02@gmail.com").reply(400, { message: 'Please upload a image file' });
+            mock.onPut("/users/uploadUserImage/user02@gmail.com").replyOnce(400, { message: 'Please upload a image file' });
             await store.dispatch(updateUserImage('user02@gmail.com', ''));
             const actions = store.getActions()
             const expectedPayload = [
@@ -217,7 +217,7 @@ describe('User actions testing', () => {
         });
 
         it('should fail to update the user image with empty string for the required field and return a default error message', async () => {
-            mock.onPut("/users/uploadUserImage/user02@gmail.com").reply(400, { message: '' });
+            mock.onPut("/users/uploadUserImage/user02@gmail.com").replyOnce(400, { message: '' });
             await store.dispatch(updateUserImage('user02@gmail.com', ''));
             const actions = store.getActions()
             const expectedPayload = [
@@ -234,7 +234,7 @@ describe('User actions testing', () => {
     describe('deleteUser action', () => {
 
         it('delete the user sucessfully', async () => {
-            mock.onDelete("/users/user/user02@gmail.com").reply(200, 'done');
+            mock.onDelete("/users/user/user02@gmail.com").replyOnce(200, 'done');
             await store.dispatch(deleteUser('user02@gmail.com'));
             const actions = store.getActions();
             const expectedPayload = {
@@ -244,7 +244,7 @@ describe('User actions testing', () => {
         });
 
         it('should fail to delete the user if the user has pending transactions and return error message', async () => {
-            mock.onDelete("/users/user/user02@gmail.com").reply(400, { message: 'You can not delete the account since you have pending transactions' });
+            mock.onDelete("/users/user/user02@gmail.com").replyOnce(400, { message: 'You can not delete the account since you have pending transactions' });
             await store.dispatch(deleteUser('user02@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -255,7 +255,7 @@ describe('User actions testing', () => {
         });
 
         it('should fail to delete the user if the user has pending transactions and return a default error message', async () => {
-            mock.onDelete("/users/user/user02@gmail.com").reply(400, { message: '' });
+            mock.onDelete("/users/user/user02@gmail.com").replyOnce(400, { message: '' });
             await store.dispatch(deleteUser('user02@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -270,7 +270,7 @@ describe('User actions testing', () => {
     describe('validateUser action', () => {
 
         it('should validate the user sucessfully when the user is unvalidated', async () => {
-            mock.onPut("/users/user/validateUser/user02@gmail.com").reply(200, data.user[3]);
+            mock.onPut("/users/user/validateUser/user02@gmail.com").replyOnce(200, data.user[3]);
             await store.dispatch(validateUser('user02@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -280,7 +280,7 @@ describe('User actions testing', () => {
         });
 
         it('should not validate the user when the user status is validated and return the error message', async () => {
-            mock.onPut("/users/user/validateUser/user02@gmail.com").reply(400, {message: 'The user has been already validated'});
+            mock.onPut("/users/user/validateUser/user02@gmail.com").replyOnce(400, {message: 'The user has been already validated'});
             await store.dispatch(validateUser('user02@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -290,7 +290,7 @@ describe('User actions testing', () => {
         }); 
         
         it('should not validate the user when the user status is validated and return default error message', async () => {
-            mock.onPut("/users/user/validateUser/user02@gmail.com").reply(400, {message: ''});
+            mock.onPut("/users/user/validateUser/user02@gmail.com").replyOnce(400, {message: ''});
             await store.dispatch(validateUser('user02@gmail.com'));
             const actions = store.getActions()
             const expectedPayload = {
@@ -305,7 +305,7 @@ describe('User actions testing', () => {
     describe('searchAdminUsers action', () => {
 
         it('should get a list of admin users when there are admin users in the system', async () => {
-            mock.onGet("/users/searchAdminUsers").reply(200, data.admins);
+            mock.onGet("/users/searchAdminUsers").replyOnce(200, data.admins);
             await store.dispatch(searchAdminUsers());
             const actions = store.getActions()
             const expectedPayload = {
@@ -315,7 +315,7 @@ describe('User actions testing', () => {
         });
 
         it('should get empty list when there is no admin user in the system', async () => {
-            mock.onGet("/users/searchAdminUsers").reply(200, data.emptylist);
+            mock.onGet("/users/searchAdminUsers").replyOnce(200, data.emptylist);
             await store.dispatch(searchAdminUsers());
             const actions = store.getActions()
             const expectedPayload = {
@@ -325,7 +325,7 @@ describe('User actions testing', () => {
         });
 
         it('should not get a list when the user is unauthorized and return a error', async () => {
-            mock.onGet("/users/searchAdminUsers").reply(401, {message: 'You have no authorization to search the admin users'});
+            mock.onGet("/users/searchAdminUsers").replyOnce(401, {message: 'You have no authorization to search the admin users'});
             await store.dispatch(searchAdminUsers());
             const actions = store.getActions()
             const expectedPayload = {
@@ -335,7 +335,7 @@ describe('User actions testing', () => {
         });
 
         it('should not get a list and return a default error', async () => {
-            mock.onGet("/users/searchAdminUsers").reply(401, {message: ''});
+            mock.onGet("/users/searchAdminUsers").replyOnce(401, {message: ''});
             await store.dispatch(searchAdminUsers());
             const actions = store.getActions()
             const expectedPayload = {
@@ -349,7 +349,7 @@ describe('User actions testing', () => {
     describe('searchUnvalidatedUsers action', () => {
 
         it('should get a list of unvalidated users when there are some unvalidated users in the system', async () => {
-            mock.onGet("/users/searchUnvalidatedUsers").reply(200, data.unvalidateduser);
+            mock.onGet("/users/searchUnvalidatedUsers").replyOnce(200, data.unvalidateduser);
             await store.dispatch(searchUnvalidatedUsers());
             const actions = store.getActions()
             const expectedPayload = {
@@ -359,7 +359,7 @@ describe('User actions testing', () => {
         });
 
         it('should get empty list when there is no unvalidated user in the system', async () => {
-            mock.onGet("/users/searchUnvalidatedUsers").reply(200, []);
+            mock.onGet("/users/searchUnvalidatedUsers").replyOnce(200, []);
             await store.dispatch(searchUnvalidatedUsers());
             const actions = store.getActions()
             const expectedPayload = {
@@ -369,7 +369,7 @@ describe('User actions testing', () => {
         });
 
         it('should not get the list of unvalidated users when the user has no authorization and return a message', async () => {
-            mock.onGet("/users/searchUnvalidatedUsers").reply(401, {message: 'You have no authorization to search the users'});
+            mock.onGet("/users/searchUnvalidatedUsers").replyOnce(401, {message: 'You have no authorization to search the users'});
             await store.dispatch(searchUnvalidatedUsers());
             const actions = store.getActions()
             const expectedPayload = {
@@ -379,7 +379,7 @@ describe('User actions testing', () => {
         });
 
         it('should not get the list of unvalidated users and return default error message', async () => {
-            mock.onGet("/users/searchUnvalidatedUsers").reply(401, {message: ''});
+            mock.onGet("/users/searchUnvalidatedUsers").replyOnce(401, {message: ''});
             await store.dispatch(searchUnvalidatedUsers());
             const actions = store.getActions()
             const expectedPayload = {
