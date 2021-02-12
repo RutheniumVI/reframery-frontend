@@ -54,13 +54,18 @@ $ npm start
 
 ```
 
-### 3. Configure base URL at the frontend
+### 3. Configure URL at the backend (temp-JSON-server)
+
+- Go to package.json
+- In line 6, change the port number being watched to your desired port number
+
+### 4. Configure base URL at the frontend
 
 - Go to commons/axios.js
 - In line 3, set the base URL of the backend you opened in step 1
 - For example, enter http://localhost:3004 for the backend running on http://localhost:3004/
 
-### 4. Go to landing page and Cart page
+### 5. Go to landing page and Cart page
 
 - http://localhost:3000/landing for Landing Page (Port may vary depending on your setting)
   -http://localhost:3000/cart for Shopping Cart
