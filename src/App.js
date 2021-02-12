@@ -29,6 +29,7 @@ import Confirm from "pages/Confirm";
 import Payment from "pages/Payment";
 import CreateItemPage from "pages/CreateItemPage";
 import Itemspage from "pages/ItemsPage";
+import Landing from "pages/Landing";
 
 export default function App() {
   const userSignin = useSelector(state => state.userSignin);
@@ -44,6 +45,8 @@ export default function App() {
           <div className="pages-content">
             <Routes>
               {userInfo ? null : <Route path="/" element={<WellcomePage />} />}
+
+              <Route path="/landing" element={<Landing />} />
 
               <Route path="/:community" element={<HomePage />} />
               <Route path="/signin" element={<Signin />} />

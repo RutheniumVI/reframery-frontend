@@ -10,6 +10,7 @@ import Rating from "./Rating";
 
 
 export default function ListItem({ mainCategory }) {
+  
   //get items from data.json
   const { data } = useData();
   
@@ -27,6 +28,7 @@ export default function ListItem({ mainCategory }) {
   // useEffect(() => {
   //   dispatch(getNewestItems());
   // }, [dispatch]);
+
 
   return (
 
