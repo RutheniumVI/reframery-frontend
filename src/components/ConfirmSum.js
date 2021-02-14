@@ -25,21 +25,14 @@ class ConfirmSum extends React.Component {
                         <label>
                             Subtotal
                         </label>
-                        <div className="totals-value is-size-5">$45</div>
-                    </div>
-
-                    <div className="totals-item" id="cart-subtotal">
-                        <label>
-                            Tax (13%)
-                        </label>
-                        <div className="totals-value is-size-5" id="cart-tax">$5</div>
+                        <div className="totals-value is-size-5">${this.props.subtotal}</div>
                     </div>
 
                     <div className="totals-item">
                         <label>
-                            Coupon Saved
+                            Transaction Fee
                         </label>
-                        <div className="totals-value is-size-5" id="cart-coupon">$5</div>
+                        <div className="totals-value is-size-5" id="cart-coupon">$2</div>
                     </div>
 
                     <div className="totals-item">
@@ -47,7 +40,7 @@ class ConfirmSum extends React.Component {
                             Grand Total
                         </label>
                         <div className="totals-value is-size-5" id="cart-total">
-                            <strong>$45</strong>
+                            <strong>${this.props.subtotal + 2}</strong>
                         </div>
                     </div>
                 </div>

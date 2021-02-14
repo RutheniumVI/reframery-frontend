@@ -4,16 +4,18 @@ import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import Shipping from "components/Shipping";
 import Billing from "components/Billing";
+import Header from "components/Header";
+import NewSidebar from "components/NewSidebar";
 
 class AddressForm extends React.Component {
     render (){
         return (
             <div>
-
+                <Header />
                 <div className="container address-form-container">
                     <div className="columns">
                         <div className="column is-one-quarter">
-
+                            <NewSidebar />
                         </div>
 
                         <div className="column is-half">

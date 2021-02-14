@@ -1,4 +1,9 @@
 //----------Landing page----------
+.hero {
+  background-image: url(../img/Friendship-Day.jpg);
+  background-size: cover;
+}
+
 .slogan-container {
   margin-bottom: 3rem;
 }
@@ -15,10 +20,10 @@
 //------------cart page-----------
 .cart {
   padding: 5rem 0;
-  // height: 85vh;
+  height: 85vh;
 
   .cart-items {
-    height: 70vh;
+    max-height: 70vh;
     overflow: scroll;
   }
 }

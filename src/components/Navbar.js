@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 class Navbar extends React.Component {
+
     render() {
         return (
             <nav className="navbar is-primary" role="navigation" aria-label="main navigaiton">
@@ -65,7 +66,7 @@ class Navbar extends React.Component {
                                 </a>
 
                                 <a href="/cart" className="button is-light">
-                                    Cart
+                                    Cart ({this.props.cartNum})
                                 </a>
                             </div>
                         </div>
