@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from 'react-redux'
 import { mount, shallow } from 'enzyme';
-import HomePage from '../pages/HomePage';
+import HomePage from '../pages/ItemsPage';
 import { BrowserRouter as Router } from "react-router-dom";
 import store from "../store";
 import ListItem from "../components/ListItem";

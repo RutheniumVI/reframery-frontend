@@ -6,7 +6,7 @@ export default function WellcomeComponent() {
         <div className="left">
 
             <div className="head">
-                <Link className="link" to="/home">
+                <Link className="link" to="/">
                     <img
                         className="logo"
                         src="/images/logo.png"
@@ -15,7 +15,7 @@ export default function WellcomeComponent() {
                     ></img >
                 </Link>
                 <div className="text">
-                    <Link className="link" to="/home">
+                    <Link className="link" to="/">
                         <div>Reframery Marketplace</div>
                     </Link>
                 </div>

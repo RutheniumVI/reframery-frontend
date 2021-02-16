@@ -67,7 +67,7 @@ describe('SigninPage UI and functions testing', () => {
     it('should sign in sucessfully with the correct username and password', async () => {
         simulateChangeOnInput(signinPageWrapper, '#email', 'user02@gmail.com')
         simulateChangeOnInput(signinPageWrapper, '#password', '1234')
-        const submit = signinPageWrapper.find('input[type="submit"]');
+        const submit = signinPageWrapper.find('button');
         submit.simulate('click');
         signinPageWrapper.update();
         // expect(signinPageWrapper.props().store.getState().userSignin.userInfo).not.toBeNull();                    
@@ -76,7 +76,7 @@ describe('SigninPage UI and functions testing', () => {
     it('should fail to sign in if the password is wrong', async () => {
         simulateChangeOnInput(signinPageWrapper, '#email', 'user02@gmail.com');
         simulateChangeOnInput(signinPageWrapper, '#password', '1235');
-        const submit = signinPageWrapper.find('input[type="submit"]');
+        const submit = signinPageWrapper.find('button');
         submit.simulate('click');
         signinPageWrapper.update();
         expect(signinPageWrapper.props().store.getState().userSignin.userInfo).toBeNull();

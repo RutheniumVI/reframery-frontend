@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { createUser } from "../actions/userActions";
 import WellcomeComponent from "../components/WellcomeComponent";
+import Footer from 'components/Footer'
 
 export default function Register() {
     const navigate = useNavigate();
@@ -30,10 +31,11 @@ export default function Register() {
     };
 
     return (
+        <div>
         <div className="wellcome-container">
             <WellcomeComponent />
             <div className="form">
-                <form className="Register" onSubmit={submitHandler}>
+                <form className="Register">
                     <div>
                         <h3>Create New Account</h3>
                     </div>
@@ -62,20 +64,24 @@ export default function Register() {
                             <option key="Mexico" value="Mexico">Mexico</option>
                         </select>
                     </div>
-
-
-                    <div className="terms">By continuing, you agree to Reframery's <Link to="/term-and-condition">Term and Condition</Link> and <Link to="/privacy-policy">Privacy Policy</Link>.</div>
+                    
+                    <div className="terms">By continuing, you agree to Reframery's <Link to="/term-and-condition" className="link">Term and Condition</Link> and <Link to="/privacy-policy" className="link">Privacy Policy</Link>.</div>
 
                     <div className="submit-button">
-                        <input type="submit" className="submit"></input>
+                        <button className="button is-primary is-rounded" onClick={submitHandler}>
+                            <span className="icon">
+                                <i className="fas fa-sign-in-alt"></i>
+                            </span>
+                            <span> Submit  </span>
+                        </button>
                     </div>
                     <div className="message">Already have account?
-                    <Link to="/signin" className="linkto">&nbsp;Sign in</Link>
+                    <Link to="/signin" className="link">&nbsp;Sign in</Link>
                     </div>
-
-
                 </form>
             </div>
+            </div>
+            <Footer />
         </div>
     );
 }

@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useData } from "../data/useData";
 import { Link, useParams } from "react-router-dom";
 import CreatedItemList from "../components/CreatedItemList";
+import Header from 'components/Header';
+import SideBar from "components/SideBar";
+import Footer from 'components/Footer'
 
 export default function MyItemPage() {
-  const [ list, setList ] = useState({});
-  
+  const [list, setList] = useState({});
+
 
   const addItem = (e, item_id) => {
     e.preventDefault();
@@ -23,29 +26,30 @@ export default function MyItemPage() {
       }
     }
   };
-  
+
   return (
-    <div className="container">
-      <div className="item-main">
-        <div className="myitems-header">
-        <Link to="/create-item" className="link">Create Item >></Link>
+    <div>
+      <Header />
+      <div className="sidebar-content">
+        <SideBar />
+        <div className="container">
+          <div className="item-main">
+            <div className="myitems-header">
+              <Link to="/create-item" className="link">Create Item >></Link>
+            </div>
+            <div className="list-products" >
+              <CreatedItemList mainCategory="products" />
+            </div>
+            <div className="list-services" >
+              <CreatedItemList mainCategory="services" />
+            </div>
+            <div className="list-expertises">
+              <CreatedItemList mainCategory="expertises" />
+            </div>
+          </div>
         </div>
-
-
-        <div className="list-products" >
-          <CreatedItemList mainCategory="products" />
-        </div>
-        <div className="list-services" >
-          <CreatedItemList mainCategory="services" />
-        </div>
-        <div className="list-expertises">
-          <CreatedItemList mainCategory="expertises" />
-        </div>
-
       </div>
-
-
-
+      <Footer />
     </div>
   );
 }

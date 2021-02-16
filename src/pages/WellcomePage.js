@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Footer from '../components/Footer'
+import Footer from 'components/Footer'
 import WellcomeComponent from '../components/WellcomeComponent'
 
 export default function WellcomePage() {
@@ -14,46 +14,46 @@ export default function WellcomePage() {
                 </div>
                     <div className="comunities">
                         <div className="community">
-                            <Link className="logo-canada" to="/canada">
+                            <Link className="logo-canada" to="/canada/products">
                                 <img
                                     src="/images/logo_canada.png"
                                     alt="logo"
                                 ></img>
                             </Link>
-                            <Link className="canada" to="/canada">
+                            <Link className="canada" to="/canada/products">
                                 <div className="country" >Canada</div>
                             </Link>
                         </div>
                         <div className="community">
-                        <Link className="logo-usa" to="/usa">
+                        <Link className="logo-usa" to="/usa/products">
                             <img
                                 src="/images/logo_usa.png"
                                 alt="logo"
                             ></img>
                             </Link>
-                            <Link className="usa" to="/usa">
+                            <Link className="usa" to="/usa/products">
                             <div className="country">U.S.A</div>
                             </Link>
                         </div>
                         <div className="community">
-                        <Link className="logo-brazil" to="/brazil">
+                        <Link className="logo-brazil" to="/brazil/products">
                             <img
                                 src="/images/logo_brazil.png"
                                 alt="logo"
                             ></img>
                             </Link>
-                            <Link className="brazil" to="/brazil">
+                            <Link className="brazil" to="/brazil/products">
                             <div className="country">Brazil</div>
                             </Link>
                         </div>
                         <div className="community">
-                        <Link className="logo-mexico" to="/mexico">
+                        <Link className="logo-mexico" to="/mexico/products">
                             <img
                                 src="/images/logo_mexico.png"
                                 alt="logo"
                             ></img>
                             </Link>
-                            <Link className="mexico" to="/mexico">
+                            <Link className="mexico" to="/mexico/products">
                             <div className="country">Mexico</div>
                             </Link>
                         </div>
@@ -61,6 +61,7 @@ export default function WellcomePage() {
                     </div>
                 </div>
             </div >
+            <Footer />
         </div>
 
     )

@@ -11,10 +11,10 @@ export default function AdminSidebar() {
 
             <div className="admin-sidebar">
                 <div className="top">
-                    <Link to="/home">
+                    <Link to="/">
                         <img className="logo" src="/images/logo.png" alt="logo" width="100" ></img >
                     </Link>
-                    <Link to="/home"><div className="marketplace"> Marketplace</div></Link>
+                    <Link to="/"><div className="marketplace"> Marketplace</div></Link>
                 </div>
 
                 <div className="middle">
