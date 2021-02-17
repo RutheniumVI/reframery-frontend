@@ -5,30 +5,38 @@ import SearchBar from "./SearchBar";
 import { useSelector, useDispatch } from 'react-redux';
 import { signout } from '../actions/userActions'
 
-export default function Header() {
+export default function Header(props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { community, cartNum } = props;
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
-  const dispatch = useDispatch();
+  // const userCommunity = (userInfo? userInfo.user.community : community);
 
   const signoutHandler = () => {
     const r = window.confirm("Do you want to Sign Out?");
     if (r) {
       dispatch(signout());
-      navigate('/home');
+      navigate('/');
       window.location.reload();
     }
   }
   return (
     <header >
       <div className="header-container">
-        <div className="nav-menu">
-          <div className="nav-item">Home</div>
-          <div className="nav-item">About</div>
-          <div className="nav-item">Contact</div>
+        <div className="navbar-logo">
+          <Link to="/"><img className="logo" src="/images/logo.png" alt="logo" width="50"></img ></Link>
         </div>
-        <SearchBar />
-        <div className="header-links">
+        <div className="navbar-start">
+          <Link to={"/" + community + "/products"} className="link"> <span className="nav-item link">Home</span></Link>
+          <Link to="/about"> <span className="nav-item link">About</span></Link>
+          <Link to="/contact"> <span className="nav-item link">Contact</span></Link>
+        </div>
+        <div className="navbar-search">
+          <SearchBar />
+        </div>
+
+        <div className="navbar-end">
           {/* if the user sign in, then show the user name, else show the link of sign in */}
           {
             userInfo ? (
@@ -36,18 +44,27 @@ export default function Header() {
                 {
                   userInfo.user.admin ?
                     (
-                      <Link to="/admin">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>
+                      <Link to="/admin" className="nav-item">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>
                     ) : (
-                      <Link to="/home">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>)
+                      <Link to={"/" + community +"/products"}  className="nav-item">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>)
                 }
                 <ul className="dropdown-content">
-                  <Link className="link" to="/home" onClick={signoutHandler}>Sign out</Link>
+                  <Link className="link" to="/" onClick={signoutHandler}>Sign out</Link>
                 </ul>
               </div>
             ) : (
-                <Link to="/signin">
-                  <span className="link" onClick={signoutHandler}></span>
-                </Link>
+                <div>
+                  <Link to="/signin">
+                    <span className="nav-item link">Signin</span>
+                  </Link>
+                  <Link to="/register">
+                    <span className="nav-item link">Register</span>
+                  </Link>
+                  <Link to="/cart">
+              <span className="nav-item link">Cart({cartNum})</span>
+            </Link>
+                </div>
+
               )}
         </div>
       </div>

@@ -56,7 +56,7 @@ describe('RegisterPage UI and functions testing', () => {
         });
 
         it('should have a submit button', () => {
-            expect(registerPageWrapper.find('input[type="submit"]').length).toBe(1);
+            expect(registerPageWrapper.find('button').length).toBe(1);
         });
     });
 
@@ -151,7 +151,7 @@ describe('RegisterPage UI and functions testing', () => {
                  simulateChangeOnInput(registerPageWrapper, '#password', '1234')
                 simulateChangeOnInput(registerPageWrapper, '#confirmPassword', '1234')
                 simulateChangeOnInput(registerPageWrapper, 'select', 'Canada')
-                const submit = registerPageWrapper.find('input[type="submit"]'); 
+                const submit = registerPageWrapper.find('button'); 
                 registerPageWrapper.update();           
                 submit.simulate('click');           
                 // expect(registerPageWrapper.props().store.getState().userRegister).not.toStrictEqual({});               

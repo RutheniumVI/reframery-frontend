@@ -4,39 +4,33 @@ import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
 export default function Item(props) {
-    const { category, item } = props;
+    const { item, community } = props;
     //get the current sign in user information
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-    console.log(category);
+    const category = item.category
+    // console.log(category);
+    // console.log(community);
     return (
-        <div key={item._id} className="item">
+        <div key={item.id} className="item">
             <div className="image">
-                {userInfo ? (<Link to={(category === "products") ? "/products/" + item._id :
-                    ((category === "services") ? "/services/" + item._id :
-                        "/expertises/" + item._id)}>
+                <Link to={(category === "Products") ? "/" + community + "/products/" + item.id :
+                    ((category === "Services") ? "/" + community + "/services/" + item.id :
+                        "/" + community + "/expertises/" + item.id)}>
                     <img
                         className="item-image"
                         src={item.image}
                         alt={item.name}
                     ></img>
-                </Link>) : (<Link to="/signin">
-                    <img
-                        className="item-image"
-                        src={item.image}
-                        alt={item.name}
-                    ></img>
-                </Link>)}
+                </Link>
             </div>
             <div className="item-info">
                 <div className="item-name">
-                    {userInfo ? (<Link to={(category === "products") ? "/products/" + item._id :
-                        (category === "services") ? "/services/" + item._id :
-                            "/expertises/" + item._id}>
+                    <Link to={(category === "Products") ? "/" + community + "/products/" + item.id :
+                        (category === "Services") ? "/" + community + "/services/" + item.id :
+                            "/" + community + "/expertises/" + item.id}>
                         <span className="link">{item.name}</span>
-                    </Link>) : (<Link to="/signin">
-                        <span className="link">{item.name}</span>
-                    </Link>)}
+                    </Link>
                 </div>
                 <div className="item-price">${item.price}</div>
                 <div className="item-rating"><Rating rating={5} numOfReviews={1}></Rating></div>

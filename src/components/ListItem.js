@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { getNewestItems, getItemsOfCategory } from "../actions/itemActions";
 import { useData } from "../data/useData";
 import Item from "./Item";
@@ -9,36 +9,29 @@ import MessageBox from "./MessageBox";
 import Rating from "./Rating";
 
 
-export default function ListItem({ mainCategory }) {
-  
+export default function ListItem(props) {
   //get items from data.json
-  const { data } = useData();
+  const { community, mainCategory, itemList } = props;
   
   // const dispatch = useDispatch();
   // const itemsGet = useSelector((state) => state.itemsGet);
   // const { loading, error, items } = itemsGet;
-  // console.log(items);
+  
 
-  // the category of the item
-  const loweredCate = mainCategory.toLowerCase();
-  const items = data[loweredCate];
-
-
-  //send the request to the backend
-  // useEffect(() => {
-  //   dispatch(getNewestItems());
-  // }, [dispatch]);
-
+  // console.log("testing");
+  // console.log(itemList);
+  // console.log(mainCategory);
+  // console.log(community);
 
   return (
 
     <div className="itemlist-container">
       <div className="home-category">
-        {loweredCate.charAt(0).toUpperCase() + loweredCate.slice(1)}
+        {/* {loweredCate.charAt(0).toUpperCase() + loweredCate.slice(1)} */}
       </div>
       <div className="list-items">
-        {items.map((item) => (
-          <Item key={item._id} item={item} category={loweredCate}></Item>
+        {itemList.map((item) => (
+          <Item key={item.id} item={item} community={community}></Item>
         ))}
 
       </div>
