@@ -4,7 +4,7 @@ import Sidebar from "components/SideBar";
 import Footer from "components/Footer";
 import ConfirmSum from "components/ConfirmSum";
 import Header from "components/Header";
-import NewSidebar from "components/NewSidebar";
+import NewSidebar from "components//SideBar";
 import axios from "commons/axios";
 
 // TODO:

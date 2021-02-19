@@ -28,6 +28,7 @@ import MyProfilePage from "./pages/MyProfilePage";
 import AboutPage from "pages/AboutPage";
 import ContactPage from "pages/ContactPage";
 import MoreItemsPage from "pages/MoreItemsPage";
+import SearchResultPage from "pages/SearchResultPage";
 
 export default function App() {
   const userSignin = useSelector(state => state.userSignin);
@@ -46,8 +47,9 @@ export default function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/:community/:category" element={<ItemsPage />} />
               <Route path="/:community/:category/:start/:end" element={<MoreItemsPage />} />
+              <Route path="/search" element={<SearchResultPage />} />
 
-              {/* <Route path="/:community/:category/:id" element={<ItemDetails />} /> */}
+              <Route path="/:community/:category/:id" element={<ItemDetails />} />
 
               <Route path="/cart" element={<Cart />} />
               <Route path="/address-form" element={<AddressForm />} />

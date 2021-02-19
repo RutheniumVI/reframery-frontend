@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { addBalanceToUser, deductBalanceToUser } from "../actions/transactionActions";
-import { getUser } from "../actions/userActions";
+import { getUser, updateUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
@@ -45,6 +45,14 @@ export default function UpdateBalancePage() {
         }
     };
 
+    const InvalidateHandler = (e) => {
+        e.preventDefault();
+        const confirm = window.confirm("Are you sure to invalidate the current user?");
+        if (confirm) {
+            // dispatch(updateUser(user.email, {validateStatus: false}));
+        }
+    };
+
     return (
         <div>
             <Header />
@@ -76,7 +84,7 @@ export default function UpdateBalancePage() {
                                                  <button className="button is-primary is-rounded" 
                                                 onClick={deductBalanceHandler}>Deduct</button></div>
                                                 <div className="div-button2">
-                                                 <button className="button is-primary is-rounded">Invalidate</button></div>
+                                                 <button className="button is-primary is-rounded" onClick={InvalidateHandler}>Invalidate</button></div>
                                             </div>
                                         ) : (
                                                 <div>Please Enter the Correct User Email!</div>

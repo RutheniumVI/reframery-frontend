@@ -1,16 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { searchItems } from "../actions/searchActions";
 
-export default function SearchBar() {
-  const [category, setCategory] = useState('All');
-  const [searchKey, setSearchKey] = useState('');
-
+export default function SearchBar(props) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {community} = props;
+  const limit = 20;
+  const startingFrom = 1;
+  const reversed = "reversed";
+  const [category, setCategory] = useState('All');
+  const [searchKey, setSearchKey] = useState('');  
+  const userSignin = useSelector(state => state.userSignin);
+  const { userInfo } = userSignin;
+
 
   const searchHandler = (e) => {
     e.preventDefault();
-    dispatch(searchItems({ category, searchKey }, 20, 0, true));
+    dispatch(searchItems({ category, searchKey }, limit, startingFrom, reversed));
+    navigate(`/search?community=${community}&category=${category}&item=${searchKey}&start=${startingFrom}&limit=${limit}`);
   };
 
   return (

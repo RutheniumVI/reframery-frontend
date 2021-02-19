@@ -224,49 +224,8 @@ main {
   padding-left: 10px;
 }
 
-.sidebar .head {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10%;
-}
-
-.marketplace {
-  font-size: 24px;
-  color: #7a023c;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.sidebar .middle {
-  padding-top: 40px;
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
-.sidebar .row {
-  margin-bottom: 20px;
-}
-
-
-.sidebar .cart {
-  margin: auto;
-  width: fit-content;
-  margin-top: 50px;
-}
-
-.sidebar .cart img {
-  width: 88px;
-  height: 88px;
-  padding-bottom: 20px;
-}
-
-.sidebar .menu .link {
-  font-size: 20px;
-  color: #545871;
-  font-weight: bold;
-}
-
 .sidebar .link:hover {
+  font-weight: bold;
   color: #304ffe;
 }
 
@@ -553,9 +512,16 @@ input[type='checkbox']+label {
   /* background-color: #e8f8f4; */
 }
 
-.home-container .category .products:hover {
+.home-container .category .link:hover {
+  color: #f5f5f5;
   background-color: #c9168d;
 }
+
+.home-container .category .link:active {
+  color: #f5f5f5;
+  background-color: #c9168d;
+}
+
 
 .home-container .services {
   text-align: center;
@@ -563,9 +529,7 @@ input[type='checkbox']+label {
   /* background-color: #e8f8f4; */
 }
 
-.home-container .category .services:hover {
-  background-color: #c9168d;
-}
+
 
 .home-container .expertises {
   text-align: center;
@@ -573,9 +537,7 @@ input[type='checkbox']+label {
   /* background-color: #e8f8f4; */
 }
 
-.home-container .category .expertises:hover {
-  background-color: #c9168d;
-}
+
 
 .home-container .list-products {
   /* background-color: #e8f8f4; */
@@ -742,7 +704,7 @@ min-width: 150px;
 .profile-container .form-profile {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  /* margin-top: 100px; */
   width: 700px;
   background-color: white;
   padding-left: 50px;
@@ -750,7 +712,7 @@ min-width: 150px;
 }
 
 .profile-container .title-image {
-  padding-top: 30px;
+  /* padding-top: 30px; */
   display: flex;
 }
 
