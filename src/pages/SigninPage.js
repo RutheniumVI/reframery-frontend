@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { signin } from "actions/userActions";
+import { getUser, signin } from "actions/userActions";
 import WellcomeComponent from "components/WellcomeComponent";
 import Footer from 'components/Footer'
 
 
 export default function Signin(props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signinAsAdmin, setSigninAsAdmin] = useState('false');
 
-  // const redirect = '/home';
-
+ 
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo, loading, error } = userSignin;
 
 
-  const dispatch = useDispatch();
+  
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
@@ -32,7 +32,7 @@ export default function Signin(props) {
       if (userInfo.user.admin || userInfo.user.manager) {
         navigate('/admin');
       } else {
-        navigate(`/${userInfo.user.community}/products`);
+        navigate(`/${userInfo.user.communityName}/products`);
       }
     }
   }, [navigate, userInfo]);

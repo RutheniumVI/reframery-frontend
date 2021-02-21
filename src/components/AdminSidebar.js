@@ -22,7 +22,7 @@ export default function AdminSidebar() {
                         <Link to="/admin"><div className="link"> My Admin</div></Link>
                         <Link to="/admin/awaiting-validation"><div className="link">Awaiting Validation</div></Link>
                         {/* The following two links are shown only for a super admin */}
-                        {userInfo.user.manager && <Link to="/admin/update-users-balance"><div className="link">Update user balance</div></Link>}
+                        {userInfo.user.manager && <Link to="/admin/update-users-balance"><div className="link">Update user Information</div></Link>}
                         {userInfo.user.manager && <Link to="/admin/administrator-management"><div className="link">Administrator Management</div></Link>}
                         <Link to="/admin/my-profile"><div className="link">Account Setting</div></Link>
 

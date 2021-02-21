@@ -95,8 +95,9 @@ export default function MyProfilePage() {
   // function for remove the user from the system
   const deleteHandler = (e) => {
     e.preventDefault();
-    const confirm = window.confirm("Are you sure to delete the account from the system?");
-    if (confirm) {
+    // const confirm = window.confirm("Are you sure to delete the account from the system?");
+    alert("You can not unsubscribe the testing account!");
+    if (false) {
       dispatch(deleteUser(userInfo.email));
       dispatch(signout());
       navigate('/');

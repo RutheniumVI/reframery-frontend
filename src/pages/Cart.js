@@ -3,7 +3,7 @@ import Sidebar from "components/SideBar";
 import CartCard from "components/CartCard";
 import CartSum from "components/CartSum";
 import Header from "components/Header";
-import NewSidebar from "components/NewSidebar";
+import NewSidebar from "components/SideBar";
 import axios from "commons/axios";
 
 class Cart extends React.Component {

@@ -1,38 +1,77 @@
+import { signout } from "actions/userActions";
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import cart from "img/cart.png";
+import logo from "img/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SideBar() {
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
+  const currentPath = window.location.pathname;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const signoutHandler = () => {
+    const r = window.confirm("Do you want to Sign Out?");
+    if (r) {
+      dispatch(signout());
+      navigate('/');
+      window.location.reload();
+    }
+  }
+
   return (
     <div className="sidebar-container">
       <div className="sidebar">
-        <div className="head">
+        <div className="sidebar-logo">
           <Link className="link" to="/">
-            <img className="logo" src="/images/logo.png" alt="logo" width="100" ></img >
+            <img src={logo} alt="sidebar logo" />
           </Link>
-          <Link className="link" to="/"><div className="marketplace"> Marketplace</div></Link>
+          <Link className="link" to="/"> <h2 className="is-size-5">Marketplace</h2></Link>
         </div>
 
-        <div className="middle">
-          <div className="menu">
-            <div className="row"> <Link to="/my-wallet" className="link">- MY WALLET</Link></div>
+        <p className="menu-label"><i class="fas fa-id-card"></i> <strong>Account</strong> </p>
+        <ul className="menu-list">
+          <li><Link className="link" to="/my-profile">My profile</Link></li>
+          <li><Link className="link" to={currentPath} onClick={signoutHandler}>Log Out</Link></li>
+        </ul>
+
+        <p className="menu-label">
+          <i class="fas fa-wallet"></i>
+          <strong>Wallet</strong>
+        </p>
+
+        <ul className="menu-list">
+          <li><Link className="link" to="/my-wallet" >Balance</Link></li>
+          <li><Link className="link" to="/my-wallet" >Transactions</Link></li>
+        </ul>
 
 
+        <p className="menu-label">
+          <i class="fas fa-history"></i>
+          <strong>History</strong>
+        </p>
 
-            <div className="row"> <Link to="/my-item" className="link"> - MY ITEM</Link></div>
+        <ul className="menu-list">
+          <li><Link className="link" to="/my-history">Purchase</Link></li>
+          <li><Link className="link" to="/my-history">Sales</Link></li>
+        </ul>
 
-            <div className="row"><Link to="/my-history" className="link"> - MY HISTORY </Link></div>
-            <div className="row"><Link to="/my-profile" className="link">- MY PROFILE </Link></div>
-            <div className="cart">
-              <div>
-                <img src="/images/cart.png" alt="cart" ></img>
-              </div>
-              <div > <Link to="/cart" className="link">MY CART</Link></div>
-            </div>
-          </div>
+        <p className="menu-label">
+          <i class="fas fa-list-alt"></i>
+          <strong>My Items</strong>
+        </p>
+
+        <ul className="menu-list">
+          <li><Link className="link" to="/my-item">Items</Link></li>
+          <li><Link className="link" to="/my-item">Create Item</Link></li>
+        </ul>
+
+        <div className="cart-icon">
+          <img src={cart} alt="shopping cart icon" />
+          <div > <Link className="link" to="/cart">MY CART</Link></div>
         </div>
+
       </div>
     </div>
   );

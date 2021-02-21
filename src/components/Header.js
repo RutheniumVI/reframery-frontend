@@ -8,11 +8,15 @@ import { signout } from '../actions/userActions'
 export default function Header(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const currentPath = window.location.pathname;
   const { community, cartNum } = props;
+  console.log(cartNum); 
+
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
-  // const userCommunity = (userInfo? userInfo.user.community : community);
 
+  const userCommunity = (userInfo? userInfo.user.communityName : community);
+  
   const signoutHandler = () => {
     const r = window.confirm("Do you want to Sign Out?");
     if (r) {
@@ -28,12 +32,12 @@ export default function Header(props) {
           <Link to="/"><img className="logo" src="/images/logo.png" alt="logo" width="50"></img ></Link>
         </div>
         <div className="navbar-start">
-          <Link to={"/" + community + "/products"} className="link"> <span className="nav-item link">Home</span></Link>
+          <Link to={"/" + userCommunity + "/products"} className="link"> <span className="nav-item link">Home</span></Link>
           <Link to="/about"> <span className="nav-item link">About</span></Link>
           <Link to="/contact"> <span className="nav-item link">Contact</span></Link>
         </div>
         <div className="navbar-search">
-          <SearchBar />
+          <SearchBar community={userCommunity}/>
         </div>
 
         <div className="navbar-end">
@@ -46,10 +50,10 @@ export default function Header(props) {
                     (
                       <Link to="/admin" className="nav-item">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>
                     ) : (
-                      <Link to={"/" + community +"/products"}  className="nav-item">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>)
+                      <Link to={"/" + userCommunity +"/products"}  className="nav-item">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>)
                 }
                 <ul className="dropdown-content">
-                  <Link className="link" to="/" onClick={signoutHandler}>Sign out</Link>
+                  <Link className="link" to={currentPath} onClick={signoutHandler}>Sign out</Link>
                 </ul>
               </div>
             ) : (

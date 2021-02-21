@@ -1,3 +1,4 @@
+import { itemsSearchReducer } from 'reducers/searchReducers.js';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
@@ -65,10 +66,10 @@ const reducer = combineReducers({
     newestItemsGet: newestItemsGetReducer,
     itemsOfCategoryGet: itemsOfCategoryGetReducer,
     itemsOfUserGet: itemsOfUserGetReducer,
-    itemOfSubcategoryGet: itemsOfSubcategoryGetReducer
+    itemOfSubcategoryGet: itemsOfSubcategoryGetReducer,
 
     //reducers for search
-
+    itemsSearch: itemsSearchReducer
 
 });
 

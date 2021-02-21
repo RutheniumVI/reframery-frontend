@@ -202,4 +202,11 @@ export const searchUnvalidatedUsers = () => async (dispatch) => {
     }
 };
 
+//get the type of user
+// export const isAdmin = (email) => {
+//     const { admin } = Axios.get(`/users/user/${email}/getUserType`);
+//     return admin;
+// };
+
+
 

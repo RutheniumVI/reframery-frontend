@@ -3,7 +3,7 @@ import Navbar from "components/Navbar";
 import Sidebar from "components/SideBar";
 import React from "react";
 import Header from "components/Header";
-import NewSidebar from "components/NewSidebar";
+import NewSidebar from "components//SideBar";
 
 class Payment extends React.Component {
     render (){

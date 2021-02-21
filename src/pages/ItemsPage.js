@@ -13,6 +13,7 @@ import MessageBox from "components/MessageBox";
 
 export default function Itemspage() {
   const { community, category } = useParams();
+  console.log(community);
 
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
@@ -35,7 +36,7 @@ export default function Itemspage() {
       ) : (
             <div className="home-container">
               <div className="header">
-                <Header community={community} cartNum={0} />
+                <Header community={community}/>
               </div>
               {userInfo ? null :
                 (
@@ -44,12 +45,12 @@ export default function Itemspage() {
                       <h1 className="slogan-container">
                         One of the best community marketplaces to support your new business
                </h1>
-                      <button className="button is-primary is-rounded">
+                      {/* <button className="button is-primary is-rounded">
                         <span className="icon">
                           <i className="fas fa-sign-in-alt"></i>
                         </span>
                         <Link to="/signin"> <span>Sign In</span></Link>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 )
@@ -60,9 +61,9 @@ export default function Itemspage() {
                 <section className="container">
                   <div className="category" >
                     {/* <Link to={"/" + community}><span> Overview</span></Link>             */}
-                    <div className="products"> <Link to={"/" + community + "/products"} className="link">Products</Link></div>
-                    <div className="services"> <Link to={"/" + community + "/services"} className="link">Services</Link></div>
-                    <div className="expertises"> <Link to={"/" + community + "/expertises"} className="link">Expertises</Link></div>
+                     <Link to={"/" + community + "/products"} className="link products">Products</Link>
+                    <Link to={"/" + community + "/services"} className="link services">Services</Link>
+                     <Link to={"/" + community + "/expertises"} className="link expertises"> Expertises</Link>
                   </div>
 
                   <div className={"list-" + category} >
