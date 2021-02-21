@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { searchAdminUsers, updateUser } from "../actions/userActions";
+import { promoteToAdmin, searchAdminUsers} from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
@@ -11,6 +11,13 @@ import MessageBox from '../components/MessageBox';
 
 export default function AdminManagePage() {
     const dispatch = useDispatch();
+
+    //get signin user Info
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+    const userCommunity = userInfo.communityName;
+
+
     //get the list of admin users
     const adminUsers = useSelector((state) => state.adminUsers);
     const { loadingAdmin, error, admins } = adminUsers;
@@ -22,16 +29,15 @@ export default function AdminManagePage() {
         const confirm = window.confirm("Are you sure to promote the current admin to a manager?");
         if (confirm) {
             const userEmail = e.target.value;
-            const manager = true;
-            dispatch(updateUser(userEmail, manager));
+            dispatch(promoteToAdmin(userEmail));
             window.location.reload();
         }
     };
 
     //update the admin information when getting the user details
     useEffect(() => {
-        dispatch(searchAdminUsers());
-    }, [dispatch]);
+        dispatch(searchAdminUsers(userCommunity));
+    }, [dispatch, userCommunity]);
 
     return (
         <div>

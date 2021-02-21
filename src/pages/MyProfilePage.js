@@ -105,7 +105,7 @@ export default function MyProfilePage() {
   };
 
   useEffect(() => {
-    dispatch(getUser(userInfo.user.email));
+    dispatch(getUser(userInfo.email));
   }, [dispatch, userInfo]);
 
   return (
@@ -118,7 +118,7 @@ export default function MyProfilePage() {
             <div>
               <Header community={user.community} cartNum={0}/>
               <div className="sidebar-content">
-                {userInfo.user.admin? <AdminSideBar /> : <SideBar/>} 
+                {userInfo.admin? <AdminSideBar /> : <SideBar/>} 
                 <div className="profile-container">
                   <form className="form-profile" >
                     <div className="title-image">

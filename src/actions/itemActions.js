@@ -118,10 +118,10 @@ export const getItem = (itemID) => async (dispatch) => {
 }
 
 // fetch item list of all the three categories from backend
-export const getNewestItems = (limit, starting) => async (dispatch) => {
+export const getNewestItems = (limit, communityName, category) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getNewestItems/${starting}-${limit}`);
+    const { data } = await Axios.get(`/items/newestItems/${communityName}-${limit}?category=${category}`);
     dispatch({ type: ITEM_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_FAIL, payload: error.message });
@@ -129,10 +129,10 @@ export const getNewestItems = (limit, starting) => async (dispatch) => {
 };
 
 // fetch item list in different category from backend
-export const getItemsOfCategory = (category, limit, startingFrom, reversed) => async (dispatch) => {
+export const getItemsOfCategory = (category, limit, page, reversed, communityName) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_CATEGORY_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfCategory/${category}-${limit}-${startingFrom}-${reversed}`);
+    const { data } = await Axios.get(`/items/getItemsOfCategory/${category}-${limit}-${page}-${reversed}`, {communityName});
     dispatch({ type: ITEM_LIST_CATEGORY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_CATEGORY_FAIL, payload: error.message });
@@ -140,10 +140,10 @@ export const getItemsOfCategory = (category, limit, startingFrom, reversed) => a
 };
 
 // fetch alist of itmes for a giving user from backend
-export const getItemsOfUser = (userEmail, limit, startingFrom, reversed) => async (dispatch) => {
+export const getItemsOfUser = (userEmail, limit, page, reversed) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_USER_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfUser/${userEmail}-${limit}-${startingFrom}-${reversed}`);
+    const { data } = await Axios.get(`/items/getItemsOfUser/${userEmail}-${limit}-${page}-${reversed}`);
     dispatch({ type: ITEM_LIST_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_USER_FAIL, payload: error.message });
@@ -151,10 +151,10 @@ export const getItemsOfUser = (userEmail, limit, startingFrom, reversed) => asyn
 };
 
 // fetch item list for a giving sub-category from backend
-export const getItemsOfSubCategory = (subcategoryID, limit, startingFrom, reversed) => async (dispatch) => {
+export const getItemsOfSubCategory = (subcategoryName, limit, page, reversed, communityName) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_SUBCATEGORY_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfSubCategory/${subcategoryID}-${limit}-${startingFrom}-${reversed}`);
+    const { data } = await Axios.get(`/items/getItemsOfSubCategory/${subcategoryName}-${limit}-${page}-${reversed}`, {communityName});
     dispatch({ type: ITEM_LIST_SUBCATEGORY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_SUBCATEGORY_FAIL, payload: error.message });

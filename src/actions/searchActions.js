@@ -7,10 +7,10 @@ import {
 } from '../constants/searchConstants';
 
 // search a list of item by the filter 
-export const searchItems = (filter, limit, startingFrom, reversed) => async (dispatch) => {
+export const searchItems = (searchKeyword, category, subCategoryName, limit, page, community) => async (dispatch) => {
     dispatch({ type: ITEM_SEARCH_REQUEST });
     try {
-        const { data } = await Axios.post(`/search/searchItems/${limit}-${startingFrom}-${reversed}`, {filter});
+        const { data } = await Axios.post(`/search/searchItems/${limit}-${page}-${community}`, {searchKeyword, category, subCategoryName});
         dispatch({ type: ITEM_SEARCH_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: ITEM_SEARCH_FAIL, payload: error.message });

@@ -14,7 +14,7 @@ export default function OverviewPage() {
             <Header />
             <div className="sidebar-content">
                 <SideBar />
-                <div className="admin-container">
+                <div className="container admin-container">
                     <div className="admin-table">
                         <div className="table">
                             <div className="title-table">

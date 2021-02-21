@@ -18,10 +18,11 @@ export default function SearchResultpage() {
     const search = useLocation().search;
     const community = new URLSearchParams(search).get('community');
     const category = new URLSearchParams(search).get('category');
-    const itemName = new URLSearchParams(search).get('item');
-    const startingFrom = new URLSearchParams(search).get('start');
+    const subCategoryName = "";
+    const searchKey = new URLSearchParams(search).get('item');
+    const page = new URLSearchParams(search).get('start');
     const limit = new URLSearchParams(search).get('limit');
-    const reversed = "reversed";
+    const reversed = true;
     const [pageNumber, setPageNumber] = useState(1);
 
     const userSignin = useSelector(state => state.userSignin);
@@ -42,8 +43,8 @@ export default function SearchResultpage() {
 
     // send the request to the backend
     useEffect(() => {
-        dispatch(searchItems({ category, itemName }, limit, startingFrom, reversed));
-    }, [startingFrom]);
+        dispatch(searchItems(searchKey, category,subCategoryName, limit, page, community));
+    }, [page]);
 
     return (
         <div>
@@ -58,7 +59,7 @@ export default function SearchResultpage() {
                                     <Header community={community} cartNum={0} />
                                 </div>
                                 <div className="sidebar-content">
-                                    {userInfo ? (userInfo.user.admin ? null : <SideBar />) : null}
+                                    {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
 
                                     <section className="container">
                                         <div className="moreItems-category">
@@ -81,14 +82,14 @@ export default function SearchResultpage() {
                                         <div className="page-button" >
                                             <div className="button-container">
                                                 <div className="button1">
-                                                    {pageNumber > 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&item=" + itemName + "&start=" + (pageNumber * limit - limit + 1) + "&limit=" + limit} className="link">
+                                                    {pageNumber > 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&item=" + searchKey + "&start=" + page + "&limit=" + limit} className="link">
                                                         <button className="button is-primary" onClick={decreaseHandler}>
                                                             <span> Previous Page  </span>
                                                         </button>
                                                     </Link> : <div></div>}
                                                 </div>
                                                 <div className="button2">
-                                                    {pageNumber > 0 && items.length > limit - 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&item=" + itemName + "&start=" + (pageNumber * limit - limit + 1) + "&limit=" + limit} className="link">
+                                                    {pageNumber > 0 && items.length > limit - 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&item=" + searchKey + "&start=" + page + "&limit=" + limit} className="link">
                                                         <button className="button is-primary" onClick={increaseHandler}>
                                                             <span> Next Page  </span>
                                                         </button>

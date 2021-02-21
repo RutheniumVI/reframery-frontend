@@ -29,10 +29,10 @@ export default function Signin(props) {
     // if the user sign in sucessfully, go to the redirect link
     if (userInfo) {
       // props.history.push(redirect);
-      if (userInfo.user.admin || userInfo.user.manager) {
+      if (userInfo.admin || userInfo.manager) {
         navigate('/admin');
       } else {
-        navigate(`/${userInfo.user.communityName}/products`);
+        navigate(`/${userInfo.communityName}/products`);
       }
     }
   }, [navigate, userInfo]);
