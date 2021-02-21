@@ -77,8 +77,8 @@ export const getUser = (email) => async (dispatch, getState) => {
     dispatch({ type: USER_DETAILS_REQUEST, payload: email });
     try {
         const { data } = await Axios.get(`/users/user/${email}`);
-        console.log("testing");
-        console.log(data);
+        // console.log("testing");
+        // console.log(data);
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -158,7 +158,7 @@ export const deleteUser = (email) => async (dispatch) => {
 export const validateUser = (email) => async (dispatch) => {
     dispatch({ type: USER_VALIDATE_REQUEST, payload: email });
     try {
-        const { data } = await Axios.put(`/users/user/validateUser/${email}`);
+        const { data } = await Axios.get(`/users/validateUser/${email}`);
         dispatch({ type: USER_VALIDATE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useNavigate } from "react-router";
-import { deleteUser, detailsUser, getUser, signout, updateUser, updateUserImage } from "../actions/userActions";
+import { useNavigate } from "react-router";
+import { deleteUser, getUser, signout, updateUser, updateUserImage } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/SideBar";
 import AdminSideBar from "components/AdminSidebar";
@@ -9,7 +9,6 @@ import Footer from 'components/Footer'
 
 // import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input/input'
-import { Link } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 

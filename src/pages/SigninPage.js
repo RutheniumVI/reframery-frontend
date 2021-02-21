@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { getUser, signin } from "actions/userActions";
+import { signin } from "actions/userActions";
 import WellcomeComponent from "components/WellcomeComponent";
 import Footer from 'components/Footer'
 
@@ -15,7 +15,7 @@ export default function Signin(props) {
 
  
   const userSignin = useSelector(state => state.userSignin);
-  const { userInfo, loading, error } = userSignin;
+  const { userInfo } = userSignin;
 
 
   

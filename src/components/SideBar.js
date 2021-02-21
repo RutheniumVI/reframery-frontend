@@ -64,7 +64,7 @@ export default function SideBar() {
 
         <ul className="menu-list">
           <li><Link className="link" to="/my-item">Items</Link></li>
-          <li><Link className="link" to="/my-item">Create Item</Link></li>
+          <li><Link className="link" to="/create-item">Create Item</Link></li>
         </ul>
 
         <div className="cart-icon">

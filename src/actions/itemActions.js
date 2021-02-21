@@ -132,7 +132,7 @@ export const getNewestItems = (limit, communityName, category) => async (dispatc
 export const getItemsOfCategory = (category, limit, page, reversed, communityName) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_CATEGORY_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfCategory/${category}-${limit}-${page}-${reversed}`, {communityName});
+    const { data } = await Axios.get(`/items/itemsOfCategory/${category}-${limit}-${page}-${reversed}-${communityName}`);
     dispatch({ type: ITEM_LIST_CATEGORY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_CATEGORY_FAIL, payload: error.message });

@@ -33,8 +33,8 @@ export default function Item(props) {
                     </Link>
                 </div>
                 <div className="item-price">${item.price}</div>
-                <div className="item-rating"><Rating rating={5} numOfReviews={1}></Rating></div>
-                <div className="item-city">Hamilton, ON</div>
+                <div className="item-rating"><Rating rating={item.averageRating} numOfReviews={item.numberOfFeedbacks}></Rating></div>
+                <div className="item-city">{item.city}, {item.province}</div>
             </div>
         </div>
     )

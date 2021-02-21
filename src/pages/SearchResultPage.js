@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import ListItem from "../components/ListItem";
-import homeImage from "../img/home_img.jpg"
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from 'components/Header';
 import SideBar from "components/SideBar";
 import Footer from 'components/Footer'
-import { getItemsOfCategory, getNewestItems } from "actions/itemActions";
 import LoadingBox from "components/LoadingBox";
 import MessageBox from "components/MessageBox";
 import { searchItems } from "actions/searchActions";
@@ -44,7 +41,7 @@ export default function SearchResultpage() {
     // send the request to the backend
     useEffect(() => {
         dispatch(searchItems(searchKey, category,subCategoryName, limit, page, community));
-    }, [page]);
+    }, [dispatch, searchKey,category, subCategoryName,limit,page, community]);
 
     return (
         <div>
