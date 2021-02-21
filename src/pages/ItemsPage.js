@@ -14,6 +14,7 @@ import MessageBox from "components/MessageBox";
 export default function Itemspage() {
   const { community, category } = useParams();
   console.log(community);
+  const limit = 20;
 
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
@@ -24,7 +25,7 @@ export default function Itemspage() {
 
   // send the request to the backend
   useEffect(() => {
-    dispatch(getNewestItems(20, 1, category, community));
+    dispatch(getNewestItems(limit, community, category));
   }, [category]);
 
   return (
@@ -56,7 +57,7 @@ export default function Itemspage() {
                 )
               }
               <div className="sidebar-content">
-                {userInfo ? (userInfo.user.admin ? null : <SideBar />) : null}
+                {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
 
                 <section className="container">
                   <div className="category" >

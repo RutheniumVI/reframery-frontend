@@ -11,7 +11,7 @@ export default function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [communityName, setCommunityName] = useState('Canada');
+    const [communityName, setCommunityName] = useState('canada');
     const [confirmPassword, setConfirmPassword] = useState('');
     const redirect = '/signin';
 
@@ -39,6 +39,7 @@ export default function Register() {
             if (confirm) {
                 dispatch(createUser(username, email, password, communityName));
                 navigate(redirect);
+                window.location.reload();
             } else {
                 window.location.reload();
             }
@@ -74,10 +75,10 @@ export default function Register() {
                         <div>
                             <label >Community  </label>
                             <select value={communityName} className="select-box" onChange={e => setCommunityName(e.target.value)}>
-                                <option key="Canada" value="Canada">Canada</option>
-                                <option key="USA" value="USA">USA</option>
-                                <option key="Brazil" value="Brazil">Brazil</option>
-                                <option key="Mexico" value="Mexico">Mexico</option>
+                                <option key="canada" value="canada">Canada</option>
+                                <option key="usa" value="usa">USA</option>
+                                <option key="brazil" value="brazil">Brazil</option>
+                                <option key="mexico" value="mexico">Mexico</option>
                             </select>
                         </div>
 

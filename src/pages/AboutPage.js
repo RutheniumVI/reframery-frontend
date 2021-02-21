@@ -12,7 +12,7 @@ export default function AboutPage() {
         <div>
            <Header />
             <div className="sidebar-content">                
-                {userInfo ? (userInfo.user.admin ? null : <SideBar />) : null}
+                {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
                 <div className="container">
                     This is About Page
                  </div>

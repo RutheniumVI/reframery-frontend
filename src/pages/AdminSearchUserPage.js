@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { addBalanceToUser, deductBalanceToUser } from "../actions/transactionActions";
-import { getUser, updateUser } from "../actions/userActions";
+import { banUser, getUser, updateUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
@@ -16,7 +16,7 @@ export default function UpdateBalancePage() {
     //get the admin user information
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-    const senderEmail = userInfo.user.email;
+    const senderEmail = userInfo.email;
 
     //get the receiver information
     const userGet = useSelector(state => state.userGet);
@@ -45,11 +45,11 @@ export default function UpdateBalancePage() {
         }
     };
 
-    const InvalidateHandler = (e) => {
+    const banUserHandler = (e) => {
         e.preventDefault();
-        const confirm = window.confirm("Are you sure to invalidate the current user?");
+        const confirm = window.confirm("Are you sure to ban the current user?");
         if (confirm) {
-            // dispatch(updateUser(user.email, {validateStatus: false}));
+            // dispatch(banUser(user.email));
         }
     };
 
@@ -58,7 +58,7 @@ export default function UpdateBalancePage() {
             <Header />
             <div className="sidebar-content">
                 <SideBar />
-                <div className="admin-container">
+                <div className="container admin-container">
                     <div className="admin-table">
                         <div className="table">
                             <h1 className="title-table">Search a User By Email</h1>
@@ -84,7 +84,7 @@ export default function UpdateBalancePage() {
                                                  <button className="button is-primary is-rounded" 
                                                 onClick={deductBalanceHandler}>Deduct</button></div>
                                                 <div className="div-button2">
-                                                 <button className="button is-primary is-rounded" onClick={InvalidateHandler}>Invalidate</button></div>
+                                                 <button className="button is-primary is-rounded" onClick={banUserHandler}>Invalidate</button></div>
                                             </div>
                                         ) : (
                                                 <div>Please Enter the Correct User Email!</div>

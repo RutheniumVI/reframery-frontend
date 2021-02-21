@@ -8,9 +8,10 @@ export default function SearchBar(props) {
   const dispatch = useDispatch();
   const {community} = props;
   const limit = 20;
-  const startingFrom = 1;
-  const reversed = "reversed";
+  const page = 0;
+  const reversed = true;
   const [category, setCategory] = useState('All');
+  const [subCategoryName, setSubCategory] = useState('');
   const [searchKey, setSearchKey] = useState('');  
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
@@ -18,8 +19,8 @@ export default function SearchBar(props) {
 
   const searchHandler = (e) => {
     e.preventDefault();
-    dispatch(searchItems({ category, searchKey }, limit, startingFrom, reversed));
-    navigate(`/search?community=${community}&category=${category}&item=${searchKey}&start=${startingFrom}&limit=${limit}`);
+    dispatch(searchItems(searchKey, category,subCategoryName, limit, page, community));
+    navigate(`/search?community=${community}&category=${category}&item=${searchKey}&start=${page}&limit=${limit}`);
   };
 
   return (

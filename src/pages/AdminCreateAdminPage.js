@@ -14,7 +14,7 @@ export default function CreateAdminPage() {
     const [communityName, setCommunityName] = useState('Canada');
     const [confirmPassword, setConfirmPassword] = useState('');
     //default attribute for the new created admin 
-    const username = "";
+    const username = "admin";
     const admin = true;
 
     //button handler for create a admin

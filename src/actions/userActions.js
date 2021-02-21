@@ -35,7 +35,7 @@ import {
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
     try {
-        const { data } = await Axios.post(`/users/signin/${email}`, { email, password });
+        const { data } = await Axios.post(`/users/signin/${email}`, { password });
         console.log(data);
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         localStorage.setItem('userInfo', JSON.stringify(data));
@@ -97,7 +97,7 @@ export const updateUser = (email, username, password, phoneNumber,
 ) => async (dispatch) => {
     dispatch({ type: USER_UPDATE_REQUEST, payload: email });
     try {
-        const { data } = await Axios.put(`/users/user/${email}`,
+        const { data } = await Axios.patch(`/users/user/${email}`,
             {
                 username, password, phoneNumber, firstName, lastName, birthday, address, city, province, country, postcode,
                 admin, manager, communityName
@@ -170,11 +170,44 @@ export const validateUser = (email) => async (dispatch) => {
     }
 };
 
+
+//promote an userer to manager 
+export const promoteToAdmin = (email) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.get(`/users/promoteToAdmin/${email}`);
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//update the validate status of the user 
+export const banUser = (email) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.get(`/users/banUser/${email}`);
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
 //get the list of all admin users from backend
-export const searchAdminUsers = () => async (dispatch) => {
+export const searchAdminUsers = (communityName) => async (dispatch) => {
     dispatch({ type: ADMIN_LIST_REQUEST });
     try {
-        const { data } = await Axios.get('/users/searchAdminUsers');
+        const { data } = await Axios.get(`/users/searchAdminUsers?communityName=${communityName}`);
         dispatch({ type: ADMIN_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -187,10 +220,10 @@ export const searchAdminUsers = () => async (dispatch) => {
 };
 
 //get the list of all unvalidated users from backend
-export const searchUnvalidatedUsers = () => async (dispatch) => {
+export const searchUnvalidatedUsers = (communityName) => async (dispatch) => {
     dispatch({ type: UNVALIDATEUSER_LIST_REQUEST });
     try {
-        const { data } = await Axios.get('/users/searchUnvalidatedUsers');
+        const { data } = await Axios.get(`/users/searchUnvalidatedUsers?communityName=${communityName}`);
         dispatch({ type: UNVALIDATEUSER_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

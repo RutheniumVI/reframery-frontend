@@ -51,7 +51,7 @@ export default function MoreItemspage() {
                                     <Header community={community} cartNum={0} />
                                 </div>
                                 <div className="sidebar-content">
-                                    {userInfo ? (userInfo.user.admin ? null : <SideBar />) : null}
+                                    {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
 
                                     <section className="container">
                                         <div className="moreItems-category">

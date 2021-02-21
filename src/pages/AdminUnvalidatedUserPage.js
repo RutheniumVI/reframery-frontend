@@ -15,7 +15,8 @@ export default function AwaitingPage() {
     //get the admin user information
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-    const senderEmail = userInfo.user.email;
+    const senderEmail = userInfo.email;
+    const userCommunity = userInfo.communityName;
     console.log(senderEmail);
 
     //get the list of unvalidated users
@@ -37,7 +38,7 @@ export default function AwaitingPage() {
 
     //when get the user details, change the user validate status and send default 25 credits to the user
     useEffect(() => {
-        dispatch(searchUnvalidatedUsers());
+        dispatch(searchUnvalidatedUsers(userCommunity));
         if (user) {
             console.log(user);
             //if get the user, then update the user attribute: validateStatus and ValidateTime, and update the balance

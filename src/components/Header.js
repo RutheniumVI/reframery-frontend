@@ -15,7 +15,7 @@ export default function Header(props) {
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
 
-  const userCommunity = (userInfo? userInfo.user.communityName : community);
+  const userCommunity = (userInfo? userInfo.communityName : community);
   
   const signoutHandler = () => {
     const r = window.confirm("Do you want to Sign Out?");
@@ -46,11 +46,11 @@ export default function Header(props) {
             userInfo ? (
               <div className="dropdown">
                 {
-                  userInfo.user.admin ?
+                  userInfo.admin ?
                     (
-                      <Link to="/admin" className="nav-item">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>
+                      <Link to="/admin" className="nav-item">{userInfo.username} <i className="fa fa-caret-down"></i></Link>
                     ) : (
-                      <Link to={"/" + userCommunity +"/products"}  className="nav-item">{userInfo.user.username} <i className="fa fa-caret-down"></i></Link>)
+                      <Link to={"/" + userCommunity +"/products"}  className="nav-item">{userInfo.username} <i className="fa fa-caret-down"></i></Link>)
                 }
                 <ul className="dropdown-content">
                   <Link className="link" to={currentPath} onClick={signoutHandler}>Sign out</Link>
