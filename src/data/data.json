@@ -2,7 +2,7 @@
   "products": [
     {
       "_id": "5ff49fdb2b3346baec7b48ea",
-      "category": "Products",
+      "category": "products",
       "name": "Birthday Cake",
       "image": "/images/product_cake.jpg",
       "price": 20,
@@ -17,7 +17,7 @@
     },
     {
       "_id": "5ff49fdb2b3346baec7b48eb",
-      "category": "Products",
+      "category": "products",
       "name": "Cookies",
       "image": "/images/product_cookies.jpg",
       "price": 3,
@@ -32,7 +32,7 @@
     },
     {
       "_id": "5ff49fdb2b3346baec7b48ec",
-      "category": "Products",
+      "category": "products",
       "name": "Cute Cookies",
       "image": "/images/product_candy.jpg",
       "price": 4,

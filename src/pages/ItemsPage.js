@@ -15,6 +15,8 @@ export default function Itemspage() {
   const { community, category } = useParams();
   console.log(community);
   const limit = 20;
+  const startPage = 0;
+  const limitOfMore = 30
 
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
@@ -69,7 +71,7 @@ export default function Itemspage() {
 
                   <div className={"list-" + category} >
                     <ListItem community={community} mainCategory={category} itemList={items}/>
-                    <div className="more"><Link to={"/" + community +"/" + category +"/1/50"} className="link">More Items &gt;&gt;</Link></div>
+                    <div className="more"><Link to={"/" + community +"/" + category +"/" + startPage + "/" + limitOfMore } className="link">More Items &gt;&gt;</Link></div>
                   </div>
                 </section>
               </div>

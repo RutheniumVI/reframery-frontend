@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import ListItem from "../components/ListItem";
-import homeImage from "../img/home_img.jpg"
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from 'components/Header';
 import SideBar from "components/SideBar";
 import Footer from 'components/Footer'
-import { getItemsOfCategory, getNewestItems } from "actions/itemActions";
+import { getItemsOfCategory } from "actions/itemActions";
 import LoadingBox from "components/LoadingBox";
 import MessageBox from "components/MessageBox";
 
 
 export default function MoreItemspage() {
     const { community, category, startingFrom } = useParams();
-    const limit = 50;
-    const reversed = "reversed";
+    const limit = 30;
+    const reversed = true;
     const [pageNumber, setPageNumber] = useState(1);
 
     const userSignin = useSelector(state => state.userSignin);
@@ -35,7 +34,7 @@ export default function MoreItemspage() {
 
     // send the request to the backend
     useEffect(() => {
-        dispatch(getItemsOfCategory(community, category, limit, startingFrom, reversed));
+        dispatch(getItemsOfCategory(category, limit, startingFrom, reversed, community));
     }, [startingFrom]);
 
     return (
@@ -67,14 +66,14 @@ export default function MoreItemspage() {
                                         <div className="page-button" >
                                             <div className="button-container">
                                                 <div className="button1">
-                                                    {pageNumber > 1 ? <Link to={"/" + community + "/" + category + "/" + (pageNumber * limit - limit + 1) + "/" + (pageNumber * limit)} className="link">
+                                                    {pageNumber > 1 ? <Link to={"/" + community + "/" + category + "/" + startingFrom + "/" + limit} className="link">
                                                         <button className="button is-primary" onClick={decreaseHandler}>
                                                             <span> Previous Page  </span>
                                                         </button>
                                                     </Link> : <div></div>}
                                                 </div>
                                                 <div className="button2">
-                                                    {pageNumber > 0 && items.length > limit - 1 ? <Link to={"/" + community + "/" + category + "/" + (pageNumber * limit - limit + 1) + "/" + (pageNumber * limit)} className="link">
+                                                    {pageNumber > 0 && items.length > limit - 1 ? <Link to={"/" + community + "/" + category + "/" + startingFrom + "/" + limit} className="link">
                                                         <button className="button is-primary" onClick={increaseHandler}>
                                                             <span> Next Page  </span>
                                                         </button>
