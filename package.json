@@ -1,6 +1,6 @@
 {
   "name": "community_front",
-  "proxy": "http://127.0.0.1:4000",
+  "proxy": "https://hidden-tundra-80608.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
