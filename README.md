@@ -2,14 +2,7 @@
 
 ## Run Locally
 
-### 1. Run Backend
-
-```
-$ git clone https://github.com/MacAquafina/reframery-api.git and run the backend
-
-```
-
-### 2. Run Frontend
+### 1. Run Frontend
 
 ```
 $ git clone https://github.com/MacAquafina/reframery-frontend.git
@@ -19,20 +12,25 @@ $ npm install
 $ npm start
 ```
 
-### 3. Sign in as a manager
+### 2. Sign in
 
-- Run http://localhost:3000/signin
-- Enter sample email: superAdmin01@gmail.com and password: 1234.
+### 2.1 Sign in as a manager
 
-### 3. Sign in as an administrator
+email: manager01@gmail.com
 
-- Run http://localhost:3000/signin
-- Enter sample email: admin01@gmail.com and password: 1234.
+password: AAaa11
 
-### 3. Sign in as a user
+### 2.2 Sign in as an administrator
+email: admin01@gmail.com 
 
-- Run http://localhost:3000/signin
-- Enter sample email: user02@gmail.com and password: 1234.
+password: AAaa11
+
+### 2.3 Sign in as a client user(seller and buyer)
+email: user001@gmail.com
+
+password: AAaa11
+
+
 
 ## Temporary Implementation of the Shopping Cart
 
