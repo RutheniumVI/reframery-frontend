@@ -46,8 +46,8 @@ export default function AwaitingPage() {
             //if get the user, then update the user attribute: validateStatus and ValidateTime, and update the balance
             dispatch(validateUser(user.email));
             console.log(senderEmail);
-            dispatch(adminAddCreditToUser(senderEmail, user.email, 25));
-            window.location.reload();
+            dispatch(adminAddCreditToUser(senderEmail, user.email, 25));            
+            navigate('/admin/awaiting-validation');
         }
     }, [user]);
     return (

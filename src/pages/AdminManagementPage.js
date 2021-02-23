@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { promoteToAdmin, searchAdminUsers} from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
@@ -11,7 +11,7 @@ import MessageBox from '../components/MessageBox';
 
 export default function AdminManagePage() {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     //get signin user Info
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
@@ -30,7 +30,7 @@ export default function AdminManagePage() {
         if (confirm) {
             const userEmail = e.target.value;
             dispatch(promoteToAdmin(userEmail));
-            window.location.reload();
+            navigate('/admin/administrator-management');
         }
     };
 

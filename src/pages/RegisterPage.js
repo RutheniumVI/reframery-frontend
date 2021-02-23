@@ -39,7 +39,6 @@ export default function Register() {
             if (confirm) {
                 dispatch(createUser(username, email, password, communityName));
                 navigate(redirect);
-                window.location.reload();
             } else {
                 window.location.reload();
             }
