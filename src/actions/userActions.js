@@ -194,10 +194,10 @@ export const validateUser = (email) => async (dispatch) => {
 
 
 //promote an userer to manager 
-export const promoteToAdmin = (email) => async (dispatch) => {
+export const promoteToManager = (email) => async (dispatch) => {
     dispatch({ type: USER_UPDATE_REQUEST, payload: email });
     try {
-        const { data } = await Axios.get(`/users/promoteToAdmin/${email}`);
+        const { data } = await Axios.get(`/users/promoteToManager/${email}`);
         dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
