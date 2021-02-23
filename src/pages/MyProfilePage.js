@@ -88,7 +88,6 @@ export default function MyProfilePage() {
         user.admin, user.manager, user.communityName
       ));
     }
-    window.location.reload();
     navigate('/my-profile');
 
   };

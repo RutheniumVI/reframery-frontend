@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { addBalanceToUser, deductBalanceToUser } from "../actions/transactionActions";
-import { banUser, getUser, updateUser } from "../actions/userActions";
+import { banUser, getUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
 import { adminAddCreditToUser, adminDeductCreditFromUser } from "actions/transactionActions";
+import { useNavigate } from "react-router";
 
 export default function UpdateBalancePage() {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const [search, setSearch] = useState(false);
     const [searchUserEmail, setSearchUserEmail] = useState('');
     const [creditUnit, setCreditUnit] = useState(0);
-    const banned = false;
 
     //get the admin user information
     const userSignin = useSelector(state => state.userSignin);
@@ -35,6 +35,7 @@ export default function UpdateBalancePage() {
         const confirm = window.confirm("Do you want to add credit to the user?");
         if (confirm) {
             dispatch(adminAddCreditToUser(senderEmail, user.email, creditUnit));
+            navigate('/admin');
         }
     };
 
@@ -44,6 +45,7 @@ export default function UpdateBalancePage() {
         const confirm = window.confirm("Do you want to add credit to the user?");
         if (confirm) {
             dispatch(adminDeductCreditFromUser(senderEmail, user.email, creditUnit));
+            navigate('/admin');
         }
     };
 
@@ -52,6 +54,7 @@ export default function UpdateBalancePage() {
         const confirm = window.confirm("Are you sure to ban the current user?");
         if (confirm) {
             dispatch(banUser(user.email));
+            navigate('/admin');
         }
     };
 
