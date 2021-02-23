@@ -89,6 +89,8 @@ export default function MyProfilePage() {
       ));
     }
     window.location.reload();
+    navigate('/my-profile');
+
   };
 
   // function for remove the user from the system
@@ -171,7 +173,7 @@ export default function MyProfilePage() {
                             <label >Address</label>
                             <input id="address" type="text"
                               placeholder={user.address + " " + user.city + " "
-                                + user.province + " " + user.country + " " + user.postcode} >
+                                + user.province + " " + user.country + " " + user.postcode} onClick={(e) => setAddressEdited(true)}>
                             </input>
                             {user.address === "" ? (<button onClick={(e) => setAddressEdited(true)}>Add</button>) :
                               (<button onClick={(e) => setAddressEdited(true)}>Update</button>)}

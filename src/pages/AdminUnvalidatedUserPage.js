@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { addBalanceToUser } from '../actions/transactionActions';
 import { getUser, searchUnvalidatedUsers, validateUser } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
+import { adminAddCreditToUser } from 'actions/transactionActions';
+import { useNavigate } from 'react-router';
 
 
 export default function AwaitingPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     //get the admin user information
     const userSignin = useSelector(state => state.userSignin);
@@ -44,7 +46,7 @@ export default function AwaitingPage() {
             //if get the user, then update the user attribute: validateStatus and ValidateTime, and update the balance
             dispatch(validateUser(user.email));
             console.log(senderEmail);
-            // dispatch(addBalanceToUser(senderEmail, user.email, 25));
+            dispatch(adminAddCreditToUser(senderEmail, user.email, 25));
             window.location.reload();
         }
     }, [user]);

@@ -31,6 +31,12 @@ import {
 
 } from '../constants/itemConstants';
 
+Axios.defaults.auth = {
+  username: 'access_key_admin',
+  password: 'secret_key_hush',
+};
+
+
 // create an new item and send it to backend
 export const createItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
   dispatch({ type: ITEM_CREATE_REQUEST, payload: { category, name, price, userEmail, image, stock, description, discount, subCategoryID } });

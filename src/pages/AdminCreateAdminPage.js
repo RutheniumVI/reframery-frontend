@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createUser } from "../actions/userActions";
+import { createAdminUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
+import { useNavigate } from "react-router";
 
 export default function CreateAdminPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const redirect = '/admin/administrator-management';
 
     //input from user
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [communityName, setCommunityName] = useState('Canada');
+    const [communityName, setCommunityName] = useState('canada');
     const [confirmPassword, setConfirmPassword] = useState('');
     //default attribute for the new created admin 
     const username = "admin";
-    const admin = true;
 
     //button handler for create a admin
     const submitHandler = (e) => {
@@ -23,9 +25,14 @@ export default function CreateAdminPage() {
         if (password !== confirmPassword) {
             alert('Password and confirm password are different')
         } else {
-            dispatch(createUser(username, email, password, communityName, admin));
-            window.location.reload();
+            dispatch(createAdminUser(username, email, password, communityName));
+            console.log(username);
+            console.log(email);
+            console.log(password);
+            console.log(communityName);
             alert('A new admin has been created successfully!')
+            navigate(redirect);
+            window.location.reload();
         }
     };
 
@@ -57,9 +64,9 @@ export default function CreateAdminPage() {
                                     <div>
                                         <label >Community  </label>
                                         <select value={communityName} className="select-box" onChange={e => setCommunityName(e.target.value)}>
-                                            <option key="Canada" value="Canada">Canada</option>
-                                            <option key="USA" value="USA">USA</option>
-                                            <option key="Brazil" value="Brazil">Brazil</option>
+                                            <option key="Canada" value="canada">Canada</option>
+                                            <option key="USA" value="usa">USA</option>
+                                            <option key="Brazil" value="brazil">Brazil</option>
                                         </select>
                                     </div>
 

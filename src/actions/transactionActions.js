@@ -17,6 +17,11 @@ import {
     TRANSACTION_GET_REQUEST,
 } from '../constants/transactionConstants';
 
+Axios.defaults.auth = {
+    username: 'access_key_admin',
+    password: 'secret_key_hush',
+  };
+  
 // get transaction details from backend
 export const getTransaction = (transactionID) => async (dispatch) => {
     dispatch({ type: TRANSACTION_GET_REQUEST, payload: transactionID });
@@ -51,10 +56,10 @@ export const getBalance = (userEmail) => async (dispatch) => {
 }
 
 //add credits to a user
-export const addBalanceToUser = (adminID, receiverID, creditUnit) => async (dispatch) => {
-    dispatch({ type: BALANCE_ADD_REQUEST, payload: { adminID, receiverID, creditUnit } });
+export const adminAddCreditToUser = (adminEmail, receiverEmail, creditUnit) => async (dispatch) => {
+    dispatch({ type: BALANCE_ADD_REQUEST, payload: { adminEmail, receiverEmail, creditUnit } });
     try {
-        const { data } = await Axios.post('/transactions/addBalanceToUser', { adminID, receiverID, creditUnit });
+        const { data } = await Axios.post('/transactions/adminAddCreditToUser', { adminEmail, receiverEmail, creditUnit });
         dispatch({ type: BALANCE_ADD_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -67,10 +72,10 @@ export const addBalanceToUser = (adminID, receiverID, creditUnit) => async (disp
 };
 
 //deduct redits from a user
-export const deductBalanceFromUser = (adminID, receiverID, creditUnit) => async (dispatch) => {
-    dispatch({ type: BALANCE_DEDUCT_REQUEST, payload: { adminID, receiverID, creditUnit } });
+export const adminDeductCreditFromUser = (adminEmail, senderEmail, creditUnit) => async (dispatch) => {
+    dispatch({ type: BALANCE_DEDUCT_REQUEST, payload: { adminEmail, senderEmail, creditUnit } });
     try {
-        const { data } = await Axios.post('/transactions/deductBalanceFromUser', { adminID, receiverID, creditUnit });
+        const { data } = await Axios.post('/transactions/adminDeductCreditFromUser', { adminEmail, senderEmail, creditUnit });
         dispatch({ type: BALANCE_DEDUCT_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

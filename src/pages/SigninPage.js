@@ -11,7 +11,7 @@ export default function Signin(props) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [signinAsAdmin, setSigninAsAdmin] = useState('false');
+  // const [signinAsAdmin, setSigninAsAdmin] = useState('false');
 
  
   const userSignin = useSelector(state => state.userSignin);
@@ -54,9 +54,9 @@ export default function Signin(props) {
               <label >Password </label>
               <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)} />
             </div>
-            <div className="admin-checkbox">
+            {/* <div className="admin-checkbox">
               <input className="box" type="checkbox" value={signinAsAdmin} onChange={e => setSigninAsAdmin(e.target.checked)} />Sign in as an administrator
-          </div>
+          </div> */}
             <div className="submit-button">
               <button className="button is-primary is-rounded" onClick={submitHandler}>
                 <span className="icon">

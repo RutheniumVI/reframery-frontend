@@ -31,6 +31,11 @@ import {
     USER_IMAGE_UPDATE_FAIL,
 } from '../constants/userConstants';
 
+Axios.defaults.auth = {
+    username: 'access_key_admin',
+    password: 'secret_key_hush',
+  };
+
 //get the signin user info if the user sign in sucessfully and save it in local storage
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
@@ -60,6 +65,23 @@ export const createUser = (username, email, password, communityName) => async (d
     dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, communityName } });
     try {
         const { data } = await Axios.post('/users/user', { username, email, password, communityName });
+        console.log(data);
+        dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_REGISTER_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+//create a user object when a user register in the frontend
+export const createAdminUser = (username, email, password, communityName) => async (dispatch) => {
+    dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, communityName } });
+    try {
+        const { data } = await Axios.post('/users/adminUser', { username, email, password, communityName });
         console.log(data);
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     } catch (error) {

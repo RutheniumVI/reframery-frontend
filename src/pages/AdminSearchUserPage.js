@@ -5,6 +5,7 @@ import { banUser, getUser, updateUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
+import { adminAddCreditToUser, adminDeductCreditFromUser } from "actions/transactionActions";
 
 export default function UpdateBalancePage() {
     const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function UpdateBalancePage() {
     const [search, setSearch] = useState(false);
     const [searchUserEmail, setSearchUserEmail] = useState('');
     const [creditUnit, setCreditUnit] = useState(0);
+    const banned = false;
 
     //get the admin user information
     const userSignin = useSelector(state => state.userSignin);
@@ -32,7 +34,7 @@ export default function UpdateBalancePage() {
         e.preventDefault();
         const confirm = window.confirm("Do you want to add credit to the user?");
         if (confirm) {
-            // dispatch(addBalanceToUser(senderEmail, user.email, creditUnit));
+            dispatch(adminAddCreditToUser(senderEmail, user.email, creditUnit));
         }
     };
 
@@ -41,7 +43,7 @@ export default function UpdateBalancePage() {
         e.preventDefault();
         const confirm = window.confirm("Do you want to add credit to the user?");
         if (confirm) {
-            // dispatch(deductBalanceToUser(senderEmail, user.email, creditUnit));
+            dispatch(adminDeductCreditFromUser(senderEmail, user.email, creditUnit));
         }
     };
 
@@ -49,9 +51,17 @@ export default function UpdateBalancePage() {
         e.preventDefault();
         const confirm = window.confirm("Are you sure to ban the current user?");
         if (confirm) {
-            // dispatch(banUser(user.email));
+            dispatch(banUser(user.email));
         }
     };
+
+    // const unBanUserHandler = (e) => {
+    //     e.preventDefault();
+    //     const confirm = window.confirm("Are you sure to ban the current user?");
+    //     if (confirm) {
+    //         dispatch(updateUser(user.email));
+    //     }
+    // };
 
     return (
         <div>
@@ -70,21 +80,23 @@ export default function UpdateBalancePage() {
                                     <div className="search-user-table">
                                         <div className="title">
                                             <div className="email"> Email</div>
-                                            <div className="currentbalance"> Current balance </div>
-                                            <div className="div-button1"> Update Balance</div>
-                                            <div className="div-button2"> Invalidate</div>
+                                            <div className="currentbalance"> Current Credit </div>
+                                            <div > Status </div>
+                                            <div className="div-button1"> Update Credit</div>
+                                            <div className="div-button2"> Lock/Unlock User</div>
                                         </div>
                                         {user.validateStatus ? (
                                             <div className="row">
                                                 <div className="email">{user.email}</div>
-                                                <div className="currentbalance">0</div>
+                                                <div className="currentbalance">{user.currentCredit}</div>
+                                                <div >{user.banned?"locked":"unlocked"}</div>
                                                 <div className="div-button">Number of Credit
                                                  <input type="number" onChange={(e) => setCreditUnit(e.target.value)}></input>
                                                  <button className="button is-primary is-rounded" onClick={addBalanceHandler}>Add</button>
                                                  <button className="button is-primary is-rounded" 
                                                 onClick={deductBalanceHandler}>Deduct</button></div>
                                                 <div className="div-button2">
-                                                 <button className="button is-primary is-rounded" onClick={banUserHandler}>Invalidate</button></div>
+                                                 <button className="button is-primary is-rounded" onClick={banUserHandler}>Lock</button></div>
                                             </div>
                                         ) : (
                                                 <div>Please Enter the Correct User Email!</div>
