@@ -358,24 +358,31 @@
   ],
   "transactions": [
     {
-      "_id": "5fe799c3ab319b66b42de8b5",
-      "senderID": "user02@gmail.com",
-      "receiverID": "user02@gmail.com",
-      "time": "2020-12-26T20:14:33.006Z",
-      "creditUnit": 20,
-      "__v": 0,
-      "createdAt": "2020-12-26T20:14:59.078Z",
-      "updatedAt": "2020-12-26T20:14:59.078Z"
+      "id": "user02@gmail.com",
+      "transactionToken": "5fe799c3ab319b66b42de8b5",
+      "senderEmail": "user02@gmail.com",
+      "receiverEmail": "user03@gmail.com",
+      "adminEmail": "admin1@gmail.com",
+      "creditUnit": 15,
+      "createdTime": "2020-12-26T20:14:30.078Z"
     },
     {
-      "_id": "5fe799c3ab319b66b42de8b6",
-      "senderID": "user02@gmail.com",
-      "receiverID": "user02@gmail.com",
-      "time": "2020-12-26T20:14:33.006Z",
+      "id": "user02@gmail.com",
+      "transactionToken": "5fe799c3ab319b66b42de8b6",
+      "senderEmail": "user02@gmail.com",
+      "receiverEmail": "user04@gmail.com",
+      "adminEmail": "admin1@gmail.com",
       "creditUnit": 20,
-      "__v": 0,
-      "createdAt": "2020-12-26T20:14:59.079Z",
-      "updatedAt": "2020-12-26T20:14:59.079Z"
+      "createdTime": "2020-12-26T20:14:59.079Z"
+    },
+    {
+      "id": "user02@gmail.com",
+      "transactionToken": "5fe799c3ab319b66b42de8b7",
+      "senderEmail": "user02@gmail.com",
+      "receiverEmail": "user05@gmail.com",
+      "adminEmail": "admin1@gmail.com",
+      "creditUnit": 35,
+      "createdTime": "2020-12-27T20:15:59.079Z"
     }
   ],
   "orders": [
