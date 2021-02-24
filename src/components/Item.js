@@ -19,7 +19,7 @@ export default function Item(props) {
                         "/" + community + "/expertises/" + item.id)}>
                     <img
                         className="item-image"
-                        src={item.image}
+                        src={item.imageURL}
                         alt={item.name}
                     ></img>
                 </Link>
