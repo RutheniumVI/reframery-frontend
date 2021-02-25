@@ -50,7 +50,7 @@ export default function ItemDetails() {
                                                     <h1>{item.name}</h1>
                                                 </div>
                                                 <div className="details-image">
-                                                    <img src={item.image} alt="product"></img>
+                                                    <img src={item.imageURL} alt="product"></img>
                                                 </div>
                                                 <div className="details-buttons">
                                                     <div>

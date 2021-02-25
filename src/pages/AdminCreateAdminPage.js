@@ -31,8 +31,7 @@ export default function CreateAdminPage() {
             console.log(password);
             console.log(communityName);
             alert('A new admin has been created successfully!')
-            navigate(redirect);
-            window.location.reload();
+            navigate(redirect);  
         }
     };
 

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { promoteToAdmin, searchAdminUsers} from "../actions/userActions";
+import { promoteToManager, searchAdminUsers} from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
@@ -29,7 +29,7 @@ export default function AdminManagePage() {
         const confirm = window.confirm("Are you sure to promote the current admin to a manager?");
         if (confirm) {
             const userEmail = e.target.value;
-            dispatch(promoteToAdmin(userEmail));
+            dispatch(promoteToManager(userEmail));
             navigate('/admin/administrator-management');
         }
     };
