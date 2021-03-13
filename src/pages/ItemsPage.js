@@ -13,7 +13,7 @@ import MessageBox from "components/MessageBox";
 
 export default function Itemspage() {
   const { community, category } = useParams();
-  console.log(community);
+  console.log(community, category);
   const limit = 20;
   const startPage = 0;
   const limitOfMore = 30
