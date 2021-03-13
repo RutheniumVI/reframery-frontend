@@ -81,7 +81,7 @@ export default function Register() {
                             </select>
                         </div>
 
-                        <div className="terms">By continuing, you agree to Reframery's <Link to="/term-and-condition" className="link">Term and Condition</Link> and <Link to="/privacy-policy" className="link">Privacy Policy</Link>.</div>
+                        <div className="terms">By continuing, you agree to Reframery's <Link to="/terms-and-conditions" className="link">Term and Condition</Link> and <Link to="/privacy-policy" className="link">Privacy Policy</Link>.</div>
 
                         <div className="submit-button">
                             <button className="button is-primary is-rounded" onClick={submitHandler}>

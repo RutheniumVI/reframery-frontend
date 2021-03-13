@@ -11,10 +11,12 @@ export default function ContactPage() {
     return (
         <div>
             <Header />
-            <div className="sidebar-content">
-            {userInfo ? (userInfo.user.admin ? null : <SideBar />) : null}
+            <div className="info-page">
+            {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
                 <div className="container">
-                    This is Contact Page
+                <h2>This is contact page</h2>
+                <h2>Waiting for update from Reframery team...</h2>
+
                  </div>
             </div>
             <Footer />
