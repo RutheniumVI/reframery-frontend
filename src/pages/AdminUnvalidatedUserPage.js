@@ -76,7 +76,7 @@ export default function AwaitingPage() {
                                                 unvalidatedList.map((currentUser) => (currentUser.validateStatus === false
                                                     && currentUser.admin === false &&
                                                     <div key={currentUser.email} className="row">
-                                                        <div className="username"> {currentUser.firstName} {currentUser.lastName} </div>
+                                                        <div className="username"> {currentUser.username}  </div>
                                                         <div className="email">{currentUser.email}</div>
                                                         <div className="request">{currentUser.registerTime.slice(0, 10)} </div>
                                                         <div className="status">pending</div>
