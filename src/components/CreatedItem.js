@@ -4,15 +4,18 @@ import { Link } from 'react-router-dom';
 
 
 export default function CreatedItem(props) {
-    const { category, item } = props;
+    const { item } = props;
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-    console.log(category);
+
+    console.log("Item id: "+item.id);
+    console.log("category: " + item.category);
+    
     return (
         <div className="product">
-            {userInfo ? (<Link to={(category === "products") ? "/products/" + item._id :
-                ((category === "services") ? "/services/" + item._id :
-                    "/expertises/" + item._id)}>
+            {userInfo ? (<Link to={(item.category === "products") ? "/"+ item.community + "/products/" + item.id :
+                (item.category === "services") ? "/"+ item.community + "/services/" + item.id :
+                "/"+ item.community + "/expertises/" + item.id}>
                 <img
                     className="img-thumbnail"
                     src={item.image}
@@ -27,9 +30,9 @@ export default function CreatedItem(props) {
             </Link>)}
 
             <h2>
-                {userInfo ? (<Link to={(category === "products") ? "/products/" + item._id :
-                        (category === "services") ? "/services/" + item._id :
-                            "/expertises/" + item._id}>
+                {userInfo ? (<Link to={(item.category === "products") ? "/"+ item.community + "/products/" + item.id :
+                        (item.category === "services") ? "/"+ item.community + "/services/" + item.id :
+                        "/"+ item.community + "/expertises/" + item.id}>
                         <span className="link">{item.name.toUpperCase()}</span>
                     </Link>) : (<Link to="/signin">
                         <span className="link">{item.name.toUpperCase()}</span>
@@ -41,7 +44,7 @@ export default function CreatedItem(props) {
                     type="submit"
                     className="btn btn-primary"
                   >
-                    Edit
+                    Remove
                   </button>
                 </form>
 

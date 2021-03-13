@@ -38,10 +38,12 @@ Axios.defaults.auth = {
 
 
 // create an new item and send it to backend
-export const createItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
-  dispatch({ type: ITEM_CREATE_REQUEST, payload: { category, name, price, userEmail, image, stock, description, discount, subCategoryID } });
+//xport const createItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
+export const createItem = (name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName) => async (dispatch) => {
+
+  dispatch({ type: ITEM_CREATE_REQUEST, payload: { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName } });
   try {
-    const { data } = await Axios.post('/items/item', { category, name, price, userEmail, image, stock, description, discount, subCategoryID });
+    const { data } = await Axios.post('/items/item', { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName });
     dispatch({ type: ITEM_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -76,8 +78,7 @@ export const updateItem = (ItemID, category, name, price, image, stock, descript
 
 
 //update an item image
-export const updateItemImage = (ItemID, imageBinary
-) => async (dispatch) => {
+export const updateItemImage = (ItemID, imageBinary) => async (dispatch) => {
   dispatch({ type: ITEM_UPDATE_IMAGE_REQUEST, payload: ItemID });
   try {
     const { data } = await Axios.put(`/items/item/${ItemID}`,
@@ -149,7 +150,7 @@ export const getItemsOfCategory = (category, limit, page, reversed, communityNam
 export const getItemsOfUser = (userEmail, limit, page, reversed) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_USER_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfUser/${userEmail}-${limit}-${page}-${reversed}`);
+    const { data } = await Axios.get(`/items/itemsOfUser/${userEmail}-${limit}-${page}-${reversed}`);
     dispatch({ type: ITEM_LIST_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_USER_FAIL, payload: error.message });
