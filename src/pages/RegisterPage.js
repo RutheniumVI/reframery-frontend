@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { createUser } from "../actions/userActions";
+import { createUser, getUser } from "../actions/userActions";
 import WellcomeComponent from "../components/WellcomeComponent";
 import Footer from 'components/Footer'
 
@@ -14,6 +14,7 @@ export default function Register() {
     const [communityName, setCommunityName] = useState('canada');
     const [confirmPassword, setConfirmPassword] = useState('');
     const redirect = '/signin';
+    const [erroMessage, setErrorMessage] = useState('');
 
     // check if the password contains at least one upper case letter and one lowercase letter and one number
     const isValidPassord = (str) => {
@@ -23,27 +24,46 @@ export default function Register() {
         const reLength = new RegExp('^.{6,}$');
         return reContainUppercase.test(str) && reContainLowercase.test(str) && reContainNumer.test(str) && reLength.test(str)
     }
+
+    // check if the email address is valid
+    const isValidEmail = (str) => {
+        const reContainSymbol = new RegExp('^.*@.*$');
+        return reContainSymbol.test(str)
+    }
+
+    // check if the email has been used, if it can get the user with the same email, the error should be false
+    const userGet = useSelector(state => state.userGet);
+    const { error} = userGet;
+
     const submitHandler = (e) => {
         e.preventDefault();
-        if (!isValidPassord(password)) {
-            alert('The password should contain at least one uppercase, one lowercase and a number')
-        } 
-        else if(username ==="" || email === "" || password === "" || confirmPassword === ""){
-            alert('Please fill the form')
-        } 
-        else if(password !== confirmPassword){
-            alert('Password and confirm password are different')
-        }        
+        if (username === "" || email === "" || password === "" || confirmPassword === "") {
+            setErrorMessage("! Please do not leave empty input");
+        }
+        else if (!isValidEmail(email)) {
+            setErrorMessage("! Invalid email address");
+        }
+        else if (!isValidPassord(password)) {
+            setErrorMessage("! Invalid password");
+        }
+        else if (password !== confirmPassword) {
+            setErrorMessage("! Password and confirm password are different");
+        }
+        else if (!error) {
+            setErrorMessage("! The email address has been used");
+        }
         else {
             const confirm = window.confirm("Are you sure to create the account?");
             if (confirm) {
                 dispatch(createUser(username, email, password, communityName));
                 navigate(redirect);
-            } else {
-                window.location.reload();
             }
         }
     };
+
+    useEffect(() => {
+        dispatch(getUser(email));
+    }, [dispatch, email]);
 
     return (
         <div>
@@ -53,6 +73,7 @@ export default function Register() {
                     <form className="Register">
                         <div>
                             <h3>Create New Account</h3>
+                            <label className="danger">{erroMessage}</label>
                         </div>
                         <div>
                             <label >User Name </label>
@@ -66,6 +87,7 @@ export default function Register() {
                             <label >Password </label>
                             <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)}></input>
                             <div className="password-warning"> <i className="far fa-bell"></i> At least 6 characters and contains at least one uppercase, one lowercase and a number</div>
+
                         </div>
                         <div>
                             <label >Comfirm Password </label>

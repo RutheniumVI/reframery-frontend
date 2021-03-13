@@ -30,7 +30,7 @@ export default function WellcomeComponent() {
                     <ul>
                         <li>You do not need real money to start your business</li>
                         <li>Provide a real-world business experience</li>
-                        <li>Resources available for entrepreneuship</li>
+                        <li>Resources available for entrepreneurship</li>
                     </ul>
                 </div>
             </div>
