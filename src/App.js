@@ -32,6 +32,7 @@ import SearchResultPage from "pages/SearchResultPage";
 import DevelopmentTeamPage from "pages/DevelopmentTeamPage";
 import PrivacyPolicyPage from "pages/PrivacyPolicyPage";
 import TermsPage from "pages/TermsPage";
+import UpdateUserAddressPage from "pages/UpdateUserAddressPage";
 
 export default function App() {
   const userSignin = useSelector(state => state.userSignin);
@@ -66,6 +67,7 @@ export default function App() {
               <Route path="/my-wallet" element={<WalletPage />} />
 
               <Route path="/my-profile" element={<UserPage />} />
+              <Route path="/update-user-address" element={<UpdateUserAddressPage />} />
 
               <Route path="/my-item" element={<MyItemPage />} />
               <Route path="/create-item" element={<CreateItemPage />} />

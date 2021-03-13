@@ -34,7 +34,7 @@ import {
 Axios.defaults.auth = {
     username: 'access_key_admin',
     password: 'secret_key_hush',
-  };
+};
 
 //get the signin user info if the user sign in sucessfully and save it in local storage
 export const signin = (email, password) => async (dispatch) => {
@@ -113,16 +113,160 @@ export const getUser = (email) => async (dispatch, getState) => {
 };
 
 //update the attribute values of the given user
-export const updateUser = (email, username, password, phoneNumber,
-    firstName, lastName, birthday, address, city, province, country, postcode,
-    admin, manager, communityName
+export const updateUserName = (email, username
 ) => async (dispatch) => {
     dispatch({ type: USER_UPDATE_REQUEST, payload: email });
     try {
         const { data } = await Axios.patch(`/users/user/${email}`,
             {
-                username, password, phoneNumber, firstName, lastName, birthday, address, city, province, country, postcode,
-                admin, manager, communityName
+                username
+            }
+        );
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//update the user company name
+export const updateUserCompany = (email, company
+) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.patch(`/users/user/${email}`,
+            {
+                company
+            }
+        );
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//update the user password
+export const updateUserPassword = (email, password
+) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.patch(`/users/user/${email}`,
+            {
+                password
+            }
+        );
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//update user phone number
+export const updateUserPhone = (email, phoneNumber
+) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.patch(`/users/user/${email}`,
+            {
+                phoneNumber
+            }
+        );
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//update user first name
+export const updateUserFirstName = (email, firstName
+) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.patch(`/users/user/${email}`,
+            {
+                firstName
+            }
+        );
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//update user last name
+export const updateUserLastName = (email, lastName
+) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.patch(`/users/user/${email}`,
+            {
+                lastName
+            }
+        );
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//update user birthday
+export const updateUserBirthday = (email, birthday
+    ) => async (dispatch) => {
+        dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+        try {
+            const { data } = await Axios.patch(`/users/user/${email}`,
+                {
+                    birthday
+                }
+            );
+            dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+        } catch (error) {
+            dispatch({
+                type: USER_UPDATE_FAIL, payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message
+            });
+        }
+    };
+
+//update the user address
+export const updateUserAddress = (email, address, city, province, country, postcode,
+) => async (dispatch) => {
+    dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+    try {
+        const { data } = await Axios.patch(`/users/user/${email}`,
+            {
+                address, city, province, country, postcode
             }
         );
         dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
