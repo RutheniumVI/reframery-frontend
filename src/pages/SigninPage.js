@@ -5,25 +5,20 @@ import { signin } from "actions/userActions";
 import WellcomeComponent from "components/WellcomeComponent";
 import Footer from 'components/Footer'
 
-
 export default function Signin(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [signinAsAdmin, setSigninAsAdmin] = useState('false');
-
+  const [erroMessage, setErrorMessage] = useState('');
  
   const userSignin = useSelector(state => state.userSignin);
-  const { userInfo } = userSignin;
-
-
+  const { loading, error, userInfo } = userSignin;
   
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
-    // TODO
-  };
+   };
 
   useEffect(() => {
     // if the user sign in sucessfully, go to the redirect link
@@ -45,6 +40,7 @@ export default function Signin(props) {
           <form className="signin" >
             <div>
               <h3 className="signin-text">Sign In</h3>
+              {error? <div className="danger">! Invalid email or password</div>: null}
             </div>
             <div>
               <label >Email </label>
@@ -54,9 +50,6 @@ export default function Signin(props) {
               <label >Password </label>
               <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)} />
             </div>
-            {/* <div className="admin-checkbox">
-              <input className="box" type="checkbox" value={signinAsAdmin} onChange={e => setSigninAsAdmin(e.target.checked)} />Sign in as an administrator
-          </div> */}
             <div className="submit-button">
               <button className="button is-primary is-rounded" onClick={submitHandler}>
                 <span className="icon">
