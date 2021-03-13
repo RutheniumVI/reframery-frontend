@@ -29,6 +29,9 @@ import AboutPage from "pages/AboutPage";
 import ContactPage from "pages/ContactPage";
 import MoreItemsPage from "pages/MoreItemsPage";
 import SearchResultPage from "pages/SearchResultPage";
+import DevelopmentTeamPage from "pages/DevelopmentTeamPage";
+import PrivacyPolicyPage from "pages/PrivacyPolicyPage";
+import TermsPage from "pages/TermsPage";
 
 export default function App() {
   const userSignin = useSelector(state => state.userSignin);
@@ -42,6 +45,9 @@ export default function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/landing" element={<Landing />} />
+              <Route path="/terms-and-conditions" element={<TermsPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/development-team" element={<DevelopmentTeamPage />} />
 
               <Route path="/signin" element={<Signin />} />
               <Route path="/register" element={<Register />} />

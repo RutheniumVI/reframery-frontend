@@ -5,7 +5,7 @@ import Footer from 'components/Footer'
 import { useSelector } from "react-redux";
 
 
-export default function AboutPage() {
+export default function DevelopmentTeamPage() {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     return (
@@ -14,8 +14,7 @@ export default function AboutPage() {
             <div className="info-page">
                 {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
                 <div className="container">
-                <h2>This is about page</h2>
-                <h2>Waiting for update from Reframery team...</h2>
+                <h2>This web site is developed by team Aquafina.</h2>
                 </div>
             </div>
             <Footer />
