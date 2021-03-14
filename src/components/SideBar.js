@@ -32,8 +32,8 @@ export default function SideBar() {
 
         <p className="menu-label"><i class="fas fa-id-card"></i> <strong>Account</strong> </p>
         <ul className="menu-list">
-          <li><Link className="link" to="/my-profile">My profile</Link></li>
-          <li><Link className="link" to={currentPath} onClick={signoutHandler}>Log Out</Link></li>
+          <li><Link className="link" to="/my-profile">My Profile</Link></li>
+          <li><Link className="link" to={currentPath} onClick={signoutHandler}>Sign Out</Link></li>
         </ul>
 
         <p className="menu-label">

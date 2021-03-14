@@ -32,7 +32,7 @@ export default function Header(props) {
           <Link to="/"><img className="logo" src="/images/logo.png" alt="logo" width="50"></img ></Link>
         </div>
         <div className="navbar-start">
-          <Link to={"/" + userCommunity + "/products"} className="link"> <span className="nav-item link">Home</span></Link>
+          <Link to="/" className="link"> <span className="nav-item link">Home</span></Link>
           <Link to="/about"> <span className="nav-item link">About</span></Link>
           <Link to="/contact"> <span className="nav-item link">Contact</span></Link>
         </div>
@@ -52,8 +52,8 @@ export default function Header(props) {
                     ) : (
                       <Link to={"/" + userCommunity +"/products"}  className="nav-item">{userInfo.username} <i className="fa fa-caret-down"></i></Link>)
                 }
-                <ul className="dropdown-content">
-                  <Link className="link" to={currentPath} onClick={signoutHandler}>Sign out</Link>
+                <ul className="dropdown-content" onClick={signoutHandler}>
+                  <Link className="link" to={currentPath} >Sign out</Link>
                 </ul>
               </div>
             ) : (

@@ -28,7 +28,7 @@ export default function Itemspage() {
   // send the request to the backend
   useEffect(() => {
     dispatch(getNewestItems(limit, community, category));
-  }, [category]);
+  }, [dispatch, limit, community, category]);
 
   return (
     <div>
@@ -39,7 +39,7 @@ export default function Itemspage() {
       ) : (
             <div className="home-container">
               <div className="header">
-                <Header community={community}/>
+                <Header community={community} />
               </div>
               {userInfo ? null :
                 (
@@ -47,13 +47,7 @@ export default function Itemspage() {
                     <div className="text">
                       <h1 className="slogan-container">
                         One of the best community marketplaces to support your new business
-               </h1>
-                      {/* <button className="button is-primary is-rounded">
-                        <span className="icon">
-                          <i className="fas fa-sign-in-alt"></i>
-                        </span>
-                        <Link to="/signin"> <span>Sign In</span></Link>
-                      </button> */}
+                      </h1>
                     </div>
                   </div>
                 )
@@ -64,14 +58,14 @@ export default function Itemspage() {
                 <section className="container">
                   <div className="category" >
                     {/* <Link to={"/" + community}><span> Overview</span></Link>             */}
-                     <Link to={"/" + community + "/products"} className="link products">Products</Link>
+                    <Link to={"/" + community + "/products"} className="link products">Products</Link>
                     <Link to={"/" + community + "/services"} className="link services">Services</Link>
-                     <Link to={"/" + community + "/expertises"} className="link expertises"> Expertises</Link>
+                    <Link to={"/" + community + "/expertises"} className="link expertises"> Expertises</Link>
                   </div>
 
                   <div className={"list-" + category} >
-                    <ListItem community={community} mainCategory={category} itemList={items}/>
-                    <div className="more"><Link to={"/" + community +"/" + category +"/" + startPage + "/" + limitOfMore } className="link">More Items &gt;&gt;</Link></div>
+                    <ListItem community={community} mainCategory={category} itemList={items} />
+                    <div className="more"><Link to={"/" + community + "/" + category + "/" + startPage + "/" + limitOfMore} className="link">More Items &gt;&gt;</Link></div>
                   </div>
                 </section>
               </div>
