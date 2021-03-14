@@ -371,7 +371,7 @@ main {
   width: 100px;
 }
 
-.wellcome-container .canada:hover {
+.wellcome-container .country:hover {
   color: #304ffe;
   text-decoration: underline;
 }

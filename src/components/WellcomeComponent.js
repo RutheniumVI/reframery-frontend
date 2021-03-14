@@ -1,25 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
 export default function WellcomeComponent() {
     return (
         <div className="left">
 
             <div className="head">
-                <Link className="link" to="/">
-                    <img
-                        className="logo"
-                        src="/images/logo.png"
-                        alt="logo"
-                        width="100"
-                    ></img >
-                </Link>
+                <img
+                    className="logo"
+                    src="/images/logo.png"
+                    alt="logo"
+                    width="100"
+                ></img >
                 <div className="text">
-                    <Link className="link" to="/">
-                        <div>Reframery Marketplace</div>
-                    </Link>
+                    <div>Reframery Marketplace</div>
                 </div>
-
             </div>
 
             <div className="description">

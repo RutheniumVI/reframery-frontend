@@ -1,21 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
 export default function Item(props) {
     const { item, community } = props;
-    //get the current sign in user information
-    const userSignin = useSelector(state => state.userSignin);
-    const { userInfo } = userSignin;
     const category = item.category
-    // console.log(category);
-    // console.log(community);
     return (
         <div key={item.id} className="item">
             <div className="image">
-                <Link to={(category === "Products") ? "/" + community + "/products/" + item.id :
-                    ((category === "Services") ? "/" + community + "/services/" + item.id :
+                <Link to={(category === "products") ? "/" + community + "/products/" + item.id :
+                    ((category === "services") ? "/" + community + "/services/" + item.id :
                         "/" + community + "/expertises/" + item.id)}>
                     <img
                         className="item-image"

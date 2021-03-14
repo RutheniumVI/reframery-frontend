@@ -10,10 +10,9 @@ export default function Signin(props) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [erroMessage, setErrorMessage] = useState('');
  
   const userSignin = useSelector(state => state.userSignin);
-  const { loading, error, userInfo } = userSignin;
+  const { error, userInfo } = userSignin;
   
   const submitHandler = (e) => {
     e.preventDefault();
