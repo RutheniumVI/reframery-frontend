@@ -11,10 +11,10 @@ Axios.defaults.auth = {
     password: 'secret_key_hush',
   };
 // search a list of item by the filter 
-export const searchItems = (searchKeyword, category, subCategoryName, limit, page, community) => async (dispatch) => {
+export const searchItems = (searchKeyword, category, subCategoryName, limit, page, communityName) => async (dispatch) => {
     dispatch({ type: ITEM_SEARCH_REQUEST });
     try {
-        const { data } = await Axios.post(`/search/searchItems/${limit}-${page}-${community}`, {searchKeyword, category, subCategoryName});
+        const { data } = await Axios.post(`/items/searchItem/${searchKeyword}-${limit}-${page}`, {category, subCategoryName, communityName});
         dispatch({ type: ITEM_SEARCH_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: ITEM_SEARCH_FAIL, payload: error.message });
