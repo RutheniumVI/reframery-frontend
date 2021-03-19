@@ -1,37 +1,61 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { searchItems } from "../actions/searchActions";
 
 export default function SearchBar(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {community} = props;
+  const { community } = props;
   const limit = 20;
   const page = 0;
-  const reversed = true;
-  const [category, setCategory] = useState('All');
-  const [subCategoryName, setSubCategory] = useState('');
-  const [searchKey, setSearchKey] = useState('');  
-  const userSignin = useSelector(state => state.userSignin);
-  const { userInfo } = userSignin;
+  const [category, setCategory] = useState('products');
+  const [subCategory, setSubCategory] = useState('');
+  const [searchKey, setSearchKey] = useState('');
 
-
+  //handler for search button
   const searchHandler = (e) => {
     e.preventDefault();
-    dispatch(searchItems(searchKey, category,subCategoryName, limit, page, community));
-    navigate(`/search?community=${community}&category=${category}&item=${searchKey}&start=${page}&limit=${limit}`);
+    if (searchKey === '') {
+      window.location.reload();
+    } else {
+      dispatch(searchItems(searchKey, category, subCategory, limit, page, community));
+      navigate(`/search?community=${community}&category=${category}&subCategory=${subCategory}&item=${searchKey}&page=${page}&limit=${limit}`);
+    }
+  };
+  //handler for setting the value of category and subcategory
+  const setCategoryHandler = (e) => {
+    e.preventDefault();
+    const categoryValue = e.target.value;
+    if (categoryValue === 'food' || categoryValue === 'clothing') {
+      setCategory('products')
+      setSubCategory(categoryValue)
+    } else if (categoryValue === 'landscaping' || categoryValue === 'homemaintenance') {
+      setCategory('services')
+      setSubCategory(categoryValue)
+    } else if (categoryValue === 'consulting' || categoryValue === 'training') {
+      setCategory('expertises')
+      setSubCategory(categoryValue)
+    } else {
+      setCategory(categoryValue)
+    }
   };
 
   return (
     <div className="searchbar">
       <div className="search-component">
         <div className="select-category">
-          <select value={category} onChange={e => setCategory(e.target.value)}>
-            <option key="All" value="All">All</option>
-            <option key="Product" value="Product">Product</option>
-            <option key="Service" value="Service">Service</option>
-            <option key="Expertise" value="Expertise">Expertise</option>
+          <select value={category} onChange={setCategoryHandler}>
+            {/* <option key="All" value="All">All</option> */}
+            <option key="Product" value="products">Product</option>
+            <option key="Food" value="food">  &nbsp; &nbsp; Food</option>
+            <option key="Clothing" value="clothing">  &nbsp; &nbsp; Clothing</option>
+            <option key="Service" value="services">Service</option>
+            <option key="Landscaping" value="landscaping">  &nbsp; &nbsp; Landscaping</option>
+            <option key="Homemaintenance" value="homemaintenance">  &nbsp; &nbsp; Homemaintenance</option>
+            <option key="Expertise" value="expertises">Expertise</option>
+            <option key="Consulting" value="consulting">  &nbsp; &nbsp; Consulting</option>
+            <option key="Traing" value="training">  &nbsp; &nbsp; Traing</option>
           </select>
         </div>
         <input type="text" className="search-key"
