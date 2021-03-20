@@ -26,7 +26,7 @@ Axios.defaults.auth = {
 export const getTransaction = (transactionID) => async (dispatch) => {
     dispatch({ type: TRANSACTION_GET_REQUEST, payload: transactionID });
     try {
-        const { data } = await Axios.get(`/transactions/transaction/${transactionID}`);
+        const { data } = await Axios.get(`/transactions/transactionsOfUser/${transactionID}`);
         dispatch({ type: TRANSACTION_GET_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: TRANSACTION_GET_FAIL, payload: error.message });
@@ -37,7 +37,7 @@ export const getTransaction = (transactionID) => async (dispatch) => {
 export const getTransactionsOfUser = (userEmail, limit, startingFrom, reversed) => async (dispatch) => {
     dispatch({ type: TRANSACTION_OF_USER_GET_REQUEST, payload: userEmail });
     try {
-        const { data } = await Axios.get(`/transactions/getTransactionsOfUser/${userEmail}-${limit}-${startingFrom}-${reversed}`);
+        const { data } = await Axios.get(`/transactions/transactionsOfUser/${userEmail}-${limit}-${startingFrom}-${reversed}`);
         dispatch({ type: TRANSACTION_OF_USER_GET_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: TRANSACTION_OF_USER_GET_FAIL, payload: error.message });
