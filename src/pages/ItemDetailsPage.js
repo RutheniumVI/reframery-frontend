@@ -61,7 +61,7 @@ export default function ItemDetails() {
                                                     <button className="button-addToCart" onClick={addToCartHandler}><Link to="/payment"><h3>Buy Item</h3></Link></button>
                                                 </div>
                                                 <div>
-                                                    <Link to="/home"><h3 className="back-to-mar">Back to marketplace</h3></Link>
+                                                    <Link to="/"><h3 className="back-to-mar">Back to marketplace</h3></Link>
                                                 </div>
                                             </div>
 
