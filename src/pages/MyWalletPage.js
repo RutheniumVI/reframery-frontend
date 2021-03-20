@@ -45,7 +45,7 @@ function TransactionHistory() {
     const { transactions, loading, error } = transactionsOfUserGet;
     //console.log(userInfo.email);
     useEffect(() => {          
-        dispatch(getTransactionsOfUser(userInfo.email,1,1,1));
+        dispatch(getTransactionsOfUser(userInfo.email,20,0,false));
         // console.log(userInfo.email);
         //console.log(transactions.map((transaction) => transaction.senderEmail));
     }, [dispatch, userInfo.email]);

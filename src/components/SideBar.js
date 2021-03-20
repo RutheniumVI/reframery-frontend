@@ -40,8 +40,7 @@ export default function SideBar() {
         </p>
 
         <ul className="menu-list">
-          <li><Link className="link" to="/my-wallet" >Balance</Link></li>
-          <li><Link className="link" to="/my-wallet" >Transactions</Link></li>
+          <li><Link className="link" to="/my-wallet" >My wallet</Link></li>
         </ul>
 
 
