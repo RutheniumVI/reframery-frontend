@@ -336,6 +336,28 @@ export const validateUser = (email) => async (dispatch) => {
     }
 };
 
+//update user last name
+export const unBanUser = (email, banned
+    ) => async (dispatch) => {
+        dispatch({ type: USER_UPDATE_REQUEST, payload: email });
+        try {
+            const { data } = await Axios.patch(`/users/user/${email}`,
+                {
+                    banned
+                }
+            );
+            dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+        } catch (error) {
+            dispatch({
+                type: USER_UPDATE_FAIL, payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message
+            });
+        }
+    };
+    
+
 
 //promote an userer to manager 
 export const promoteToManager = (email) => async (dispatch) => {

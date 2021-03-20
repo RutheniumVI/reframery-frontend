@@ -1,55 +1,43 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, searchUnvalidatedUsers, validateUser } from '../actions/userActions';
+import { searchUnvalidatedUsers, validateUser } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
 import { adminAddCreditToUser } from 'actions/transactionActions';
-import { useNavigate } from 'react-router';
-
 
 export default function AwaitingPage() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
     //get the admin user information
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const senderEmail = userInfo.email;
     const userCommunity = userInfo.communityName;
-    console.log(senderEmail);
 
-    //get the list of unvalidated users
+    //states of getting the list of unvalidated users
     const unvalidatedUsers = useSelector((state) => state.unvalidatedUsers);
     const { loadingUser, error, unvalidatedList } = unvalidatedUsers;
 
-    //get the user information with the user email
-    const userGet = useSelector(state => state.userGet);
-    const { user } = userGet;
+    //states of validating a user
+    const userValidate = useSelector(state => state.userValidate);
+    const { user: validatedUser } = userValidate;
+
     const validateHandler = (e) => {
+        const userEmail = e.target.value;
         e.preventDefault();
-        const confirm = window.confirm("Are you sure to validate the current user?");
-        if (confirm) {
-            const userEmail = e.target.value;
-            console.log(userEmail);
-            dispatch(getUser(userEmail));
+        const confirm = window.confirm("Do you wish to validate " + userEmail +" ?");
+        if (confirm) {            
+            dispatch(validateUser(userEmail));
+            dispatch(adminAddCreditToUser(senderEmail, userEmail, 25));      
         }
     };
 
     //when get the user details, change the user validate status and send default 25 credits to the user
     useEffect(() => {
         dispatch(searchUnvalidatedUsers(userCommunity));
-        if (user) {
-            console.log(user);
-            //if get the user, then update the user attribute: validateStatus and ValidateTime, and update the balance
-            dispatch(validateUser(user.email));
-            console.log(senderEmail);
-            dispatch(adminAddCreditToUser(senderEmail, user.email, 25));            
-            navigate('/admin/awaiting-validation');
-        }
-    }, [user]);
+    }, [dispatch, userCommunity, validatedUser]);
     return (
         <div>
             <Header />

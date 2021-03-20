@@ -35,7 +35,7 @@ export default function MoreItemspage() {
     // send the request to the backend
     useEffect(() => {
         dispatch(getItemsOfCategory(category, limit, startingFrom, reversed, community));
-    }, [startingFrom]);
+    }, [dispatch, startingFrom, category, limit, reversed, community]);
 
     return (
         <div>

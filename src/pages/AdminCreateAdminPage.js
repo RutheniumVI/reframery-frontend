@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createAdminUser } from "../actions/userActions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createAdminUser, getUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
@@ -8,8 +8,7 @@ import { useNavigate } from "react-router";
 
 export default function CreateAdminPage() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const redirect = '/admin/administrator-management';
+    const navigate = useNavigate(); 
 
     //input from user
     const [email, setEmail] = useState('');
@@ -18,22 +17,63 @@ export default function CreateAdminPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     //default attribute for the new created admin 
     const username = "admin";
+    const [erroMessage, setErrorMessage] = useState('');
+    //variable for the state of button submit
+    const [created, setCreated] = useState(false);
+    const redirect = '/admin/administrator-management';
+
+    // check if the password contains at least one upper case letter and one lowercase letter and one number
+    const isValidPassord = (str) => {
+        const reContainUppercase = new RegExp('^.*[A-Z].*$');
+        const reContainLowercase = new RegExp('^.*[a-z].*$');
+        const reContainNumer = new RegExp('^.*[0-9].*$');
+        const reLength = new RegExp('^.{6,}$');
+        return reContainUppercase.test(str) && reContainLowercase.test(str) && reContainNumer.test(str) && reLength.test(str)
+    }
+
+    // check if the email address is valid
+    const isValidEmail = (str) => {
+        const reContainSymbol = new RegExp('^.*@.*$');
+        return reContainSymbol.test(str)
+    }
+
+    // check if the email has been used, if it can get the user with the same email, the error should be false
+    const userGet = useSelector(state => state.userGet);
+    const { error } = userGet;
 
     //button handler for create a admin
     const submitHandler = (e) => {
         e.preventDefault();
-        if (password !== confirmPassword) {
-            alert('Password and confirm password are different')
-        } else {
-            dispatch(createAdminUser(username, email, password, communityName));
-            console.log(username);
-            console.log(email);
-            console.log(password);
-            console.log(communityName);
-            alert('A new admin has been created successfully!')
-            navigate(redirect);  
+        setCreated(true);
+        if (email === "" || password === "" || confirmPassword === "") {
+            setErrorMessage("! Please do not leave empty input");
         }
+        else if (!isValidEmail(email)) {
+            setErrorMessage("! Invalid email address");
+        }
+        else if (!isValidPassord(password)) {
+            setErrorMessage("! Invalid password");
+        }
+        else if (password !== confirmPassword) {
+            setErrorMessage("! Password and confirm password are different");
+        }
+        else if (!error) {
+            setErrorMessage("! The email address has been used");
+        }
+        else {
+            const confirm = window.confirm("Do you wish to create the account?");
+            if (confirm) {
+                dispatch(createAdminUser(username, email, password, communityName));
+                navigate(redirect);
+            }
+        }        
     };
+
+    useEffect(() => {
+        if(created){
+            dispatch(getUser(email));
+        }        
+    }, [dispatch, created]);
 
     return (
         <div>
@@ -47,6 +87,7 @@ export default function CreateAdminPage() {
                                 <form className="Register">
                                     <div>
                                         <h3>Create New Administrator</h3>
+                                        <label className="danger">{erroMessage}</label>
                                     </div>
                                     <div>
                                         <label >Email Address </label>
@@ -66,6 +107,7 @@ export default function CreateAdminPage() {
                                             <option key="Canada" value="canada">Canada</option>
                                             <option key="USA" value="usa">USA</option>
                                             <option key="Brazil" value="brazil">Brazil</option>
+                                            <option key="mexico" value="mexico">Mexico</option>
                                         </select>
                                     </div>
 
