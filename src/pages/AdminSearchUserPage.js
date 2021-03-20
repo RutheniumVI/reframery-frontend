@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { addBalanceToUser, deductBalanceToUser } from "../actions/transactionActions";
-import { banUser, getUser } from "../actions/userActions";
+import { banUser, getUser, unBanUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
 import Footer from 'components/Footer'
 import { adminAddCreditToUser, adminDeductCreditFromUser } from "actions/transactionActions";
-import { useNavigate } from "react-router";
 
 export default function UpdateBalancePage() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [search, setSearch] = useState(false);
     const [searchUserEmail, setSearchUserEmail] = useState('');
     const [creditUnit, setCreditUnit] = useState(0);
@@ -32,39 +30,41 @@ export default function UpdateBalancePage() {
     //button handler for add balance
     const addBalanceHandler = (e) => {
         e.preventDefault();
-        const confirm = window.confirm("Do you want to add credit to the user?");
-        if (confirm) {
-            dispatch(adminAddCreditToUser(senderEmail, user.email, creditUnit));
-            navigate('/admin');
+        if (creditUnit > 0 && creditUnit < 1000) {
+            const confirm = window.confirm("Do you wish to add " + creditUnit + " credit to " + user.email + "?");
+            if (confirm) {
+                dispatch(adminAddCreditToUser(senderEmail, user.email, creditUnit));
+            }
+        } else {
+            alert("The number should be greater than 0 and less than 1000!");
         }
+
     };
 
     //button handler for deduct balance
     const deductBalanceHandler = (e) => {
         e.preventDefault();
-        const confirm = window.confirm("Do you want to add credit to the user?");
+        const confirm = window.confirm("Do you wish to deduct " + creditUnit + " credit from " + user.email + "?");
         if (confirm) {
             dispatch(adminDeductCreditFromUser(senderEmail, user.email, creditUnit));
-            navigate('/admin');
         }
     };
-
+    //button handler for locking the user
     const banUserHandler = (e) => {
         e.preventDefault();
-        const confirm = window.confirm("Are you sure to ban the current user?");
+        const confirm = window.confirm("Do you wish to lock " + user.email + "?");
         if (confirm) {
             dispatch(banUser(user.email));
-            navigate('/admin');
         }
     };
-
-    // const unBanUserHandler = (e) => {
-    //     e.preventDefault();
-    //     const confirm = window.confirm("Are you sure to ban the current user?");
-    //     if (confirm) {
-    //         dispatch(updateUser(user.email));
-    //     }
-    // };
+    //button handler for unlocking the user
+    const unBanUserHandler = (e) => {
+        e.preventDefault();
+        const confirm = window.confirm("Do you wish to unlock " + user.email + "?");
+        if (confirm) {
+            dispatch(unBanUser(user.email, false));
+        }
+    };
 
     return (
         <div>
@@ -79,15 +79,15 @@ export default function UpdateBalancePage() {
                                 <button className="button is-primary is-rounded" onClick={searchUserHandler}> <span>Search</span></button>
                             </div>
                             {search ?
-                                (user ? (
-                                    <div className="search-user-table">
-                                        <div className="title">
-                                            <div className="email"> Email</div>
-                                            <div className="currentbalance"> Current Credit </div>
-                                            <div className="status"> Status </div>
-                                            <div className="div-button"> Lock/Unlock </div>
-                                        </div>
-                                        {user.validateStatus ? (
+                                (user ?
+                                    (user.validateStatus ?
+                                        (<div className="search-user-table">
+                                            <div className="title">
+                                                <div className="email"> Email</div>
+                                                <div className="currentbalance"> Current Credit </div>
+                                                <div className="status"> Status </div>
+                                                <div className="div-button"> Lock/Unlock </div>
+                                            </div>
                                             <div>
                                                 <div className="row">
                                                     <div className="email">{user.email}</div>
@@ -95,9 +95,8 @@ export default function UpdateBalancePage() {
                                                     <div className="status">{user.banned ? "locked" : "unlocked"}</div>
                                                     <div className="div-button">
                                                         <button className="button is-primary is-rounded" onClick={banUserHandler}>Lock </button>
-                                                        <button className="button is-primary is-rounded" >UnLock</button></div>
+                                                        <button className="button is-primary is-rounded" onClick={unBanUserHandler}>UnLock</button></div>
                                                 </div>
-
                                                 <div >
                                                     <div className="title"> Update the user Credit</div>
                                                     <div>
@@ -112,21 +111,14 @@ export default function UpdateBalancePage() {
 
                                             </div>
 
+                                        </div>
                                         ) : (
-                                                <div>User not found!</div>
-                                            )
-                                        }
-
-                                    </div>
-                                ) : (
-                                        <div>User not found!</div>)
-                                ) : (
-                                    null
-                                )
+                                            <div>User not found!</div>)
+                                    ) : (<div>User not found!</div>)
+                                ) : null
                             }
                         </div>
                     </div>
-
                 </div>
             </div>
             <Footer />

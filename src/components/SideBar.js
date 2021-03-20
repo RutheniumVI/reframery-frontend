@@ -2,12 +2,10 @@ import { signout } from "actions/userActions";
 import React from "react";
 import cart from "img/cart.png";
 import logo from "img/logo.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SideBar() {
-  const userSignin = useSelector(state => state.userSignin);
-  const { userInfo } = userSignin;
   const currentPath = window.location.pathname;
   const navigate = useNavigate();
   const dispatch = useDispatch();

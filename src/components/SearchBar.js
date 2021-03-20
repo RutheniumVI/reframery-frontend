@@ -62,7 +62,7 @@ export default function SearchBar(props) {
           placeholder="Search items" value={searchKey}
           onChange={e => setSearchKey(e.target.value)}>
         </input>
-        <button className="icon-search" onClick={searchHandler}><i class="fa fa-search" ></i></button>
+        <button className="icon-search" onClick={searchHandler}><i className="fa fa-search" ></i></button>
       </div>
     </div>
   );
