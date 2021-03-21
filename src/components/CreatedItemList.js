@@ -14,6 +14,8 @@ export default function CreatedItemList({ mainCategory }) {
     const itemsOfUserGet = useSelector(state => state.itemsOfUserGet);
     const { items, loading, error } = itemsOfUserGet;
 
+    //userInfo.communityName
+
     useEffect(() => {
         dispatch(getItemsOfUser(userInfo.email, 10, 1, true));
     }, [dispatch, userInfo.email]);
