@@ -17,7 +17,7 @@ export default function CreatedItemList({ mainCategory }) {
     //userInfo.communityName
 
     useEffect(() => {
-        dispatch(getItemsOfUser(userInfo.email, 10, 1, true));
+        dispatch(getItemsOfUser(userInfo.email, 100, 1, true));
     }, [dispatch, userInfo.email]);
 
     //console.log("Data " + items);
@@ -30,18 +30,16 @@ export default function CreatedItemList({ mainCategory }) {
 
     return (
 
-        <div>
+        <div className="itemlist-container">
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-                        <div className="products-list">
-                            <ul className="products">
+                        <div className="list-items">
+                            <ul>
                                 {items.map((item) => (
-                                    <li key={item._id}>
-                                        <CreatedItem key={item.id} item={item}></CreatedItem>
-                                    </li>
+                                    <CreatedItem key={item.id} item={item}></CreatedItem>
                                 ))}
                             </ul>
 

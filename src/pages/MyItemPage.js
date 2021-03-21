@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from 'components/Header';
 import SideBar from "components/SideBar";
 import Footer from 'components/Footer'
 
-import { useData } from "../data/useData";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CreatedItemList from "../components/CreatedItemList";
 
 export default function MyItemPage() {

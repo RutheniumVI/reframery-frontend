@@ -21,7 +21,7 @@ export default function CreateItemPage() {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const itemCreate = useSelector(state => state.itemCreate);
-    const { loading, item, error } = itemCreate;
+    const { item, error } = itemCreate;
 
 
     //console.log("User Info: " + userInfo.email);
@@ -41,8 +41,19 @@ export default function CreateItemPage() {
         const confirm = window.confirm("Are you sure to create this item for sale?");
         if (confirm) {
             dispatch(createItem(itemname, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName)
-            );
-            window.location.reload();
+            );     
+        }
+        
+        //console.log("Error: " + error);
+
+        console.log("Item: " + item);
+        if (item) {
+            navigate('/my-item');
+            //window.alert("Create Item Failed");
+            //window.location.reload();
+        } else {
+            window.alert("Create Item Failed: " + error);
+            
         }
 
     };
