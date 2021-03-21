@@ -1,9 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
+import { deleteItem } from "../actions/itemActions";
 
 
 export default function CreatedItem(props) {
+    const dispatch = useDispatch();
+
+    const removeItem = (e, itemID) => {
+        e.preventDefault();
+        const confirm = window.confirm("Are you sure to remove this item for sale?");
+        if (confirm) {
+            dispatch(deleteItem(itemID)
+            );
+            window.location.reload();
+        }
+
+    };
+
     const { item } = props;
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
@@ -11,9 +26,7 @@ export default function CreatedItem(props) {
 
     return (
         <div className="item">
-            {userInfo ? (<Link to={(item.category === "products") ? "/" + item.community + "/products/" + item.id :
-                (item.category === "services") ? "/" + item.community + "/services/" + item.id :
-                    "/" + item.community + "/expertises/" + item.id}>
+            {userInfo ? (<Link to={item.id}>
                 <img
                     className="item-image"
                     src={item.imageURL}
@@ -30,9 +43,7 @@ export default function CreatedItem(props) {
             <div className="item-info">
                 <form>
                     <h2>
-                        {userInfo ? (<Link to={(item.category === "products") ? "/" + item.community + "/products/" + item.id :
-                            (item.category === "services") ? "/" + item.community + "/services/" + item.id :
-                                "/" + item.community + "/expertises/" + item.id}>
+                        {userInfo ? (<Link to={item.id}>
                             <span className="link">{item.name.toUpperCase()}</span>
                         </Link>) : (<Link to="/signin">
                             <span className="link">{item.name.toUpperCase()}</span>
@@ -42,6 +53,7 @@ export default function CreatedItem(props) {
                     <button
                         type="submit"
                         className="button is-primary"
+                        onClick={(e) => removeItem(e, item.id)}
                     >
                         Remove
             </button>
