@@ -41,9 +41,9 @@ export default function CreateItemPage() {
         const confirm = window.confirm("Are you sure to create this item for sale?");
         if (confirm) {
             dispatch(createItem(itemname, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName)
-            );     
+            );
         }
-        
+
         //console.log("Error: " + error);
 
         console.log("Item: " + item);
@@ -53,7 +53,7 @@ export default function CreateItemPage() {
             //window.location.reload();
         } else {
             window.alert("Create Item Failed: " + error);
-            
+
         }
 
     };
@@ -75,6 +75,11 @@ export default function CreateItemPage() {
                                     <input type="text" className="input" placeholder="e.g. Birthday Cake" value={itemname} required onChange={(e) => setItemname(e.target.value)} />
                                 </div>
                                 <p class="help">Should not exceed 15 characters</p>
+                                {itemname.length <= 15 ? null :                                 
+                                <div class="notification is-danger">
+                                    Invalid Item Name
+                                </div>}
+
                             </div>
 
 
@@ -91,6 +96,10 @@ export default function CreateItemPage() {
                                         </a>
                                     </div>
                                 </div>
+                                {price >= 0 ? null :                                 
+                                <div class="notification is-danger">
+                                    Invalid Price
+                                </div>}
                             </div>
 
                             <div className="field">
@@ -106,6 +115,10 @@ export default function CreateItemPage() {
                                         </a>
                                     </div>
                                 </div>
+                                {stock >= 0 ? null :                                 
+                                <div class="notification is-danger">
+                                    Invalid Stock
+                                </div>}
                             </div>
 
                             <div class="field">
