@@ -12,8 +12,7 @@ export default function CreatedItem(props) {
         e.preventDefault();
         const confirm = window.confirm("Are you sure to remove this item for sale?");
         if (confirm) {
-            dispatch(deleteItem(itemID)
-            );
+            dispatch(deleteItem(itemID));
             window.location.reload();
         }
 
@@ -22,7 +21,7 @@ export default function CreatedItem(props) {
     const { item } = props;
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-    console.log("Image: " + JSON.stringify(item));
+    //console.log("Image: " + JSON.stringify(item));
 
     return (
         <div className="item">
