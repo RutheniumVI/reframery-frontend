@@ -195,7 +195,7 @@ export default function MyProfilePage() {
   }, [dispatch, userInfo, updatedUser]);
 
   return (
-    <div>
+    <div className="page-container">
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
