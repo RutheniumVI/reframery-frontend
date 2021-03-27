@@ -34,6 +34,9 @@ button:hover {
 }
 
 /***************** Alert *******************/
+.loading {
+  font-size: 40px;
+}
 .success {
   color: green
 }
@@ -124,9 +127,11 @@ main {
 
 /******************** Header ***********************/
 
-.header {
-  width: 100%;
+header {
+  min-width: 1300px;
 }
+
+
 
 .header-container {
   border-bottom: 1px solid #9e9e9e;
@@ -210,6 +215,7 @@ main {
 .sidebar-content {
   display: flex;
   flex-wrap: wrap;
+  min-width: 1200px;
 }
 
 .sidebar-container {
@@ -694,6 +700,10 @@ min-width: 150px;
   color: black;
 }
 
+.far{
+  color:#404040
+}
+
 
 /******************** ProfilePage ***********************/
 
@@ -883,7 +893,6 @@ min-width: 150px;
   padding-right: 50px;
   padding-bottom: 50px;
 }
-
 
 
 .admin-table .table .column1 {
@@ -1368,6 +1377,7 @@ td.trans-price {
   flex-wrap: wrap;
   padding: 1 rem;
   margin-left: 100px;
+  margin-top: 50px;
 }
 
 .wallet-c1 {

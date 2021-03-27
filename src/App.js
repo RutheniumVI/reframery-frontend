@@ -39,51 +39,49 @@ export default function App() {
   const { userInfo } = userSignin;
   return (
     <DataProvider>
-        <main className="main">
-            <Routes>
-              {/* {userInfo ? null : <Route path="/" element={<WellcomePage />} />} */}
-              <Route path="/" element={<WellcomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/landing" element={<Landing />} />
-              <Route path="/terms-and-conditions" element={<TermsPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-              <Route path="/development-team" element={<DevelopmentTeamPage />} />
+      <main className="main">
+        <Routes>
+          {/* {userInfo ? null : <Route path="/" element={<WellcomePage />} />} */}
+          <Route path="/" element={<WellcomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/landing" element={<Landing />} />
+          <Route path="/terms-and-conditions" element={<TermsPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/development-team" element={<DevelopmentTeamPage />} />
 
-              <Route path="/signin" element={<Signin />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/:community/:category" element={<ItemsPage />} />
-              <Route path="/:community/:category/:start/:end" element={<MoreItemsPage />} />
-              <Route path="/search" element={<SearchResultPage />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/:community/:category" element={<ItemsPage />} />
+          <Route path="/:community/:category/:start/:end" element={<MoreItemsPage />} />
+          <Route path="/search" element={<SearchResultPage />} />
 
-              <Route path="/:community/:category/:id" element={<ItemDetails />} />
+          <Route path="/:community/:category/:id" element={<ItemDetails />} />
 
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/address-form" element={<AddressForm />} />
-              <Route path="/confirm" element={<Confirm />} />
-              <Route path="/payment" element={<Payment />} />
+          <Route path="/cart" element={<Cart />} />
+          {/* only for logged inusers */}
+          {userInfo ? (userInfo.admin ? null : <Route path="/address-form" element={<AddressForm />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/confirm" element={<Confirm />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/payment" element={<Payment />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/my-wallet" element={<WalletPage />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/my-profile" element={<UserPage />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/update-user-address" element={<UpdateUserAddressPage />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/my-item" element={<MyItemPage />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/create-item" element={<CreateItemPage />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/my-history" element={<TransHistPage />} />) : null}
 
+         
+          {/* only for admin users */}
+          {userInfo ? (userInfo.admin ?<Route path="/admin" element={<OverviewPage />} /> : null) : null}
+          {userInfo ? (userInfo.admin ?<Route path="/admin/awaiting-validation" element={<AwaitingPage />} /> : null) : null}
+          {userInfo ? (userInfo.admin ?<Route path="/admin/update-users-balance" element={<UpdateBalancePage />} /> : null) : null}
+          {userInfo ? (userInfo.admin ?<Route path="/admin/create-admin-account" element={<CreateAdminPage />} /> : null) : null}
+          {userInfo ? (userInfo.admin ?<Route path="/admin/my-profile" element={<MyProfilePage />} /> : null) : null}
+          {userInfo ? (userInfo.admin ?<Route path="/admin/administrator-management" element={<AdminManagePage />} /> : null) : null}
 
-              <Route path="/my-wallet" element={<WalletPage />} />
-
-              <Route path="/my-profile" element={<UserPage />} />
-              <Route path="/update-user-address" element={<UpdateUserAddressPage />} />
-
-              <Route path="/my-item" element={<MyItemPage />} />
-              <Route path="/create-item" element={<CreateItemPage />} />
-
-              <Route path="/my-history" element={<TransHistPage />} />
-
-              <Route path="/admin" element={<OverviewPage />} />
-              <Route path="/admin/awaiting-validation" element={<AwaitingPage />} />
-              <Route path="/admin/update-users-balance" element={<UpdateBalancePage />} />
-              <Route path="/admin/create-admin-account" element={<CreateAdminPage />} />
-              <Route path="/admin/my-profile" element={<MyProfilePage />} />
-              <Route path="/admin/administrator-management" element={<AdminManagePage />} />
-
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-        </main>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
     </DataProvider>
   );
 }
