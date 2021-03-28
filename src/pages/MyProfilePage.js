@@ -180,9 +180,9 @@ export default function MyProfilePage() {
     if (birthday === "") {
       setErrorMessage("! Empty Input");
     } else if (parseInt(parseInt(birthday.split("-")[0])) > today.getFullYear()
-      || (parseInt(birthday.split("-")[0]) === today.getFullYear() && parseInt(birthday.split("-")[1]) > today.getMonth())
-      || (parseInt(birthday.split("-")[0]) === today.getFullYear() && parseInt(birthday.split("-")[1]) === today.getMonth() && parseInt(birthday.split("-")[2]) > today.getDate())) {
-      setErrorMessage("! Invalid birthday");
+      || (parseInt(birthday.split("-")[0]) === today.getFullYear() && parseInt(birthday.split("-")[1]) > (today.getMonth()+1))
+      || (parseInt(birthday.split("-")[0]) === today.getFullYear() && parseInt(birthday.split("-")[1]) === (today.getMonth()+1) && parseInt(birthday.split("-")[2]) > today.getDate())) {
+        setErrorMessage("! Invalid birthday");
     }
     else {
       dispatch(updateUserBirthday(userInfo.email, birthday));
@@ -207,9 +207,8 @@ export default function MyProfilePage() {
 
   useEffect(() => {
     dispatch(getUser(userInfo.email));
-    console.log(userInfo)
     if (updatedUser || updatedUserImage) {
-      // window.location.reload();
+      window.location.reload();
     }
   }, [dispatch, userInfo, updatedUser, updatedUserImage]);
 
@@ -236,11 +235,11 @@ export default function MyProfilePage() {
                     ></img >
                     {/* We use a temporary jason server as our backend database and we can not send the binary image
                      to the server, we will require user to enter an url for the uploaded image instead of upload image from local folder */}
-                    {/* <div class="upload-button">
-                          <div class="fileinputs">
+                    {/* <div className="upload-button">
+                          <div className="fileinputs">
                             <input type="file" className="file" id="file" accept=".jpg,.png"
                               onChange={uploadimageHandler} onClick={e => (e.target.value = null)} />
-                            <div class="fakefile">
+                            <div className="fakefile">
                               <input placeholder="Upload Image" />
                             </div>
                           </div>
@@ -267,7 +266,7 @@ export default function MyProfilePage() {
                   </div>
                   <div>
                     <label>Company Name</label>
-                    <input id="username" type="text" placeholder={user.company} onChange={(e) => setCompany(e.target.value)}></input>
+                    <input id="companyName" type="text" placeholder={user.company} onChange={(e) => setCompany(e.target.value)}></input>
                     <button onClick={updateCompanyNameHandler}> Update</button>
                   </div>
                   <div>

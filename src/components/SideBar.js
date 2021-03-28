@@ -28,14 +28,14 @@ export default function SideBar() {
           <Link className="link" to="/"> <h2 className="is-size-5">Marketplace</h2></Link>
         </div>
 
-        <p className="menu-label"><i class="fas fa-id-card"></i> <strong>Account</strong> </p>
+        <p className="menu-label"><i className="fas fa-id-card"></i> <strong>Account</strong> </p>
         <ul className="menu-list">
           <li><Link className="link" to="/my-profile">My Profile</Link></li>
           <li><Link className="link" to={currentPath} onClick={signoutHandler}>Sign Out</Link></li>
         </ul>
 
         <p className="menu-label">
-          <i class="fas fa-wallet"></i>
+          <i className="fas fa-wallet"></i>
           <strong>Wallet</strong>
         </p>
 
@@ -45,7 +45,7 @@ export default function SideBar() {
 
 
         <p className="menu-label">
-          <i class="fas fa-history"></i>
+          <i className="fas fa-history"></i>
           <strong>History</strong>
         </p>
 
@@ -55,7 +55,7 @@ export default function SideBar() {
         </ul>
 
         <p className="menu-label">
-          <i class="fas fa-list-alt"></i>
+          <i className="fas fa-list-alt"></i>
           <strong>My Items</strong>
         </p>
 
