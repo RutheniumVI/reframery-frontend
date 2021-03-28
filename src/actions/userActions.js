@@ -29,6 +29,12 @@ import {
     USER_IMAGE_UPDATE_REQUEST,
     USER_IMAGE_UPDATE_SUCCESS,
     USER_IMAGE_UPDATE_FAIL,
+    USER_COUNT_VALIDATE_REQUEST,
+    USER_COUNT_VALIDATE_SUCCESS,
+    USER_COUNT_VALIDATE_FAIL,
+    USER_COUNT_UNVALIDATE_REQUEST,
+    USER_COUNT_UNVALIDATE_SUCCESS,
+    USER_COUNT_UNVALIDATE_FAIL,
 } from '../constants/userConstants';
 
 Axios.defaults.auth = {
@@ -423,11 +429,37 @@ export const searchUnvalidatedUsers = (communityName) => async (dispatch) => {
     }
 };
 
-//get the type of user
-// export const isAdmin = (email) => {
-//     const { admin } = Axios.get(`/users/user/${email}/getUserType`);
-//     return admin;
-// };
+//get the number of validated users from backend
+export const numOfValidatedUsers = (communityName) => async (dispatch) => {
+    dispatch({ type: USER_COUNT_VALIDATE_REQUEST });
+    try {
+        const { data } = await Axios.get(`/users/numOfValidatedUsers?communityName=${communityName}`);
+        dispatch({ type: USER_COUNT_VALIDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_COUNT_VALIDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
+
+//get the number of validated users from backend
+export const numOfUnvalidatedUsers = (communityName) => async (dispatch) => {
+    dispatch({ type: USER_COUNT_UNVALIDATE_REQUEST });
+    try {
+        const { data } = await Axios.get(`/users/numOfUnvalidatedUsers?communityName=${communityName}`);
+        dispatch({ type: USER_COUNT_UNVALIDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_COUNT_UNVALIDATE_FAIL, payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        });
+    }
+};
 
 
 
