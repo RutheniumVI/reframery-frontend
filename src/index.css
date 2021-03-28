@@ -724,6 +724,7 @@ min-width: 150px;
 
 .profile-container .danger {
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .profile-container .title-image {
@@ -731,11 +732,17 @@ min-width: 150px;
   display: flex;
 }
 
-
 .profile-container .upload-image {
-  width: 200px;
+  width: 300px;
 }
 
+.profile-container input {
+  width:200px
+}
+
+.upload-image button {
+  color: blue;
+}
 
 .profile-container .upload-image .upload-button {
   margin-top: 0;
@@ -767,10 +774,6 @@ min-width: 150px;
 }
 
 
-.profile-container .title-image .upload-image input:hover {
-  background-color: #304ffe;
-}
-
 .profile-container .title-image h1 {
   padding-top: 40px;
   font-size: 30px;
@@ -778,7 +781,6 @@ min-width: 150px;
 
 
 .profile-container .form-profile .profile-row div {
-  /* border-bottom: #9e9e9e 1px solid; */
   padding-top: 30px;
   margin-right: 50px;
 }
@@ -786,7 +788,6 @@ min-width: 150px;
 .profile-row label {
   width: 120px;
   display: inline-block;
-
 }
 
 .profile-row input {
