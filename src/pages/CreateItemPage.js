@@ -6,7 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { createItem } from "../actions/itemActions";
 import Header from 'components/Header';
 import SideBar from "components/SideBar";
-import Footer from 'components/Footer'
+import Footer from 'components/Footer';
+import { RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 export default function CreateItemPage() {
     const navigate = useNavigate();
@@ -18,26 +19,22 @@ export default function CreateItemPage() {
     const [discount, setDiscount] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [clicked, setClicked] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
+    const [province, setProvince] = useState('');
+    const [city, setCity] = useState('');
 
 
     const dispatch = useDispatch();
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const itemCreate = useSelector(state => state.itemCreate);
-    const { loading, item, error } = itemCreate;
+    const { error } = itemCreate;
 
-
-
-
-    //console.log("User Info: " + userInfo.email);
-    //console.log("Item name: " + itemname);
-    //console.log("Community name: " + userInfo.communityName);
 
     const userEmail = userInfo.email;
     const communityName = userInfo.communityName;
 
     const subCategoryName = "food";
+
 
 
     useEffect(() => {
@@ -51,29 +48,17 @@ export default function CreateItemPage() {
         }
     }, [dispatch, error]);
 
+
+    
+
     const handleChange = (e) => {
         e.preventDefault();
         const confirm = window.confirm("Are you sure to create this item for sale?");
         if (confirm) {
-            dispatch(createItem(itemname, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName)
+            dispatch(createItem(itemname, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city)
             );
         }
-
-
         setClicked(true);
-
-
-        /*
-        
-        if (item) {
-            navigate('/my-item');
-            //window.alert("Create Item Failed");
-            //window.location.reload();
-        } else {
-            window.alert("Create Item Failed: " + error);
-
-        }
-        */
 
     };
 
@@ -89,7 +74,7 @@ export default function CreateItemPage() {
                         <div className="column is-half is-offset-one-quarter">
                             <h1 className="title is-1">Create Your Item</h1>
                             <div className="field">
-                                <label className="label">Item Name</label>
+                                <label className="label">*Item Name</label>
                                 <div className="control">
                                     <input type="text" className="input" placeholder="e.g. Birthday Cake" value={itemname} required onChange={(e) => setItemname(e.target.value)} />
                                 </div>
@@ -152,7 +137,7 @@ export default function CreateItemPage() {
                             </div>
 
                             <div class="field">
-                                <label class="label">Select category</label>
+                                <label class="label">*Select category</label>
                                 <div class="control">
                                     <div class="select">
                                         <select value={category} required onChange={(e) => setCategory(e.target.value)}>
@@ -164,6 +149,23 @@ export default function CreateItemPage() {
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="field">
+                                <label class="label">Select location</label>
+                                <div className="field has-addons">
+                                    <div class="control">
+                                        <div class="select">
+                                            <RegionDropdown
+                                                country={communityName.charAt(0).toUpperCase() + communityName.slice(1)}
+                                                value={province}
+                                                onChange={(e) => setProvince(e)}
+                                                 />                   
+                                        </div>
+                                    </div>
+                                    <input type="text" className="input" placeholder="City (OPTIONAL)" required onChange={(e) => setCity(e.target.value)} />
+                                </div>
+                            </div>
+
 
                             <div>
                                 <label class="label">Discount</label>

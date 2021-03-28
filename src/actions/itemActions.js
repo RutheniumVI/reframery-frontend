@@ -39,11 +39,11 @@ Axios.defaults.auth = {
 
 // create an new item and send it to backend
 //xport const createItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
-export const createItem = (name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName) => async (dispatch) => {
+export const createItem = (name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city) => async (dispatch) => {
 
-  dispatch({ type: ITEM_CREATE_REQUEST, payload: { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName } });
+  dispatch({ type: ITEM_CREATE_REQUEST, payload: { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city } });
   try {
-    const { data } = await Axios.post('/items/item', { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName });
+    const { data } = await Axios.post('/items/item', { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city });
     dispatch({ type: ITEM_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -56,13 +56,13 @@ export const createItem = (name, category, subCategoryName, imageURL, userEmail,
 };
 
 //update an item attributes 
-export const updateItem = (itemID, name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName
+export const updateItem = (itemID, name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city
 ) => async (dispatch) => {
   dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
   try {
     const { data } = await Axios.patch(`/items/item/${itemID}`,
       {
-        itemID, name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName
+        itemID, name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city
       }
     );
     dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
@@ -176,6 +176,47 @@ export const updateItemCategory = (itemID, category
       });
     }
   };
+
+  export const updateItemSubcategory = (itemID, subCategoryName
+    ) => async (dispatch) => {
+      dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
+      try {
+        const { data } = await Axios.patch(`/items/item/${itemID}`,
+          {
+            itemID, subCategoryName
+          }
+        );
+        dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+      } catch (error) {
+        dispatch({
+          type: ITEM_UPDATE_FAIL, payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message
+        });
+      }
+    };
+
+  export const updateItemLocation = (itemID, province, city
+    ) => async (dispatch) => {
+      dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
+      try {
+        const { data } = await Axios.patch(`/items/item/${itemID}`,
+          {
+            itemID, province, city
+          }
+        );
+        dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+      } catch (error) {
+        dispatch({
+          type: ITEM_UPDATE_FAIL, payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message
+        });
+      }
+    };
+
 
 
   export const updateItemDiscount = (itemID, discount

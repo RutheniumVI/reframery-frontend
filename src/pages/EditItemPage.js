@@ -4,12 +4,15 @@ import SideBar from "components/SideBar";
 import Footer from 'components/Footer';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { 
-    getItem, updateItemName, updateItemPrice, updateItemStock, 
+import {
+    getItem, updateItemName, updateItemPrice, updateItemStock,
     updateItemDescription, updateItemCategory, updateItemDiscount,
-    updateItemImage } from 'actions/itemActions';
+    updateItemImage, updateItemLocation
+} from 'actions/itemActions';
 import LoadingBox from 'components/LoadingBox';
 import MessageBox from 'components/MessageBox';
+import { Link } from "react-router-dom";
+import { RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 export default function EditItemPage() {
     const { id } = useParams();
@@ -21,9 +24,12 @@ export default function EditItemPage() {
     const [category, setCategory] = useState('');
     const [discount, setDiscount] = useState('');
     const [imageURL, setImageURL] = useState('');
+    const [province, setProvince] = useState('');
+    const [city, setCity] = useState('');
 
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
+    const communityName = userInfo.communityName;
 
     const itemGet = useSelector((state) => state.itemGet);
     const { loading, error, item } = itemGet;
@@ -50,10 +56,10 @@ export default function EditItemPage() {
     }, [dispatch, id, ifupdate]);
 
 
-    const update = (e, key, newValue) => {
+    const update = (e, key, newValue, optionalValue) => {
         e.preventDefault();
-        console.log("Switch Key:"  + key);
-        switch(key) {
+        console.log("Switch Key:" + key);
+        switch (key) {
             case 0:
                 dispatch(updateItemName(id, newValue));
                 break;
@@ -74,16 +80,19 @@ export default function EditItemPage() {
                 dispatch(updateItemCategory(id, newValue));
                 break;
             case 5:
-                dispatch(updateItemDiscount(id, newValue));
+                dispatch(updateItemLocation(id, newValue, optionalValue));
                 break;
             case 6:
+                dispatch(updateItemDiscount(id, newValue));
+                break;
+            case 7:
                 dispatch(updateItemImage(id, newValue));
-            default: 
+            default:
                 break;
 
 
         }
-        
+
         console.log("New Attribute: " + newValue);
 
     };
@@ -134,6 +143,10 @@ export default function EditItemPage() {
                                                 </div>
                                                 <button onClick={(e) => update(e, 1, price)} className="button is-link is-outlined">Update</button>
                                             </div>
+                                            {price < 0 ?
+                                                <div class="notification is-danger">
+                                                    Invalid Price
+                                                </div> : null}
                                         </div>
 
                                         <div className="field">
@@ -150,6 +163,10 @@ export default function EditItemPage() {
                                                 </div>
                                                 <button onClick={(e) => update(e, 2, stock)} className="button is-link is-outlined">Update</button>
                                             </div>
+                                            {stock < 0 ?
+                                                <div class="notification is-danger">
+                                                    Invalid Stock
+                                                </div> : null}
                                         </div>
 
                                         <div class="field">
@@ -175,6 +192,25 @@ export default function EditItemPage() {
                                             <button onClick={(e) => update(e, 4, category)} className="button is-link is-outlined">Update</button>
                                         </div>
 
+                                        <div class="field">
+                                            <label class="label">Select location</label>
+                                            <div className="field has-addons">
+                                                <div class="control">
+                                                    <div class="select">
+                                                        <RegionDropdown
+                                                            country={communityName.charAt(0).toUpperCase() + communityName.slice(1)}
+                                                            //showDefaultOption={item.province}
+                                                            value={province}
+                                                            onChange={(e) => setProvince(e)}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="input" defaultValue={item.city} required onChange={(e) => setCity(e.target.value)} />
+                                                {/*<p className="help">OPTIONAL</p>*/}
+                                                <button onClick={(e) => update(e, 5, province, city)} className="button is-link is-outlined">Update</button>
+                                            </div>
+                                        </div>
+
                                         <div>
                                             <label class="label">Discount</label>
                                             <div class="control">
@@ -189,7 +225,7 @@ export default function EditItemPage() {
 
                                                     </select>
                                                 </div>
-                                                <button onClick={(e) => update(e, 5, discount)} className="button is-link is-outlined">Update</button>
+                                                <button onClick={(e) => update(e, 6, discount)} className="button is-link is-outlined">Update</button>
                                             </div>
                                         </div>
 
@@ -200,12 +236,18 @@ export default function EditItemPage() {
 
                                                 <img src={item.imageURL} alt="Image"></img>
                                                 <input type="text" className="input" defaultValue={item.imageURL} required onChange={(e) => setImageURL(e.target.value)} />
-                                                <button onClick={(e) => update(e, 6, imageURL)} className="button is-link is-outlined">Update</button>
+                                                <button onClick={(e) => update(e, 7, imageURL)} className="button is-link is-outlined">Update</button>
 
                                             </div>
                                         </div>
 
+
+                                        <Link to="/my-item" className="button is-danger">Cancel</Link>
+
+
                                     </div>
+
+
                                 </div>
                             </div>
                         )}
