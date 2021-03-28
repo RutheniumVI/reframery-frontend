@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { addBalanceToUser, deductBalanceToUser } from "../actions/transactionActions";
 import { banUser, getUser, unBanUser } from "../actions/userActions";
 import Header from 'components/Header';
 import SideBar from "components/AdminSidebar";
