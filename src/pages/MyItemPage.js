@@ -21,14 +21,6 @@ export default function MyItemPage() {
             <div className="list-products" >
               <CreatedItemList />
             </div>
-            {/*
-            <div className="list-services" >
-              <CreatedItemList mainCategory="services" />
-            </div>
-            <div className="list-expertises">
-              <CreatedItemList mainCategory="expertises" />
-            </div>
-            */}
           </div>
         </div>
       </div>
