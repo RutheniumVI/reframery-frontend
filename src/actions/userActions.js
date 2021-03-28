@@ -282,13 +282,13 @@ export const updateUserAddress = (email, address, city, province, country, postc
 
 
 //update the image of the given user
-export const updateUserImage = (email, imageBinary
+export const updateUserImage = (email, userImage
 ) => async (dispatch) => {
     dispatch({ type: USER_IMAGE_UPDATE_REQUEST, payload: email });
     try {
-        const { data } = await Axios.put(`/users/uploadUserImage/${email}`,
+        const { data } = await Axios.post(`/users/uploadUserImage/${email}`,
             {
-                imageBinary
+                userImage
             }
         );
         dispatch({ type: USER_IMAGE_UPDATE_SUCCESS, payload: data });

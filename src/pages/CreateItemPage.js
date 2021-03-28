@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 
@@ -16,12 +16,18 @@ export default function CreateItemPage() {
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [discount, setDiscount] = useState('');
+    const [imageURL, setImageURL] = useState('');
+    const [clicked, setClicked] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+
 
     const dispatch = useDispatch();
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const itemCreate = useSelector(state => state.itemCreate);
-    const { item, error } = itemCreate;
+    const { loading, item, error } = itemCreate;
+
+
 
 
     //console.log("User Info: " + userInfo.email);
@@ -31,10 +37,19 @@ export default function CreateItemPage() {
     const userEmail = userInfo.email;
     const communityName = userInfo.communityName;
 
-    const imageURL = ""; // sm.ms 图床
     const subCategoryName = "food";
 
 
+    useEffect(() => {
+        if (clicked) {
+            if (!(error == "requesting" || error == "sucess")) {
+                window.alert("Create Item Failed: " + error);
+
+            } else if (error == "sucess") {
+                navigate('/my-item');
+            }
+        }
+    }, [dispatch, error]);
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -44,9 +59,12 @@ export default function CreateItemPage() {
             );
         }
 
-        //console.log("Error: " + error);
 
-        console.log("Item: " + item);
+        setClicked(true);
+
+
+        /*
+        
         if (item) {
             navigate('/my-item');
             //window.alert("Create Item Failed");
@@ -55,6 +73,7 @@ export default function CreateItemPage() {
             window.alert("Create Item Failed: " + error);
 
         }
+        */
 
     };
 
@@ -75,10 +94,11 @@ export default function CreateItemPage() {
                                     <input type="text" className="input" placeholder="e.g. Birthday Cake" value={itemname} required onChange={(e) => setItemname(e.target.value)} />
                                 </div>
                                 <p class="help">Should not exceed 15 characters</p>
-                                {itemname.length <= 15 ? null :                                 
-                                <div class="notification is-danger">
-                                    Invalid Item Name
-                                </div>}
+
+                                {itemname.length > 15 ?
+                                    <div class="notification is-danger">
+                                        Invalid Item Name
+                                </div> : null}
 
                             </div>
 
@@ -96,10 +116,11 @@ export default function CreateItemPage() {
                                         </a>
                                     </div>
                                 </div>
-                                {price >= 0 ? null :                                 
-                                <div class="notification is-danger">
-                                    Invalid Price
-                                </div>}
+
+                                {price < 0 ?
+                                    <div class="notification is-danger">
+                                        Invalid Price
+                                </div> : null}
                             </div>
 
                             <div className="field">
@@ -115,10 +136,12 @@ export default function CreateItemPage() {
                                         </a>
                                     </div>
                                 </div>
-                                {stock >= 0 ? null :                                 
-                                <div class="notification is-danger">
-                                    Invalid Stock
-                                </div>}
+
+                                {stock < 0 ?
+                                    <div class="notification is-danger">
+                                        Invalid Stock
+                                    </div> : null}
+
                             </div>
 
                             <div class="field">
@@ -158,6 +181,16 @@ export default function CreateItemPage() {
                                 </div>
                             </div>
 
+                            <div className="field">
+                                <label className="label">Item Image</label>
+                                <div className="control">
+                                    <input type="text" className="input" value={imageURL} required onChange={(e) => setImageURL(e.target.value)} />
+                                </div>
+                                <p class="help">Please upload the image on hosting service, copy and paste the image URL back to the input field.</p>
+                            </div>
+
+                            {/*
+                            Image backend not yet implemented
                             <div className="file is-boxed is-success has-name mt-4 mb-4">
                                 <label className="file-label">
                                     <input className="file-input" type="file" name="resume" />
@@ -174,6 +207,7 @@ export default function CreateItemPage() {
                                     </span>
                                 </label>
                             </div>
+                            */}
 
                             <div class="field is-grouped is-grouped-centered">
                                 <button

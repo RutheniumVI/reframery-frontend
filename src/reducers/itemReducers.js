@@ -32,9 +32,9 @@ const {
 export const itemCreateReducer = (state = {}, action) => {
     switch (action.type) {
         case ITEM_CREATE_REQUEST:
-            return { loading: true };
+            return { loading: true, error: "requesting"};
         case ITEM_CREATE_SUCCESS:
-            return { loading: false, item: action.payload };
+            return { loading: false, item: action.payload, error: "sucess" };
         case ITEM_CREATE_FAIL:
             return { loading: false, error: action.payload };
         default:

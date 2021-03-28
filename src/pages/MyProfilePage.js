@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 export default function MyProfilePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // get sign in user token
+  // get sign in user info
   const userSignin = useSelector(state => state.userSignin);
   const { userInfo } = userSignin;
 
@@ -28,9 +28,13 @@ export default function MyProfilePage() {
   const userGet = useSelector(state => state.userGet);
   const { loading, error, user } = userGet;
 
-  // get sign in user detail informaton
+  // get the updated user object
   const userUpdate = useSelector(state => state.userUpdate);
   const { user: updatedUser } = userUpdate;
+
+  // get the updated user object after update the user image
+  const userImageUpdate = useSelector(state => state.userImageUpdate);
+  const { user: updatedUserImage } = userImageUpdate;
 
   // constant for update information
   const [username, setUsername] = useState('');
@@ -40,8 +44,9 @@ export default function MyProfilePage() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [birthday, setBirthday] = useState('');
-  const [binaryImage, setBinaryImage] = useState('');
+  const [userImageURL, setUserImageURL] = useState('');
   const [erroMessage, setErrorMessage] = useState('');
+  const today = new Date();
 
   // check if the first name and last is valid
   const isValidUserName = (str) => {
@@ -67,6 +72,7 @@ export default function MyProfilePage() {
   // function for uploading the image of the user
   const uploadimageHandler = (e) => {
     e.preventDefault();
+    /**
     var fileName = e.target.value;
     var idxDot = fileName.lastIndexOf(".") + 1;
     var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
@@ -88,7 +94,14 @@ export default function MyProfilePage() {
     if (confirm) {
       dispatch(updateUserImage(userInfo.email, binaryImage));
     }
-    window.location.reload();
+     */
+
+    if (userImageURL === "") {
+      setErrorMessage("! Empty input");
+    } else {
+      dispatch(updateUserImage(userInfo.email, userImageURL));
+    }
+
   };
 
   //update user name 
@@ -135,7 +148,7 @@ export default function MyProfilePage() {
     }
     else if (!isValidPhoneNumber(phoneNumber)) {
       setErrorMessage("! Invalid phone number");
-    } 
+    }
     else {
       dispatch(updateUserPhone(userInfo.email, phoneNumber));
     }
@@ -165,8 +178,13 @@ export default function MyProfilePage() {
   const updateUserBirthdayHandler = (e) => {
     e.preventDefault();
     if (birthday === "") {
-      setErrorMessage("! Empty input");
-    } else {
+      setErrorMessage("! Empty Input");
+    } else if (parseInt(parseInt(birthday.split("-")[0])) > today.getFullYear()
+      || (parseInt(birthday.split("-")[0]) === today.getFullYear() && parseInt(birthday.split("-")[1]) > (today.getMonth()+1))
+      || (parseInt(birthday.split("-")[0]) === today.getFullYear() && parseInt(birthday.split("-")[1]) === (today.getMonth()+1) && parseInt(birthday.split("-")[2]) > today.getDate())) {
+        setErrorMessage("! Invalid birthday");
+    }
+    else {
       dispatch(updateUserBirthday(userInfo.email, birthday));
     }
   };
@@ -189,112 +207,119 @@ export default function MyProfilePage() {
 
   useEffect(() => {
     dispatch(getUser(userInfo.email));
-    if (updatedUser) {
+    if (updatedUser || updatedUserImage) {
       window.location.reload();
     }
-  }, [dispatch, userInfo, updatedUser]);
+  }, [dispatch, userInfo, updatedUser, updatedUserImage]);
 
   return (
-    <div>
+    <div className="page-container">
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-            <div>
-              <Header community={user.community} cartNum={0} />
-              <div className="sidebar-content">
-                {userInfo.admin ? <AdminSideBar /> : <SideBar />}
-                <div className="profile-container">
-                  <form className="form-profile" >
-                    <div className="danger">{erroMessage}</div>
-                    <div className="title-image">
-                      <div className="upload-image">
-                        <img
-                          src="/images/blank.png"
-                          alt="user"
-                          width="150"
-                        ></img >
-                        <div class="upload-button">
-                          <div class="fileinputs">
+        <div>
+          <Header community={user.community} cartNum={0} />
+          <div className="sidebar-content">
+            {userInfo.admin ? <AdminSideBar /> : <SideBar />}
+            <div className="profile-container">
+              <form className="form-profile" >
+                <div className="danger">{erroMessage}</div>
+                <div className="title-image">
+                  <div className="upload-image">
+                    <img
+                      src={user.userImage ? user.userImage : "/images/blank.png"}
+                      alt="user"
+                      width="150"
+                    ></img >
+                    {/* We use a temporary jason server as our backend database and we can not send the binary image
+                     to the server, we will require user to enter an url for the uploaded image instead of upload image from local folder */}
+                    {/* <div className="upload-button">
+                          <div className="fileinputs">
                             <input type="file" className="file" id="file" accept=".jpg,.png"
                               onChange={uploadimageHandler} onClick={e => (e.target.value = null)} />
-                            <div class="fakefile">
+                            <div className="fakefile">
                               <input placeholder="Upload Image" />
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <h1>My Profile</h1>
+                        </div> */}
+                    <div>
+                      <input id="userImage" type="text" placeholder="Upload Image" onChange={(e) => setUserImageURL(e.target.value)} />
+                      <button onClick={uploadimageHandler}> Update</button>
+                      {/* <p className="help">Please upload the image on hosting service, copy and paste the image URL back to the input field.</p> */}
                     </div>
-
-
-                    <div className="profile-row">
-                      <div>
-                        <label >Email</label>
-                        <input id="email" type="email" placeholder={user.email} readOnly></input>
-                      </div>
-                      <div>
-                        <label>User Name</label>
-                        <input id="username" type="text" placeholder={user.username} onChange={(e) => setUsername(e.target.value)}></input>
-                        <button onClick={updateUserNameHandler}> Update</button>
-                      </div>
-                      <div>
-                        <label>Company Name</label>
-                        <input id="username" type="text" placeholder={user.company} onChange={(e) => setCompany(e.target.value)}></input>
-                        <button onClick={updateCompanyNameHandler}> Update</button>
-                      </div>
-                      <div>
-                        <label>Password</label>
-                        <input id="password" type="password" placeholder="******" onChange={(e) => setPassword(e.target.value)}></input>
-                        <button onClick={updateUserPasswordHandler}>Update</button>
-                      </div>
-                      <div>
-                        <label >Phone</label>
-                        <PhoneInput placeholder={user.phoneNumber} onChange={setPhoneNumber} />
-                        {user.phoneNumber === "" ? (<button onClick={updateUserPhoneHandler}>Add</button>) :
-                          (<button onClick={updateUserPhoneHandler}>Update</button>)}
-                      </div>
-                      <div>
-                        <label >Address</label>
-                        <input id="address" type="text"
-                          placeholder={user.address + " " + user.city + " "
-                            + user.province + " " + user.postcode + ", " + user.country} >
-                        </input>
-                        {user.address === "" ? (<Link to="/update-user-address"><button>Add</button></Link>) :
-                          (<Link to="/update-user-address"><button >Update</button></Link>)}
-                      </div>
-                      <div>
-                        <label >First Name</label>
-                        <input id="firstName" type="text" placeholder={user.firstName} onChange={(e) => setFirstName(e.target.value)}></input>
-                        {user.firstName === "" ? (<button onClick={updateUserFirstNameHandler}>Add</button>) :
-                          (<button onClick={updateUserFirstNameHandler}>Update</button>)}
-                      </div>
-                      <div>
-                        <label >Last Name</label>
-                        <input id="lastName" type="text" placeholder={user.lastName} onChange={(e) => setLastName(e.target.value)}></input>
-                        {user.lastName === "" ? (<button onClick={updateUserLastNameHandler}>Add</button>) :
-                          (<button onClick={updateUserLastNameHandler}>Update</button>)}
-                      </div>
-                      <div>
-                        <label >Birthday</label>
-                        <input id="birthday" type="text" onFocus={(e) => (e.currentTarget.type = "date")} onBlur={(e) => (e.currentTarget.type = "text")} placeholder={user.birthday} onChange={(e) => setBirthday(e.target.value)}></input>
-                        {user.birthday === "" ? (<button onClick={updateUserBirthdayHandler}>Add</button>) :
-                          (<button onClick={updateUserBirthdayHandler}>Update</button>)}
-                      </div>
-                      <div>
-                        <label >Register Time</label>
-                        <input id="registerTime" placeholder={user.registerTime.slice(0, 10)} readOnly></input>
-                        <button onClick={deleteHandler} >Unsubscribe</button>
-                      </div>
-                    </div>
-
-                  </form>
+                  </div>
+                  <h1>My Profile</h1>
                 </div>
-              </div>
-              <Footer />
+
+
+                <div className="profile-row">
+                  <div>
+                    <label >Email</label>
+                    <input id="email" type="email" placeholder={user.email} readOnly></input>
+                  </div>
+                  <div>
+                    <label>User Name</label>
+                    <input id="username" type="text" placeholder={user.username} onChange={(e) => setUsername(e.target.value)}></input>
+                    <button onClick={updateUserNameHandler}> Update</button>
+                  </div>
+                  <div>
+                    <label>Company Name</label>
+                    <input id="companyName" type="text" placeholder={user.company} onChange={(e) => setCompany(e.target.value)}></input>
+                    <button onClick={updateCompanyNameHandler}> Update</button>
+                  </div>
+                  <div>
+                    <label>Password</label>
+                    <input id="password" type="password" placeholder="******" onChange={(e) => setPassword(e.target.value)}></input>
+                    <button onClick={updateUserPasswordHandler}>Update</button>
+                  </div>
+                  <div>
+                    <label >Phone</label>
+                    <PhoneInput placeholder={user.phoneNumber} onChange={setPhoneNumber} />
+                    {user.phoneNumber === "" ? (<button onClick={updateUserPhoneHandler}>Add</button>) :
+                      (<button onClick={updateUserPhoneHandler}>Update</button>)}
+                  </div>
+                  <div>
+                    <label >Address</label>
+                    <input id="address" type="text"
+                      placeholder={user.address + " " + user.city + " "
+                        + user.province + " " + user.postcode + ", " + user.country} >
+                    </input>
+                    {user.address === "" ? (<Link to="/update-user-address"><button>Add</button></Link>) :
+                      (<Link to="/update-user-address"><button >Update</button></Link>)}
+                  </div>
+                  <div>
+                    <label >First Name</label>
+                    <input id="firstName" type="text" placeholder={user.firstName} onChange={(e) => setFirstName(e.target.value)}></input>
+                    {user.firstName === "" ? (<button onClick={updateUserFirstNameHandler}>Add</button>) :
+                      (<button onClick={updateUserFirstNameHandler}>Update</button>)}
+                  </div>
+                  <div>
+                    <label >Last Name</label>
+                    <input id="lastName" type="text" placeholder={user.lastName} onChange={(e) => setLastName(e.target.value)}></input>
+                    {user.lastName === "" ? (<button onClick={updateUserLastNameHandler}>Add</button>) :
+                      (<button onClick={updateUserLastNameHandler}>Update</button>)}
+                  </div>
+                  <div>
+                    <label >Birthday</label>
+                    <input id="birthday" type="text" onFocus={(e) => (e.currentTarget.type = "date")} onBlur={(e) => (e.currentTarget.type = "text")} placeholder={user.birthday} onChange={(e) => setBirthday(e.target.value)}></input>
+                    {user.birthday === "" ? (<button onClick={updateUserBirthdayHandler}>Add</button>) :
+                      (<button onClick={updateUserBirthdayHandler}>Update</button>)}
+                  </div>
+                  <div>
+                    <label >Register Time</label>
+                    <input id="registerTime" placeholder={user.registerTime.slice(0, 10)} readOnly></input>
+                    <button onClick={deleteHandler} >Unsubscribe</button>
+                  </div>
+                </div>
+
+              </form>
             </div>
-          )}
+          </div>
+          <Footer />
+        </div>
+      )}
     </div>
 
 
