@@ -23,6 +23,7 @@ import AddressForm from "pages/AddressForm";
 import Confirm from "pages/Confirm";
 import Payment from "pages/Payment";
 import CreateItemPage from "pages/CreateItemPage";
+import EditItemPage from "pages/EditItemPage";
 import Landing from "pages/Landing";
 import MyProfilePage from "./pages/MyProfilePage";
 import AboutPage from "pages/AboutPage";
@@ -33,6 +34,7 @@ import DevelopmentTeamPage from "pages/DevelopmentTeamPage";
 import PrivacyPolicyPage from "pages/PrivacyPolicyPage";
 import TermsPage from "pages/TermsPage";
 import UpdateUserAddressPage from "pages/UpdateUserAddressPage";
+
 
 export default function App() {
   const userSignin = useSelector(state => state.userSignin);
@@ -67,6 +69,7 @@ export default function App() {
           {userInfo ? (userInfo.admin ? null : <Route path="/my-profile" element={<UserPage />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/update-user-address" element={<UpdateUserAddressPage />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/my-item" element={<MyItemPage />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/my-item/:id" element={<EditItemPage />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/create-item" element={<CreateItemPage />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/my-history" element={<TransHistPage />} />) : null}
 
