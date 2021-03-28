@@ -58,7 +58,10 @@ export default function CreateItemPage() {
             dispatch(createItem(itemname, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName)
             );
         }
+
+
         setClicked(true);
+
 
         /*
         
@@ -91,6 +94,7 @@ export default function CreateItemPage() {
                                     <input type="text" className="input" placeholder="e.g. Birthday Cake" value={itemname} required onChange={(e) => setItemname(e.target.value)} />
                                 </div>
                                 <p class="help">Should not exceed 15 characters</p>
+
                                 {itemname.length > 15 ?
                                     <div class="notification is-danger">
                                         Invalid Item Name
@@ -112,6 +116,7 @@ export default function CreateItemPage() {
                                         </a>
                                     </div>
                                 </div>
+
                                 {price < 0 ?
                                     <div class="notification is-danger">
                                         Invalid Price
@@ -131,6 +136,7 @@ export default function CreateItemPage() {
                                         </a>
                                     </div>
                                 </div>
+
                                 {stock < 0 ?
                                     <div class="notification is-danger">
                                         Invalid Stock

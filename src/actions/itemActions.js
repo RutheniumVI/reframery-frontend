@@ -40,7 +40,7 @@ Axios.defaults.auth = {
 // create an new item and send it to backend
 //xport const createItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
 export const createItem = (name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName) => async (dispatch) => {
-  
+
   dispatch({ type: ITEM_CREATE_REQUEST, payload: { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName } });
   try {
     const { data } = await Axios.post('/items/item', { name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName });
@@ -56,13 +56,73 @@ export const createItem = (name, category, subCategoryName, imageURL, userEmail,
 };
 
 //update an item attributes 
-export const updateItem = (ItemID, category, name, price, image, stock, description, discount, subCategoryID
+export const updateItem = (itemID, name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName
 ) => async (dispatch) => {
-  dispatch({ type: ITEM_UPDATE_REQUEST, payload: ItemID });
+  dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
   try {
-    const { data } = await Axios.put(`/items/item/${ItemID}`,
+    const { data } = await Axios.patch(`/items/item/${itemID}`,
       {
-        ItemID, category, name, price, image, stock, description, discount, subCategoryID
+        itemID, name, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName
+      }
+    );
+    dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ITEM_UPDATE_FAIL, payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    });
+  }
+};
+
+export const updateItemName = (itemID, name
+) => async (dispatch) => {
+  dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
+  try {
+    const { data } = await Axios.patch(`/items/item/${itemID}`,
+      {
+        itemID, name
+      }
+    );
+    dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ITEM_UPDATE_FAIL, payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    });
+  }
+};
+
+export const updateItemPrice = (itemID, price
+) => async (dispatch) => {
+  dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
+  try {
+    const { data } = await Axios.patch(`/items/item/${itemID}`,
+      {
+        itemID, price
+      }
+    );
+    dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ITEM_UPDATE_FAIL, payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    });
+  }
+};
+
+export const updateItemStock = (itemID, stock
+) => async (dispatch) => {
+  dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
+  try {
+    const { data } = await Axios.patch(`/items/item/${itemID}`,
+      {
+        itemID, stock
       }
     );
     dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
@@ -77,13 +137,75 @@ export const updateItem = (ItemID, category, name, price, image, stock, descript
 };
 
 
-//update an item image
-export const updateItemImage = (ItemID, imageBinary) => async (dispatch) => {
-  dispatch({ type: ITEM_UPDATE_IMAGE_REQUEST, payload: ItemID });
+export const updateItemDescription = (itemID, description
+) => async (dispatch) => {
+  dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
   try {
-    const { data } = await Axios.put(`/items/item/${ItemID}`,
+    const { data } = await Axios.patch(`/items/item/${itemID}`,
       {
-        ItemID, imageBinary
+        itemID, description
+      }
+    );
+    dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ITEM_UPDATE_FAIL, payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    });
+  }
+};
+
+export const updateItemCategory = (itemID, category
+  ) => async (dispatch) => {
+    dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
+    try {
+      const { data } = await Axios.patch(`/items/item/${itemID}`,
+        {
+          itemID, category
+        }
+      );
+      dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: ITEM_UPDATE_FAIL, payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+      });
+    }
+  };
+
+
+  export const updateItemDiscount = (itemID, discount
+    ) => async (dispatch) => {
+      dispatch({ type: ITEM_UPDATE_REQUEST, payload: itemID });
+      try {
+        const { data } = await Axios.patch(`/items/item/${itemID}`,
+          {
+            itemID, discount
+          }
+        );
+        dispatch({ type: ITEM_UPDATE_SUCCESS, payload: data });
+      } catch (error) {
+        dispatch({
+          type: ITEM_UPDATE_FAIL, payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message
+        });
+      }
+    };
+
+
+//update an item image
+export const updateItemImage = (itemID, imageURL) => async (dispatch) => {
+  dispatch({ type: ITEM_UPDATE_IMAGE_REQUEST, payload: itemID });
+  try {
+    const { data } = await Axios.patch(`/items/item/${itemID}`,
+      {
+        itemID, imageURL
       }
     );
     dispatch({ type: ITEM_UPDATE_IMAGE_SUCCESS, payload: data });
@@ -149,7 +271,7 @@ export const getItemsOfCategory = (category, limit, page, reversed, communityNam
 // fetch alist of itmes for a giving user from backend
 export const getItemsOfUser = (userEmail, limit, page, reversed) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_USER_REQUEST });
-  
+
   try {
     const { data } = await Axios.get(`/items/itemsOfUser/${userEmail}-${limit}-${page}-${reversed}`);
     dispatch({ type: ITEM_LIST_USER_SUCCESS, payload: data });
@@ -162,7 +284,7 @@ export const getItemsOfUser = (userEmail, limit, page, reversed) => async (dispa
 export const getItemsOfSubCategory = (subcategoryName, limit, page, reversed, communityName) => async (dispatch) => {
   dispatch({ type: ITEM_LIST_SUBCATEGORY_REQUEST });
   try {
-    const { data } = await Axios.get(`/items/getItemsOfSubCategory/${subcategoryName}-${limit}-${page}-${reversed}`, {communityName});
+    const { data } = await Axios.get(`/items/getItemsOfSubCategory/${subcategoryName}-${limit}-${page}-${reversed}`, { communityName });
     dispatch({ type: ITEM_LIST_SUBCATEGORY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ITEM_LIST_SUBCATEGORY_FAIL, payload: error.message });
