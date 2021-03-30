@@ -1,98 +1,109 @@
-import React from "react";
-import Sidebar from "components/SideBar";
+import React, { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { useMatch, useNavigate } from "react-router";
+import { deleteUser, getUser, signout, updateUser, updateUserImage } from "../actions/userActions";
+import SideBar from "components/SideBar";
+import AdminSideBar from "components/AdminSidebar";
+import Footer from 'components/Footer'
 import CartCard from "components/CartCard";
-import CartSum from "components/CartSum";
-import Header from "components/Header";
-import NewSidebar from "components/SideBar";
 import axios from "commons/axios";
+import CartSum from "components/CartSum";
+import { toast } from "react-toastify";
 
-class Cart extends React.Component {
+// import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input/input'
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import userEvent from "@testing-library/user-event";
+import { getItem } from "actions/itemActions";
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            cart_cards: [],
-        }
-        this.updateCart = this.updateCart.bind(this);
-        this.deleteCart = this.deleteCart.bind(this);
-    }
 
-    // set initial variables for summation
-    sum = 0;
-    num = 0;
 
-    // get shopping cart contents from the backend
-    componentDidMount (){
-        axios.get("/cart").then(res => {
-            this.setState({
-                cart_cards: res.data
-            })
-        })  
-    }
+const Cart = () => {
+    const dispatch = useDispatch();
+    // get sign in user token
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+    
+    // get sign in user detail informaton
+    const userGet = useSelector(state => state.userGet);
+    const { loading, error, user } = userGet;
 
-    // function to update the cart when the user adjust the number of certain items in the cart
-    updateCart = (new_cart_card) => {
-        // copy the current shopping cart
-        const new_cart_cards = this.state.cart_cards;
-        // Find the corresponding cart item that has been changed
-        const _index = new_cart_cards.findIndex(card => card.id === new_cart_card.id);
-        // Update this cart item
-        new_cart_cards.splice(_index, 1, new_cart_card);
-        // Set it to state so that the page gets rendered again
-        this.setState({
-            cart_cards: new_cart_cards
+    useEffect(() => {
+        dispatch(getUser(userInfo.email));
+      }, [dispatch, userInfo]);
+    
+    // function to update amount (after receiving calls from the CartCard component)
+    const updateAmount = (id, _amount) => {
+        // update the amount
+        user.shoppingCart.forEach(item => {
+            if(item.id === id){
+                item.amount = _amount;
+            }
+        });
+      
+        // put the new cart to the backend
+        axios.put("/users/"+user.id, user).then(res => {
+            // Prompt the user for success
+            toast.success("Item Amount Changed Successfully!");
+            // rerender the page
+           window.location.reload();
         })
     }
 
-    // function to update the cart when the user delete certain item in the shopping cart
-    deleteCart(deleted_card){
-        // filter out the deleted card
-        const deleted_cart_cards = this.state.cart_cards.filter(card => card.id !== deleted_card.id);
-        // Set it to state so that the page gets rendered again
-        this.setState({
-            cart_cards: deleted_cart_cards
+    // function to delete an item from the shopping cart (after receiving calls from the CartCard component)
+    const deleteItem = (id) => {
+        // delete the item
+        const _cart = [];
+        user.shoppingCart.forEach(item => {
+            if (item.id !== id){
+                _cart.push(item)
+            }
+        })
+        user.shoppingCart = _cart;
+        
+        // put the new cart to the backend
+        axios.put("/users/"+user.id, user).then(res => {
+            // rerender the page
+            window.location.reload();
         })
     }
 
-    render (){
-        // set variables for summation
-        let sum = 0;
-        let num = 0;
-
-        return (
-            <div>
-                <Header />
+    return (
+    <div>
+        {loading ? (
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
                 <div className="container cart">
                     <div className="columns">
                         <div className="column is-one-quarter">
-                            <NewSidebar />
+                            {userInfo.admin? <AdminSideBar /> : <SideBar/>} 
                         </div>
 
                         <div className="column　is-half cart-body">
                             <h1 className="title is-1">Shopping Cart</h1>
-                            <progress class="progress" value="25" max="100">25%</progress>
-                            <div className="columns is-multiline cart-items">
-
-                                {this.state.cart_cards.map(cart_card => {
-                                    sum += cart_card.price * cart_card.amount;
-                                    num += cart_card.amount;
-                                    return (
-                                        <div className="column is-full" key={cart_card.id}>
-                                            <CartCard card_item={cart_card} update={this.updateCart} delete={this.deleteCart} />
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                            <progress class="progress" value="25" max="100">25%</progress>       
                         </div>
 
                         <div className="column is-one-quarter">
-                            <CartSum sumPrice={sum} itemNum={num} />
+                            List of your shopping carts:
+                            <div className="button is-info">Default Shopping Cart</div>
+                            <div className="button is-info">Customized Shopping Cart 01</div>
+                            <div className="button is-info">Customized Shopping Cart 02</div>
+                            <div className="button is-info">Customized Shopping Cart 03</div>
+                            <div className="button is-info">Customized Shopping Cart 04</div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        )
-    }
+        )}
+        <Footer />
+        </div>
+  
+  
+    )
 }
 
 export default Cart;
