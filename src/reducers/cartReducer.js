@@ -100,7 +100,7 @@ export const updateItemCountReducer = (state = { loading: true }, action ) => {
 }
 
 // get all the shopping carts of the user
-export const getUserCartsReducer = (state = { loading: true, carts: []}) => {
+export const getUserCartsReducer = (state = { loading: true, carts: []}, action) => {
     switch (action.type) {
         case GET_CARTS_REQUEST:
             return { loading: true };

@@ -15,13 +15,19 @@ export default function ItemDetails() {
     const { id } = useParams();
     const dispatch = useDispatch();
 
+    // get sign-in user info
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;  
     
+    // get item details
     const itemGet = useSelector((state) => state.itemGet);
     const { loading, error, item } = itemGet;
+
+
+
     const addToCartHandler = () => {
-        // TODO
+        // check the number of shopping carts owned by the current user
+
     }
 
     // send the request to the backend
