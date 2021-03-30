@@ -50,8 +50,8 @@ export default function SideBar() {
         </p>
 
         <ul className="menu-list">
-          <li><Link className="link" to="/my-history">Purchase</Link></li>
-          <li><Link className="link" to="/my-history">Sales</Link></li>
+          <li><Link className="link" to="/purchase-history">Purchase</Link></li>
+          <li><Link className="link" to="/sales-history">Sales</Link></li>
         </ul>
 
         <p className="menu-label">

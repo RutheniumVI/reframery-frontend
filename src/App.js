@@ -12,10 +12,9 @@ import OverviewPage from './pages/AdminOverviewPage';
 import AwaitingPage from './pages/AdminUnvalidatedUserPage';
 import CreateAdminPage from './pages/AdminCreateAdminPage';
 import AdminManagePage from "./pages/AdminManagementPage";
-import Signin from './pages/SigninPage'
-import Register from './pages/RegisterPage'
-import WalletPage from './pages/MyWalletPage'
-import TransHistPage from './pages/MyHistoryPage'
+import Signin from './pages/SigninPage';
+import Register from './pages/RegisterPage';
+import WalletPage from './pages/MyWalletPage';
 import WellcomePage from "./pages/WellcomePage";
 import ItemDetails from "./pages/ItemDetailsPage";
 import Cart from "pages/Cart";
@@ -34,6 +33,9 @@ import DevelopmentTeamPage from "pages/DevelopmentTeamPage";
 import PrivacyPolicyPage from "pages/PrivacyPolicyPage";
 import TermsPage from "pages/TermsPage";
 import UpdateUserAddressPage from "pages/UpdateUserAddressPage";
+import PurchaseHistory from "pages/PurchaseHistory";
+import SalesHistory from "pages/SalesHistory";
+
 
 
 export default function App() {
@@ -71,7 +73,8 @@ export default function App() {
           {userInfo ? (userInfo.admin ? null : <Route path="/my-item" element={<MyItemPage />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/my-item/:id" element={<EditItemPage />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/create-item" element={<CreateItemPage />} />) : null}
-          {userInfo ? (userInfo.admin ? null : <Route path="/my-history" element={<TransHistPage />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/purchase-history" element={<PurchaseHistory />} />) : null}
+          {userInfo ? (userInfo.admin ? null : <Route path="/sales-history" element={<SalesHistory />} />) : null}
 
          
           {/* only for admin users */}
