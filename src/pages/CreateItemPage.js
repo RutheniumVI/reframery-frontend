@@ -7,7 +7,7 @@ import { createItem } from "../actions/itemActions";
 import Header from 'components/Header';
 import SideBar from "components/SideBar";
 import Footer from 'components/Footer';
-import { RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+import { RegionDropdown } from 'react-country-region-selector';
 
 export default function CreateItemPage() {
     const navigate = useNavigate();
@@ -16,11 +16,13 @@ export default function CreateItemPage() {
     const [stock, setStock] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
+    const [subCategoryName, setSubcategory] = useState('');
     const [discount, setDiscount] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [clicked, setClicked] = useState(false);
     const [province, setProvince] = useState('');
     const [city, setCity] = useState('');
+
 
 
     const dispatch = useDispatch();
@@ -32,8 +34,28 @@ export default function CreateItemPage() {
 
     const userEmail = userInfo.email;
     const communityName = userInfo.communityName;
+    let type = null;
+    let options = null;
 
-    const subCategoryName = "food";
+
+    const products = ["food", "clothing", "home", "toys", "pets", "crafts"];
+    const services = ["landscaping", "homemaintenance"];
+    const expertises = ["consulting", "traning"];
+
+
+
+    if (category === "products") {
+        type = products;
+    } else if (category === "services") {
+        type = services;
+    } else if (category === "expertises") {
+        type = expertises;
+    }
+
+    if (type) {
+        options = type.map((x) => <option value={x}>{x}</option>);
+    }
+
 
 
 
@@ -49,14 +71,13 @@ export default function CreateItemPage() {
     }, [dispatch, error]);
 
 
-    
+
 
     const handleChange = (e) => {
         e.preventDefault();
         const confirm = window.confirm("Are you sure to create this item for sale?");
         if (confirm) {
-            dispatch(createItem(itemname, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city)
-            );
+            dispatch(createItem(itemname, category, subCategoryName, imageURL, userEmail, price, stock, description, discount, communityName, province, city));
         }
         setClicked(true);
 
@@ -138,6 +159,7 @@ export default function CreateItemPage() {
 
                             <div class="field">
                                 <label class="label">*Select category</label>
+
                                 <div class="control">
                                     <div class="select">
                                         <select value={category} required onChange={(e) => setCategory(e.target.value)}>
@@ -146,8 +168,21 @@ export default function CreateItemPage() {
                                             <option value="services">service</option>
                                             <option value="expertises">expertise</option>
                                         </select>
+
+                                    </div>
+
+                                </div>
+                                <label class="label">Select subcategory</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select value={subCategoryName} required onChange={(e) => setSubcategory(e.target.value)}>
+                                            <option value="-1">--</option>
+                                            {options}
+                                        </select>
                                     </div>
                                 </div>
+
+
                             </div>
 
                             <div class="field">
@@ -159,7 +194,7 @@ export default function CreateItemPage() {
                                                 country={communityName.charAt(0).toUpperCase() + communityName.slice(1)}
                                                 value={province}
                                                 onChange={(e) => setProvince(e)}
-                                                 />                   
+                                            />
                                         </div>
                                     </div>
                                     <input type="text" className="input" placeholder="City (OPTIONAL)" required onChange={(e) => setCity(e.target.value)} />
