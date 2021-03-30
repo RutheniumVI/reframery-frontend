@@ -2,6 +2,7 @@ import { itemsSearchReducer } from 'reducers/searchReducers.js';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
+// import item reducers
 import {
     itemsOfCategoryGetReducer,
     itemGetReducer,
@@ -14,8 +15,16 @@ import {
     itemsOfSubcategoryGetReducer,
 } from './reducers/itemReducers.js';
 
-import { balanceAddReducer, balanceDeductReducer, balanceGetReducer, transactionGetReducer, transactionsOfUserGetReducer } from './reducers/transactionReducers.js';
+// import transaction reducers
+import { 
+    balanceAddReducer, 
+    balanceDeductReducer, 
+    balanceGetReducer, 
+    transactionGetReducer, 
+    transactionsOfUserGetReducer 
+} from './reducers/transactionReducers.js';
 
+// import user reducers
 import {
     adminUsersReducer,
     unvalidatedUsersCountReducer,
@@ -29,6 +38,35 @@ import {
     userValidateReducer,
     validatedUsersCountReducer
 } from './reducers/userReducer.js';
+
+// import feedback reducers
+import {
+    createFeedbackReducer,
+    getFeedbackReducer,
+    getFeedbacksOfUserReducer,
+    getFeedbacksOfRaterReducer
+} from "./reducers/feedbackReducer";
+
+// import cart reducers
+import {
+    createCartReducer,
+    getCartReducer,
+    addItemsToCartRducer,
+    numOfCartsForUserReducer,
+    updateItemCountReducer,
+    getUserCartsReducer,
+    deleteCartReducer,
+    deleteItemFromCartReducer
+} from "./reducers/cartReducer";
+
+// import order reducers
+import {
+    createOrderReducer,
+    patchOrderReducer,
+    getOrderReducer,
+    getOrdersOfBuyerReducer,
+    getOrdersOfSellerReducer
+} from "./reducers/orderReducer";
 
 const initialState = {
     userSignin: {
@@ -69,7 +107,30 @@ const reducer = combineReducers({
     itemOfSubcategoryGet: itemsOfSubcategoryGetReducer,
 
     //reducers for search
-    itemsSearch: itemsSearchReducer
+    itemsSearch: itemsSearchReducer,
+
+    //reducers for cart
+    createCart: createCartReducer,
+    getCart: getCartReducer,
+    addItemsToCart: addItemsToCartRducer,
+    numOfCartsForUser: numOfCartsForUserReducer,
+    updateItemCount: updateItemCountReducer,
+    getUserCarts: getUserCartsReducer,
+    deleteCart: deleteCartReducer,
+    deleteItemFromCart: deleteItemFromCartReducer,
+
+    //reducers for feedback
+    createFeedback: createFeedbackReducer,
+    getFeedback: getFeedbackReducer,
+    getFeedbacksOfUser: getFeedbacksOfUserReducer,
+    getFeedbacksOfRaterReducer: getFeedbacksOfRaterReducer,
+
+    //reducers for order
+    createOrder: createOrderReducer,
+    patchOrder: patchOrderReducer,
+    getOrder: getOrderReducer,
+    getOrdersOfBuyerReducer: getOrdersOfBuyerReducer,
+    getOrdersOfSellerReducer: getOrdersOfSellerReducer
 
 });
 

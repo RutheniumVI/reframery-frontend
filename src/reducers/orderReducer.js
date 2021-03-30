@@ -79,7 +79,7 @@ export const getOrdersOfBuyerReducer = (state = { loading: true, orders: [] }, a
 }
 
 // function to get a list of order objects that are all to seller
-export const getOrdersOfSeller = (state = { loading: true, orders: [] }, action) => {
+export const getOrdersOfSellerReducer = (state = { loading: true, orders: [] }, action) => {
     switch (action.type) {
         case GET_SELLER_ORDERS_REQUEST:
             return { loading: true };
