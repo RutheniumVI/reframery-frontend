@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { createUser, getUser } from "../actions/userActions";
+import { createCart } from "../actions/cartActions";
 import WellcomeComponent from "../components/WellcomeComponent";
 import Footer from 'components/Footer'
 
@@ -33,7 +34,7 @@ export default function Register() {
 
     // check if the email has been used, if it can get the user with the same email, the error should be false
     const userGet = useSelector(state => state.userGet);
-    const { error} = userGet;
+    const { error } = userGet;
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -55,7 +56,10 @@ export default function Register() {
         else {
             const confirm = window.confirm("Are you sure to create the account?");
             if (confirm) {
+                //create a new user record
                 dispatch(createUser(username, email, password, communityName));
+                //create a shopping cart for the user
+                dispatch(createCart(email, "default cart"));
                 navigate(redirect);
             }
         }

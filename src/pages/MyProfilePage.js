@@ -233,7 +233,7 @@ export default function MyProfilePage() {
                       alt="user"
                       width="150"
                     ></img >
-                    {/* We use a temporary jason server as our backend database and we can not send the binary image
+                    {/* We use a temporary json server as our backend database and we can not send the binary image
                      to the server, we will require user to enter an url for the uploaded image instead of upload image from local folder */}
                     {/* <div className="upload-button">
                           <div className="fileinputs">

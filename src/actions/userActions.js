@@ -70,7 +70,7 @@ export const signout = () => (dispatch) => {
 export const createUser = (username, email, password, communityName) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, communityName } });
     try {
-        const { data } = await Axios.post('/users/user', { username, email, password, communityName });
+        const { data } = await Axios.post('/users/user', { username, email, password, communityName })
         console.log(data);
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     } catch (error) {
