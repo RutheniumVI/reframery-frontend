@@ -562,10 +562,14 @@ input[type='checkbox']+label {
   font-weight: bold;
   color: #545871;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 0;
   margin-bottom: 0;
 
+}
+
+.list-products{
+  min-height: 600px;
 }
 
 .page-number {
@@ -601,6 +605,9 @@ input[type='checkbox']+label {
 }
 
 /******************** ListItem ***********************/
+.itemlist-container{
+  min-height: 600px;
+}
 
 .itemlist-container .home-category {
   font-size: 48px;
@@ -698,8 +705,8 @@ input[type='checkbox']+label {
 .profile-container .form-profile {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 0px;
   width: 700px;
   background-color: white;
   padding-left: 50px;

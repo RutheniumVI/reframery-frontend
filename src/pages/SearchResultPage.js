@@ -47,59 +47,62 @@ export default function SearchResultpage() {
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-                        items ? (
-                            items.length > 0 ?
-                                <div className="home-container">
-                                    <div className="header">
-                                        <Header community={community} cartNum={0} />
-                                    </div>
-                                    <div className="sidebar-content">
-                                        {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
 
-                                        <section className="container">
-                                            <div className="moreItems-category">
-                                                Search Result:
+                <div className="home-container">
+                    <div className="header">
+                        <Header community={community} cartNum={0} />
+                    </div>
+                    <div className="sidebar-content">
+                        {userInfo ? (userInfo.admin ? null : <SideBar />) : null}
+
+                        <section className="container">
+                            <div className="moreItems-category">
+                                Search Result:
+                            </div>
+                            {items ? (
+                                items.length > 0 ? <div>
+                                    <div className="list-products" >
+                                        <div className="itemlist-container" >
+                                            <div className="list-items">
+                                                {items.map((item) => (
+                                                    <Item key={item.id} item={item} community={community}></Item>
+                                                ))}
+
+                                            </div>
                                         </div>
-                                            <div className="list-products" >
-                                                <div className="itemlist-container" >
-                                                    <div className="list-items">
-                                                        {items.map((item) => (
-                                                            <Item key={item.id} item={item} community={community}></Item>
-                                                        ))}
 
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="page-number" >
-                                                &lt; {pageNumber} &gt;
                                     </div>
-                                            <div className="page-button" >
-                                                <div className="button-container">
-                                                    <div className="button1">
-                                                        {pageNumber > 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&subCategory=" + subCategory + "&item=" + searchKey + "&page=" + page + "&limit=" + limit} className="link">
-                                                            <button className="button is-primary" onClick={decreaseHandler}>
-                                                                <span> Previous Page  </span>
-                                                            </button>
-                                                        </Link> : <div></div>}
-                                                    </div>
-                                                    <div className="button2">
-                                                        {pageNumber > 0 && items.length > limit - 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&subCategory=" + subCategory + "&item=" + searchKey + "&page=" + page + "&limit=" + limit} className="link">
-                                                            <button className="button is-primary" onClick={increaseHandler}>
-                                                                <span> Next Page  </span>
-                                                            </button>
-                                                        </Link> : null}
-                                                    </div>
-                                                </div>
+                                    <div className="page-number" >
+                                        &lt; {pageNumber} &gt;
                                             </div>
-                                        </section>
+                                    <div className="page-button" >
+                                        <div className="button-container">
+                                            <div className="button1">
+                                                {pageNumber > 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&subCategory=" + subCategory + "&item=" + searchKey + "&page=" + page + "&limit=" + limit} className="link">
+                                                    <button className="button is-primary" onClick={decreaseHandler}>
+                                                        <span> Previous Page  </span>
+                                                    </button>
+                                                </Link> : <div></div>}
+                                            </div>
+                                            <div className="button2">
+                                                {pageNumber > 0 && items.length > limit - 1 ? <Link to={"/search?community=" + community + "&category=" + category + "&subCategory=" + subCategory + "&item=" + searchKey + "&page=" + page + "&limit=" + limit} className="link">
+                                                    <button className="button is-primary" onClick={increaseHandler}>
+                                                        <span> Next Page  </span>
+                                                    </button>
+                                                </Link> : null}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <Footer />
                                 </div>
-                                : <div>Items Not Found</div>
-                        ) :
-                            <div>Items Not Found</div>
-                    )}
+                                    : <div className="has-text-centered is-size-4">Items Not Found</div>
+                            ) :
+                                <div  className="has-text-centered is-size-4">Items Not Found</div>}
+                        </section>
+                    </div>
+                    <Footer />
+                </div>
+
+            )}
         </div>
     );
 }

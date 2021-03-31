@@ -233,7 +233,7 @@ export default function MyProfilePage() {
                       alt="user"
                       width="150"
                     ></img >
-                    {/* We use a temporary json server as our backend database and we can not send the binary image
+                    {/* We use a temporary jason server as our backend database and we can not send the binary image
                      to the server, we will require user to enter an url for the uploaded image instead of upload image from local folder */}
                     {/* <div className="upload-button">
                           <div className="fileinputs">
@@ -264,11 +264,11 @@ export default function MyProfilePage() {
                     <input id="username" type="text" placeholder={user.username} onChange={(e) => setUsername(e.target.value)}></input>
                     <button onClick={updateUserNameHandler}> Update</button>
                   </div>
-                  <div>
+                  {user.admin ?  null: <div>
                     <label>Company Name</label>
                     <input id="companyName" type="text" placeholder={user.company} onChange={(e) => setCompany(e.target.value)}></input>
                     <button onClick={updateCompanyNameHandler}> Update</button>
-                  </div>
+                  </div>}                  
                   <div>
                     <label>Password</label>
                     <input id="password" type="password" placeholder="******" onChange={(e) => setPassword(e.target.value)}></input>
