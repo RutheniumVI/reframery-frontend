@@ -49,6 +49,9 @@ export default function Signin(props) {
               <label >Password </label>
               <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)} />
             </div>
+            <div className="admin-checkbox">
+            <input className="box" type="checkbox" />Sign in as admin
+          </div>
             <div className="submit-button">
               <button className="button is-primary is-rounded" onClick={submitHandler}>
                 <span className="icon">

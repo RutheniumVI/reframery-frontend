@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { searchItems } from "../actions/searchActions";
 
 export default function SearchBar(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const search = useLocation().search; 
+  const currentcategory = new URLSearchParams(search).get('category');
+  const currentsubCategory = new URLSearchParams(search).get('subCategory');
+  const currentsearchKey = new URLSearchParams(search).get('item');
   const { community } = props;
   const limit = 20;
   const page = 0;
-  const [category, setCategory] = useState('products');
-  const [subCategory, setSubCategory] = useState('');
-  const [searchKey, setSearchKey] = useState('');
+  const [category, setCategory] = useState(currentcategory);
+  const [subCategory, setSubCategory] = useState(currentsubCategory);
+  const [searchKey, setSearchKey] = useState(currentsearchKey);   
+
 
   //handler for search button
   const searchHandler = (e) => {
@@ -26,6 +31,8 @@ export default function SearchBar(props) {
   //handler for setting the value of category and subcategory
   const setCategoryHandler = (e) => {
     e.preventDefault();
+    setCategory('')
+    setSubCategory('')
     const categoryValue = e.target.value;
     if (categoryValue === 'food' || categoryValue === 'clothing') {
       setCategory('products')
@@ -45,8 +52,8 @@ export default function SearchBar(props) {
     <div className="searchbar">
       <div className="search-component">
         <div className="select-category">
-          <select value={category} onChange={setCategoryHandler}>
-            {/* <option key="All" value="All">All</option> */}
+          <select className="select-category" value={subCategory? subCategory : category} onChange={setCategoryHandler}>
+            <option key="All" value="All">All</option>
             <option key="Product" value="products">Product</option>
             <option key="Food" value="food">  &nbsp; &nbsp; Food</option>
             <option key="Clothing" value="clothing">  &nbsp; &nbsp; Clothing</option>

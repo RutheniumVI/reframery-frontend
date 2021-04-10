@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { numOfUnvalidatedUsers, numOfValidatedUsers } from 'actions/userActions';
 import LoadingBox from 'components/LoadingBox';
 import MessageBox from 'components/MessageBox';
+import { Link } from 'react-router-dom';
 
 export default function OverviewPage() {
     const dispatch = useDispatch();
@@ -48,7 +49,7 @@ export default function OverviewPage() {
 
                                     <div className="row">
                                         <div className="column1"> {counterOfValidated + counterOfUnvalidated} </div>
-                                        <div className="column2"> {counterOfUnvalidated} </div>
+                                        <div className="column2"> <Link to='/admin/awaiting-validation'>{counterOfUnvalidated} </Link></div>
                                         <div className="column3">{counterOfValidated}</div>
                                     </div>
 

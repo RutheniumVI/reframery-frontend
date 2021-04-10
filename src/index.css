@@ -218,6 +218,7 @@ header {
 .sidebar-container {
   padding-top: 30px;
   width: 200px;
+  padding-left: 20px;
 }
 
 .sidebar {
@@ -312,6 +313,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
+  margin-left: 6%;
+  margin-right: 6%;
 }
 
 .wellcome-container .right {
@@ -432,7 +435,7 @@ header {
 
 input[type='checkbox'] {
   float: left;
-  width: 10px;
+  width: 10px; 
 }
 
 input[type='checkbox']+label {
@@ -463,6 +466,7 @@ input[type='checkbox']+label {
   color: black;
   font-size: 14px;
   text-align: center;
+  background-color: transparent;
 }
 
 .wellcome-container .form .link:hover {
@@ -515,6 +519,11 @@ input[type='checkbox']+label {
 }
 
 .home-container .category .link:active {
+  color: #f5f5f5;
+  background-color: #c9168d;
+}
+
+.home-container .category .link:focus {
   color: #f5f5f5;
   background-color: #c9168d;
 }
@@ -829,6 +838,7 @@ input[type='checkbox']+label {
   padding-top: 30px;
   width: 300px;
   height: 100%;
+  padding-left: 20px;
 }
 
 .admin-sidebar .top {
@@ -1154,14 +1164,14 @@ input[type='checkbox']+label {
   }
 
   .home-container .list-items-signin {
-    max-width: 80%;
+    max-width: 100%;
   }
 
 }
 
 @media(min-width:1500px) {
   .main {
-    width: 90%;
+    width: 100%;
     /* background-color: #c9168d; */
   }
 }

@@ -39,7 +39,7 @@ export default function Register() {
     const submitHandler = (e) => {
         e.preventDefault();
         if (username === "" || email === "" || password === "" || confirmPassword === "") {
-            setErrorMessage("! Please do not leave empty input");
+            setErrorMessage("! Enter your information");
         }
         else if (!isValidEmail(email)) {
             setErrorMessage("! Invalid email address");
@@ -48,13 +48,13 @@ export default function Register() {
             setErrorMessage("! Invalid password");
         }
         else if (password !== confirmPassword) {
-            setErrorMessage("! Password and confirm password are different");
+            setErrorMessage("! Passwords do not match");
         }
         else if (!error) {
-            setErrorMessage("! The email address has been used");
+            setErrorMessage("! E-mail address already in use");
         }
         else {
-            const confirm = window.confirm("Are you sure to create the account?");
+            const confirm = window.confirm("Do you wish to create the account?");
             if (confirm) {
                 //create a new user record
                 dispatch(createUser(username, email, password, communityName));
@@ -82,6 +82,10 @@ export default function Register() {
                         <div>
                             <label >User Name </label>
                             <input type="text" id="username" value={username} required onChange={(e) => setUsername(e.target.value)}></input>
+                            {username.length > 15 ? 
+                                <div class="notification is-danger is-light mt-0 pt-0 pb-0">
+                                    user name is too long
+                                </div> : null}
                         </div>
                         <div>
                             <label >Email Address </label>

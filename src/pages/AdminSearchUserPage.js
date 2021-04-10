@@ -83,7 +83,7 @@ export default function UpdateBalancePage() {
                                         (<div className="search-user-table">
                                             <div className="title">
                                                 <div className="email"> Email</div>
-                                                <div className="currentbalance"> Current Credit </div>
+                                                <div className="currentbalance"> Currency Balance </div>
                                                 <div className="status"> Status </div>
                                                 <div className="div-button"> Lock/Unlock </div>
                                             </div>
@@ -97,9 +97,9 @@ export default function UpdateBalancePage() {
                                                         <button className="button is-primary is-rounded" onClick={unBanUserHandler}>UnLock</button></div>
                                                 </div>
                                                 <div >
-                                                    <div className="title"> Update the user Credit</div>
+                                                    <div className="title"> Update user's Balance</div>
                                                     <div>
-                                                        <div >Number of Credit: <input className="credit-input" type="number" onChange={(e) => setCreditUnit(e.target.value)}></input>
+                                                        <div >Unit of Currency: <input className="credit-input" type="number" onChange={(e) => setCreditUnit(e.target.value)}></input>
                                                             <button className="button is-primary is-rounded" onClick={addBalanceHandler}>Add</button>
                                                             <button className="button is-primary is-rounded"
                                                                 onClick={deductBalanceHandler}>Deduct</button>
