@@ -64,9 +64,9 @@ export default function Header(props) {
                   <Link to="/register">
                     <span className="nav-item link">Register</span>
                   </Link>
-                  <Link to="/cart">
+                  {/* <Link to="/cart">
               <span className="nav-item link">Cart({cartNum})</span>
-            </Link>
+            </Link> */}
                 </div>
 
               )}

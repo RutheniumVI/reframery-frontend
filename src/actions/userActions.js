@@ -47,7 +47,6 @@ export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
     try {
         const { data } = await Axios.post(`/users/signin/${email}`, { password });
-        console.log(data);
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {
@@ -71,7 +70,6 @@ export const createUser = (username, email, password, communityName) => async (d
     dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, communityName } });
     try {
         const { data } = await Axios.post('/users/user', { username, email, password, communityName })
-        console.log(data);
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -88,7 +86,6 @@ export const createAdminUser = (username, email, password, communityName) => asy
     dispatch({ type: USER_REGISTER_REQUEST, payload: { username, email, password, communityName } });
     try {
         const { data } = await Axios.post('/users/adminUser', { username, email, password, communityName });
-        console.log(data);
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -105,8 +102,6 @@ export const getUser = (email) => async (dispatch, getState) => {
     dispatch({ type: USER_DETAILS_REQUEST, payload: email });
     try {
         const { data } = await Axios.get(`/users/user/${email}`);
-        // console.log("testing");
-        // console.log(data);
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
