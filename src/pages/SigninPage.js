@@ -10,14 +10,14 @@ export default function Signin(props) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
- 
+
   const userSignin = useSelector(state => state.userSignin);
   const { error, userInfo } = userSignin;
-  
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
-   };
+  };
 
   useEffect(() => {
     // if the user sign in sucessfully, go to the redirect link
@@ -26,7 +26,7 @@ export default function Signin(props) {
       if (userInfo.admin || userInfo.manager) {
         navigate('/admin');
       } else {
-        navigate(`/${userInfo.communityName}/products`);
+        navigate(`/${userInfo.communityName}`);
       }
     }
   }, [navigate, userInfo]);
@@ -39,7 +39,7 @@ export default function Signin(props) {
           <form className="signin" >
             <div>
               <h3 className="signin-text">Sign In</h3>
-              {error? <div className="danger">! Invalid email or password</div>: null}
+              {error ? <div className="danger">! Invalid email or password</div> : null}
             </div>
             <div>
               <label >Email </label>
@@ -49,9 +49,9 @@ export default function Signin(props) {
               <label >Password </label>
               <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)} />
             </div>
-            <div className="admin-checkbox">
-            <input className="box" type="checkbox" />Sign in as admin
-          </div>
+            {/* <div className="admin-checkbox">
+              <input className="box" type="checkbox" />Sign in as admin
+            </div> */}
             <div className="submit-button">
               <button className="button is-primary is-rounded" onClick={submitHandler}>
                 <span className="icon">

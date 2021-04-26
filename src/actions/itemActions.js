@@ -4,9 +4,15 @@ import {
   ITEM_LIST_CATEGORY_REQUEST,
   ITEM_LIST_CATEGORY_SUCCESS,
   ITEM_LIST_CATEGORY_FAIL,
-  ITEM_LIST_REQUEST,
-  ITEM_LIST_SUCCESS,
-  ITEM_LIST_FAIL,
+  NEWEST_ITEM_LIST_PRODUCTS_REQUEST,
+  NEWEST_ITEM_LIST_PRODUCTS_SUCCESS,
+  NEWEST_ITEM_LIST_PRODUCTS_FAIL,
+  NEWEST_ITEM_LIST_SERVICES_REQUEST,
+  NEWEST_ITEM_LIST_SERVICES_SUCCESS,
+  NEWEST_ITEM_LIST_SERVICES_FAIL,
+  NEWEST_ITEM_LIST_EXPERTISES_REQUEST,
+  NEWEST_ITEM_LIST_EXPERTISES_SUCCESS,
+  NEWEST_ITEM_LIST_EXPERTISES_FAIL,
   ITEM_GET_REQUEST,
   ITEM_GET_SUCCESS,
   ITEM_GET_FAIL,
@@ -287,14 +293,36 @@ export const getItem = (itemID) => async (dispatch) => {
   }
 }
 
-// fetch item list of all the three categories from backend
-export const getNewestItems = (limit, communityName, category) => async (dispatch) => {
-  dispatch({ type: ITEM_LIST_REQUEST });
+// fetch item list of products
+export const getNewestItemsOfProducts = (limit, communityName, category) => async (dispatch) => {
+  dispatch({ type: NEWEST_ITEM_LIST_PRODUCTS_REQUEST });
   try {
     const { data } = await Axios.get(`/items/newestItems/${communityName}-${limit}?category=${category}`);
-    dispatch({ type: ITEM_LIST_SUCCESS, payload: data });
+    dispatch({ type: NEWEST_ITEM_LIST_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: ITEM_LIST_FAIL, payload: error.message });
+    dispatch({ type: NEWEST_ITEM_LIST_PRODUCTS_FAIL, payload: error.message });
+  }
+};
+
+// fetch item list of services
+export const getNewestItemsOfServices = (limit, communityName, category) => async (dispatch) => {
+  dispatch({ type: NEWEST_ITEM_LIST_SERVICES_REQUEST });
+  try {
+    const { data } = await Axios.get(`/items/newestItems/${communityName}-${limit}?category=${category}`);
+    dispatch({ type: NEWEST_ITEM_LIST_SERVICES_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: NEWEST_ITEM_LIST_SERVICES_FAIL, payload: error.message });
+  }
+};
+
+// fetch item list of expertises
+export const getNewestItemsOfExpertises = (limit, communityName, category) => async (dispatch) => {
+  dispatch({ type: NEWEST_ITEM_LIST_EXPERTISES_REQUEST });
+  try {
+    const { data } = await Axios.get(`/items/newestItems/${communityName}-${limit}?category=${category}`);
+    dispatch({ type: NEWEST_ITEM_LIST_EXPERTISES_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: NEWEST_ITEM_LIST_EXPERTISES_FAIL, payload: error.message });
   }
 };
 

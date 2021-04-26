@@ -4,7 +4,7 @@ import "./App.css";
 import { DataProvider } from "./data/useData";
 import { useSelector } from "react-redux";
 import NotFound from "./components/NotFound";
-import ItemsPage from "./pages/ItemsPage";
+import ItemsPage from "./pages/HomePage";
 import UserPage from "./pages/MyProfilePage";
 import MyItemPage from "./pages/MyItemPage";
 import UpdateBalancePage from "./pages/AdminSearchUserPage";
@@ -56,14 +56,14 @@ export default function App() {
 
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/:community/:category" element={<ItemsPage />} />
+          <Route path="/:community" element={<ItemsPage />} />
           <Route path="/:community/:category/:start/:end" element={<MoreItemsPage />} />
           <Route path="/search" element={<SearchResultPage />} />
 
           <Route path="/:community/:category/:id" element={<ItemDetails />} />
 
           <Route path="/cart" element={<Cart />} />
-          {/* only for logged inusers */}
+          {/* only for logged in users */}
           {userInfo ? (userInfo.admin ? null : <Route path="/address-form" element={<AddressForm />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/confirm" element={<Confirm />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/payment" element={<Payment />} />) : null}

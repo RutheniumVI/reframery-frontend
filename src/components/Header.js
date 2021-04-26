@@ -32,7 +32,7 @@ export default function Header(props) {
           <Link to="/"><img className="logo" src="/images/logo.png" alt="logo" width="50"></img ></Link>
         </div>
         <div className="navbar-start">
-          <Link to={userInfo? "/" + userCommunity +"/products": "/"} className="link"> <span className="nav-item link">Home</span></Link>
+          <Link to={"/" + userCommunity} className="link"> <span className="nav-item link">Home</span></Link>
           <Link to="/about"> <span className="nav-item link">About</span></Link>
           <Link to="/contact"> <span className="nav-item link">Contact</span></Link>
         </div>
