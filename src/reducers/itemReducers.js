@@ -2,9 +2,15 @@ const {
     ITEM_LIST_CATEGORY_REQUEST,
     ITEM_LIST_CATEGORY_SUCCESS,
     ITEM_LIST_CATEGORY_FAIL,
-    ITEM_LIST_REQUEST,
-    ITEM_LIST_SUCCESS,
-    ITEM_LIST_FAIL,
+    NEWEST_ITEM_LIST_PRODUCTS_REQUEST,
+  NEWEST_ITEM_LIST_PRODUCTS_SUCCESS,
+  NEWEST_ITEM_LIST_PRODUCTS_FAIL,
+  NEWEST_ITEM_LIST_SERVICES_REQUEST,
+  NEWEST_ITEM_LIST_SERVICES_SUCCESS,
+  NEWEST_ITEM_LIST_SERVICES_FAIL,
+  NEWEST_ITEM_LIST_EXPERTISES_REQUEST,
+  NEWEST_ITEM_LIST_EXPERTISES_SUCCESS,
+  NEWEST_ITEM_LIST_EXPERTISES_FAIL,
     ITEM_GET_REQUEST,
     ITEM_GET_SUCCESS,
     ITEM_GET_FAIL,
@@ -98,19 +104,57 @@ export const itemGetReducer = (state = { loading: true, item: {} }, action) => {
     }
 };
 
-export const newestItemsGetReducer = (
+export const newestItemsOfProductsGetReducer = (
     state = { loading: true, items: [] },
     action
 ) => {
     switch (action.type) {
-        case ITEM_LIST_REQUEST:
+        case NEWEST_ITEM_LIST_PRODUCTS_REQUEST:
             return { loading: true };
-        case ITEM_LIST_SUCCESS:
+        case NEWEST_ITEM_LIST_PRODUCTS_SUCCESS:
             return {
                 loading: false,
                 items: action.payload
             };
-        case ITEM_LIST_FAIL:
+        case NEWEST_ITEM_LIST_PRODUCTS_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const newestItemsOfServicesGetReducer = (
+    state = { loading: true, items: [] },
+    action
+) => {
+    switch (action.type) {
+        case NEWEST_ITEM_LIST_SERVICES_REQUEST:
+            return { loading: true };
+        case NEWEST_ITEM_LIST_SERVICES_SUCCESS:
+            return {
+                loading: false,
+                items: action.payload
+            };
+        case NEWEST_ITEM_LIST_SERVICES_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const newestItemsOfExpertisesGetReducer = (
+    state = { loading: true, items: [] },
+    action
+) => {
+    switch (action.type) {
+        case NEWEST_ITEM_LIST_EXPERTISES_REQUEST:
+            return { loading: true };
+        case NEWEST_ITEM_LIST_EXPERTISES_SUCCESS:
+            return {
+                loading: false,
+                items: action.payload
+            };
+        case NEWEST_ITEM_LIST_EXPERTISES_FAIL:
             return { loading: false, error: action.payload };
         default:
             return state;
