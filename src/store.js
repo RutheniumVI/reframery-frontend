@@ -19,8 +19,8 @@ import {
 
 // import transaction reducers
 import { 
-    balanceAddReducer, 
-    balanceDeductReducer, 
+    creditAddReducer, 
+    creditDeductReducer, 
     balanceGetReducer, 
     transactionGetReducer, 
     transactionsOfUserGetReducer 
@@ -94,8 +94,8 @@ const reducer = combineReducers({
     transactionGet: transactionGetReducer,
     transactionsOfUserGet: transactionsOfUserGetReducer,
     balanceGet: balanceGetReducer,
-    balanceAdd: balanceAddReducer,
-    balanceDeduct: balanceDeductReducer,
+    creditAdd: creditAddReducer,
+    creditDeduct: creditDeductReducer,
 
     //reducers for items
     itemCreate: itemCreateReducer,

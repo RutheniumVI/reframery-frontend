@@ -377,10 +377,13 @@ export const promoteToManager = (email) => async (dispatch) => {
 };
 
 //update the validate status of the user 
-export const banUser = (email) => async (dispatch) => {
+export const banUser = (email, banned) => async (dispatch) => {
     dispatch({ type: USER_UPDATE_REQUEST, payload: email });
     try {
-        const { data } = await Axios.get(`/users/banUser/${email}`);
+        const { data } = await Axios.patch(`/users/user/${email}`,
+        {
+            banned
+        });
         dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
