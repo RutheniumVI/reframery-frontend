@@ -7,7 +7,8 @@ import NotFound from "./components/NotFound";
 import ItemsPage from "./pages/HomePage";
 import UserPage from "./pages/MyProfilePage";
 import MyItemPage from "./pages/MyItemPage";
-import UpdateBalancePage from "./pages/AdminSearchUserPage";
+import SearchUserPage from "./pages/AdminSearchUserPage";
+import SearchUserResultPage from "./pages/AdminSearchUserResultPage";
 import OverviewPage from './pages/AdminOverviewPage';
 import AwaitingPage from './pages/AdminUnvalidatedUserPage';
 import CreateAdminPage from './pages/AdminCreateAdminPage';
@@ -45,7 +46,6 @@ export default function App() {
     <DataProvider>
       <main className="main">
         <Routes>
-          {/* {userInfo ? null : <Route path="/" element={<WellcomePage />} />} */}
           <Route path="/" element={<WellcomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
@@ -75,12 +75,12 @@ export default function App() {
           {userInfo ? (userInfo.admin ? null : <Route path="/create-item" element={<CreateItemPage />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/purchase-history" element={<PurchaseHistory />} />) : null}
           {userInfo ? (userInfo.admin ? null : <Route path="/sales-history" element={<SalesHistory />} />) : null}
-
          
           {/* only for admin users */}
           {userInfo ? (userInfo.admin ?<Route path="/admin" element={<OverviewPage />} /> : null) : null}
           {userInfo ? (userInfo.admin ?<Route path="/admin/awaiting-validation" element={<AwaitingPage />} /> : null) : null}
-          {userInfo ? (userInfo.admin ?<Route path="/admin/update-users-balance" element={<UpdateBalancePage />} /> : null) : null}
+          {userInfo ? (userInfo.admin ?<Route path="/admin/search-user" element={<SearchUserPage />} /> : null) : null}
+          {userInfo ? (userInfo.admin ?<Route path="/admin/search" element={<SearchUserResultPage />} /> : null) : null}
           {userInfo ? (userInfo.admin ?<Route path="/admin/create-admin-account" element={<CreateAdminPage />} /> : null) : null}
           {userInfo ? (userInfo.admin ?<Route path="/admin/my-profile" element={<MyProfilePage />} /> : null) : null}
           {userInfo ? (userInfo.admin ?<Route path="/admin/administrator-management" element={<AdminManagePage />} /> : null) : null}

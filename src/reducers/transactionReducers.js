@@ -56,7 +56,7 @@ export const balanceGetReducer = (state = {}, action) => {
     }
 };
 
-export const balanceAddReducer = (state = {}, action) => {
+export const creditAddReducer = (state = {}, action) => {
     switch (action.type) {
         case BALANCE_ADD_REQUEST:
             return { loading: true };
@@ -69,7 +69,7 @@ export const balanceAddReducer = (state = {}, action) => {
     }
 };
 
-export const balanceDeductReducer = (state = {}, action) => {
+export const creditDeductReducer = (state = {}, action) => {
     switch (action.type) {
         case BALANCE_DEDUCT_REQUEST:
             return { loading: true };
