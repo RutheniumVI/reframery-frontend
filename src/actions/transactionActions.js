@@ -1,5 +1,9 @@
 import Axios from 'axios';
 import {
+    TRANSACTION_CREATE_REQUEST,
+    TRANSACTION_CREATE_FAIL,
+    TRANSACTION_CREATE_SUCCESS,
+    TRANSACTION_GET_REQUEST,
     TRANSACTION_GET_FAIL,
     TRANSACTION_GET_SUCCESS,
     BALANCE_GET_REQUEST,
@@ -13,15 +17,25 @@ import {
     BALANCE_DEDUCT_SUCCESS,
     TRANSACTION_OF_USER_GET_REQUEST,
     TRANSACTION_OF_USER_GET_SUCCESS,
-    TRANSACTION_OF_USER_GET_FAIL,
-    TRANSACTION_GET_REQUEST,
+    TRANSACTION_OF_USER_GET_FAIL    
 } from '../constants/transactionConstants';
 
 Axios.defaults.auth = {
     username: 'access_key_admin',
     password: 'secret_key_hush',
-  };
-  
+};
+
+// create a transaction
+export const createTransaction = (senderEmail, receiverEmail, creditUnit, transactionToken) => async (dispatch) => {
+    dispatch({ type: TRANSACTION_CREATE_REQUEST, payload: { senderEmail, receiverEmail, creditUnit, transactionToken } });
+    try {
+        const { data } = await Axios.post(`/transactions/transaction`, { senderEmail, receiverEmail, creditUnit, transactionToken});
+        dispatch({ type: TRANSACTION_CREATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: TRANSACTION_CREATE_FAIL, payload: error.message });
+    }
+}
+
 // get transaction details from backend
 export const getTransaction = (transactionID) => async (dispatch) => {
     dispatch({ type: TRANSACTION_GET_REQUEST, payload: transactionID });

@@ -22,6 +22,7 @@ import {
     creditAddReducer, 
     creditDeductReducer, 
     balanceGetReducer, 
+    transactionCreateReducer, 
     transactionGetReducer, 
     transactionsOfUserGetReducer 
 } from './reducers/transactionReducers.js';
@@ -91,6 +92,7 @@ const reducer = combineReducers({
     unvalidatedUsersCount: unvalidatedUsersCountReducer,
 
     // reducers for transactions
+    transactionCreate: transactionCreateReducer,
     transactionGet: transactionGetReducer,
     transactionsOfUserGet: transactionsOfUserGetReducer,
     balanceGet: balanceGetReducer,

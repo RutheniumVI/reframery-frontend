@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 
 export default function CreateAdminPage() {
     const dispatch = useDispatch();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     //input from user
     const [email, setEmail] = useState('');
@@ -66,57 +66,67 @@ export default function CreateAdminPage() {
                 dispatch(createAdminUser(username, email, password, communityName));
                 navigate(redirect);
             }
-        }        
+        }
     };
 
     useEffect(() => {
-        if(created){
+        if (created) {
             dispatch(getUser(email));
-        }        
+        }
     }, [dispatch, created]);
 
     return (
-        <div>
+        <div >
             <Header />
-            <div className="sidebar-content">
-                <SideBar />
-                <div className="admin-container" >
-                    <div className="admin-table">
-                        <div className="table">
+            <div className="columns sidebar-content">
+                <div className="column is-one-fifth"><SideBar /></div>
+                <div className="column is-four-fifths ">
+                    <div className="is-centered ml-6 mr-6 mt-6 background-white is-size-5">
+                        <div className="is-centered px-6 py-6">
                             <div className="form">
-                                <form className="Register">
-                                    <div>
-                                        <h3>Create New Administrator</h3>
-                                        <label className="danger">{erroMessage}</label>
+                                <form >
+
+                                    <div className="columns is-centered">
+                                        <div className="is-size-4 has-text-weight-bold mb-3">Create New Administrator</div>
                                     </div>
-                                    <div>
-                                        <label >Email Address </label>
-                                        <input type="email" id="email" required onChange={e => setEmail(e.target.value)}></input>
+                                    <div className="columns is-centered">
+                                        <div className="has-text-danger">{erroMessage}</div>
                                     </div>
-                                    <div>
-                                        <label >Password </label>
-                                        <input type="password" id="password" required onChange={e => setPassword(e.target.value)}></input>
+                                    <div className="columns is-centered">
+                                        <div className="column is-one-quarter">Email Address </div>
+                                        <input className="column input is-one-third" type="email" id="email" required onChange={e => setEmail(e.target.value)}></input>
                                     </div>
-                                    <div>
-                                        <label >Comfirm Password </label>
-                                        <input type="password" id="confirmPassword" required onChange={(e) => setConfirmPassword(e.target.value)}></input>
+                                    <div className="columns is-centered">
+                                        <div className="column is-one-quarter">Password </div>
+                                        <input className="column input is-one-third" type="password" id="password" required onChange={e => setPassword(e.target.value)}></input>
                                     </div>
-                                    <div>
-                                        <label >Community  </label>
-                                        <select value={communityName} className="select-box" onChange={e => setCommunityName(e.target.value)}>
-                                            <option key="Canada" value="canada">Canada</option>
-                                            <option key="USA" value="usa">USA</option>
-                                            <option key="Brazil" value="brazil">Brazil</option>
-                                            <option key="mexico" value="mexico">Mexico</option>
-                                        </select>
+                                    <div className="columns is-centered">
+                                        <div className="column is-one-quarter">Comfirm Password </div>
+                                        <input className="column input is-one-third" type="password" id="confirmPassword" required onChange={(e) => setConfirmPassword(e.target.value)}></input>
+                                    </div>
+                                    <div className="columns is-centered">
+                                        <div className="column is-one-quarter">Community  </div>
+                                        <div class="column is-one-third">
+                                            <div class="select is-primary ">
+                                                <select value={communityName} className="select-box" onChange={e => setCommunityName(e.target.value)}>
+                                                    <option key="Canada" value="canada">Canada</option>
+                                                    <option key="USA" value="usa">USA</option>
+                                                    <option key="Brazil" value="brazil">Brazil</option>
+                                                    <option key="mexico" value="mexico">Mexico</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="columns is-centered my-6">
+                                        <button className="button is-primary is-rounded" onClick={submitHandler}>
+                                            <span className="icon">
+                                                <i className="fas fa-sign-in-alt"></i>
+                                            </span>
+                                            <span> Submit  </span>
+                                        </button>
                                     </div>
 
-                                    <button className="button is-primary is-rounded create-admin" onClick={submitHandler}>
-                                        <span className="icon">
-                                            <i className="fas fa-sign-in-alt"></i>
-                                        </span>
-                                        <span> Submit  </span>
-                                    </button>
+
 
 
                                 </form>
