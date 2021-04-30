@@ -8,6 +8,9 @@ import {
     BALANCE_GET_FAIL,
     BALANCE_GET_REQUEST,
     BALANCE_GET_SUCCESS,
+    TRANSACTION_CREATE_FAIL,
+    TRANSACTION_CREATE_REQUEST,
+    TRANSACTION_CREATE_SUCCESS,
     TRANSACTION_GET_FAIL,
     TRANSACTION_GET_REQUEST,
     TRANSACTION_GET_SUCCESS,
@@ -16,6 +19,19 @@ import {
     TRANSACTION_OF_USER_GET_SUCCESS,
 
 } from "../constants/transactionConstants";
+
+export const transactionCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case TRANSACTION_CREATE_REQUEST:
+            return { loading: true };
+        case TRANSACTION_CREATE_SUCCESS:
+            return { loading: false, transaction: action.payload };
+        case TRANSACTION_CREATE_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
 
 export const transactionGetReducer = (state = {}, action) => {
     switch (action.type) {

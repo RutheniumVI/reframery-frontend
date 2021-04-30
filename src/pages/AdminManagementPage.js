@@ -21,19 +21,19 @@ export default function AdminManagePage() {
 
     // update user states
     const userUpdate = useSelector((state) => state.userUpdate);
-    const { user: updatedUser} = userUpdate;  
-    
+    const { user: updatedUser } = userUpdate;
+
     //creating a new adimin user states
     const userRegister = useSelector((state) => state.userRegister);
-    const { userInfo: newCreatedAdmin} = userRegister; 
+    const { userInfo: newCreatedAdmin } = userRegister;
 
     //button handler for promote a dmin to a manager
     const promoteHandler = (e) => {
         e.preventDefault();
         const promotedAdminEmail = e.target.value;
-        console.log(promotedAdminEmail); 
+        console.log(promotedAdminEmail);
         const confirm = window.confirm("Do you wish to promote " + promotedAdminEmail + " as a manager?");
-        if (confirm) {    
+        if (confirm) {
             dispatch(promoteToManager(promotedAdminEmail));
         }
     };
@@ -51,46 +51,46 @@ export default function AdminManagePage() {
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (<div>
                 <Header />
-                <div className="sidebar-content">
-                    <SideBar />
-                    <div className="admin-container">
-                        <div className="admin-table">
-                            <div className="table">
+                <div className="columns sidebar-content">
+                    <div className="column is-one-fifth"><SideBar /></div>
+                    <div className="column is-four-fifths ">
+                        <div className="is-centered ml-6 mr-6 mt-6 background-white is-size-5">
+                            <div className="px-6 py-6">
                                 {loadingAdmin ? (
                                     <LoadingBox></LoadingBox>
                                 ) : error ? (
                                     <MessageBox variant="danger">{error}</MessageBox>
                                 ) : (
-                                            <div >
-                                                <Link to="/admin/create-admin-account"><div className="create">Create a new administrator</div></Link>
-                                                <div className="table">
-                                                    <div className="title-table">
-                                                        <div className="username"> Admin Name</div>
-                                                        <div className="email"> Email</div>
-                                                        <div className="request"> Register Time </div>
-                                                        <div className="div-button"> &nbsp;</div>
-                                                    </div>
-                                                    {
-                                                        admins.map((currentUser) => (
-                                                            <div className="row" key={currentUser.email}>
-                                                                <div className="username"> {currentUser.username} </div>
-                                                                <div className="email">{currentUser.email}</div>
-                                                                <div className="request">{currentUser.registerTime.slice(0, 10)} </div>
-                                                                <div className="div-button">
-                                                                    {
-                                                                        currentUser.manager ? (
-                                                                            <div>&nbsp;</div>
-                                                                        ) : (
-                                                                                <button className="button is-primary is-rounded" value={currentUser.email} onClick={promoteHandler}>Promote As Manager</button>
-                                                                            )
-                                                                    }
-                                                                </div>
-                                                            </div>))
-                                                    }
-                                                </div>
-
+                                    <div >
+                                        <div className="has-text-right is-hovered mb-3"> <Link to="/admin/create-admin-account"> <button className="button is-white is-hovered is-size-5">Create a new administrator</button></Link></div>
+                                        <div className="">
+                                            <div className="columns has-text-weight-bold has-text-centered">
+                                                <div className="column"> Admin Name</div>
+                                                <div className="column is-one-third"> Email</div>
+                                                <div className="column"> Register Time </div>
+                                                <div className="column"> Actions</div>
                                             </div>
-                                        )}
+                                            {
+                                                admins.map((currentUser) => (
+                                                    <div className="columns has-text-centered" key={currentUser.email}>
+                                                        <div className="column"> {currentUser.username} </div>
+                                                        <div className="column is-one-third">{currentUser.email}</div>
+                                                        <div className="column">{currentUser.registerTime.slice(0, 10)} </div>
+                                                        <div className="column">
+                                                            {
+                                                                currentUser.manager ? (
+                                                                    <div>&nbsp;</div>
+                                                                ) : (
+                                                                    <button className="button is-primary is-rounded" value={currentUser.email} onClick={promoteHandler}>Promote As Manager</button>
+                                                                )
+                                                            }
+                                                        </div>
+                                                    </div>))
+                                            }
+                                        </div>
+
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

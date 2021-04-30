@@ -16,41 +16,41 @@ export default function OverviewPage() {
     const userCommunity = userInfo.communityName;
 
     //states of getting the number of validated users
-    const  validatedUsersCount = useSelector((state) => state.validatedUsersCount);
-    const { loading:loadingOfValidated, error:errorOfValidated, counterOfValidated } =  validatedUsersCount;
-    
+    const validatedUsersCount = useSelector((state) => state.validatedUsersCount);
+    const { loading: loadingOfValidated, error: errorOfValidated, counterOfValidated } = validatedUsersCount;
+
     //states of getting the number of unvalidated users
-    const  unvalidatedUsersCount = useSelector((state) => state.unvalidatedUsersCount);
-    const { loading:loadingOfUnvalidated, error:errorOfUnvalidated, counterOfUnvalidated } =  unvalidatedUsersCount;
+    const unvalidatedUsersCount = useSelector((state) => state.unvalidatedUsersCount);
+    const { loading: loadingOfUnvalidated, error: errorOfUnvalidated, counterOfUnvalidated } = unvalidatedUsersCount;
 
     useEffect(() => {
         dispatch(numOfValidatedUsers(userCommunity));
         dispatch(numOfUnvalidatedUsers(userCommunity));
     }, [dispatch, userCommunity]);
     return (
-        <div>
-            {loadingOfValidated ? (
+        <div >
+            {loadingOfValidated || loadingOfUnvalidated? (
                 <LoadingBox></LoadingBox>
-            ) : errorOfValidated ? (
+            ) : errorOfValidated || errorOfUnvalidated? (
                 <MessageBox variant="danger">{errorOfValidated}</MessageBox>
             ) : (
                 <div>
                     <Header />
-                    <div className="sidebar-content">
-                        <SideBar />
-                        <div className="container admin-container">
-                            <div className="admin-table">
-                                <div className="table">
-                                    <div className="title-table">
-                                        <div className="column1"> All Users</div>
-                                        <div className="column2"> Awaiting Validation</div>
-                                        <div className="column3"> Validated Users</div>
+                    <div className="columns sidebar-content">
+                        <div className="column is-one-fifth"><SideBar /></div>
+                        <div className="column is-four-fifths ">
+                            <div className="is-centered ml-6 mr-6 mt-6 background-white is-size-5">
+                                <div className="px-6 py-6">
+                                    <div className="columns has-text-weight-bold has-text-centered">
+                                        <div className="column is-one-third "> All Users</div>
+                                        <div className="column is-one-third "> Awaiting Validation</div>
+                                        <div className="column is-one-third "> Validated Users</div>
                                     </div>
 
-                                    <div className="row">
-                                        <div className="column1"> {counterOfValidated + counterOfUnvalidated} </div>
-                                        <div className="column2"> <Link to='/admin/awaiting-validation'>{counterOfUnvalidated} </Link></div>
-                                        <div className="column3">{counterOfValidated}</div>
+                                    <div className="columns has-text-centered">
+                                        <div className="column is-one-third "> {counterOfValidated + counterOfUnvalidated} </div>
+                                        <div className="column is-one-third "> <Link to='/admin/awaiting-validation'>{counterOfUnvalidated} </Link></div>
+                                        <div className="column is-one-third ">{counterOfValidated}</div>
                                     </div>
 
                                 </div>
