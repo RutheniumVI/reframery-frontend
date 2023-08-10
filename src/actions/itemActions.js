@@ -42,6 +42,8 @@ Axios.defaults.auth = {
   password: 'secret_key_hush',
 };
 
+Axios.defaults.baseURL = 'http://localhost:4000';
+
 
 // create an new item and send it to backend
 //xport const createItem = (category, name, price, userEmail, image, stock, description, discount, subCategoryID) => async (dispatch) => {
